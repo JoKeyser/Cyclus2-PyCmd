@@ -3,12 +3,14 @@ SPDX-FileCopyrightText: 2026 Johannes Keyser <johannes.keyser@uni-hamburg.de>
 SPDX-License-Identifier: EUPL-1.2
 -->
 
-# Cyclus2 cmd
+# Cyclus2-pycmd
 
 Idea: A command-line interface to interactively send (near) real-time commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/).
 
 > [!warning]
 > 🚧 This is prototyping in progress; not really usable yet. 🚧
+
+![logo](./media/logo-Cyclus2-PyCmd.svg){width=120}
 
 ## Description
 

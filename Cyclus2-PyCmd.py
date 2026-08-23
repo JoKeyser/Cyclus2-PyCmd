@@ -26,7 +26,7 @@ def recv_stream(sock, timeout=2.0, chunk_size=1024):
     chunks = []
     deadline = time.monotonic() + timeout
     last_data_time = time.monotonic()
-    TIMEOUT_LIMIT = 0.25  # seconds of idle time to consider the stream finished
+    TIMEOUT_LIMIT = 0.25  # idle time to consider the stream finished, in seconds
 
     while True:
         remaining = max(0.0, deadline - time.monotonic())
@@ -75,31 +75,37 @@ def main():
     # Settings worked for initial test; TODO: Make Host IP configurable.
     HOST = "192.168.1.200"
     PORT = 25000  # Cyclus2 default port is 25000
-    TIMEOUT = 2
+    TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
 
     try:
-        with socket.create_connection((HOST, PORT), timeout=TIMEOUT) as s:
-            print(f"Connected to {HOST}:{PORT}")
-            print("ASCII protocol assumed: CRLF command terminator, plain ASCII response.")
+        with socket.create_connection((HOST, PORT), timeout=TIMEOUT_SOCKET) as sock:
+            print(f"Connected to {HOST}:{PORT}, assuming it is a Cyclus2 ergometer.")
+            print("Type any Cyclus2 command, or type 'quit' or 'exit' to end the session.")
+            print("For example, enter 'vers?' and press <Enter> to request the version.")
 
             while True:
                 try:
-                    cmd = input("> ")
+                    user_input = input("> ")
                 except EOFError:
-                    print("\nEOF received, exiting.")
+                    print("\nEOF received, ending the session.")
                     break
 
-                if not cmd:
+                if not user_input:
+                    print("\nNo command received; type a Cyclus2 command or 'quit'/'exit' to stop.")
                     continue
-                if cmd.lower() in {"quit", "exit"}:
+                if user_input.lower() in {"quit", "exit"}:
+                    # User wants to exit the program.
                     break
 
-                send_and_receive_ascii(s, cmd, timeout=TIMEOUT)
+                send_and_receive_ascii(sock, user_input, timeout=TIMEOUT_SOCKET)
 
     except KeyboardInterrupt:
-        print("\nInterrupted.")
+        print("\nInterrupted by keyboard interrupt; ending the session.")
+        sys.exit(0)
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
+        print("Something went wrong with the script, see error above.", file=sys.stderr)
+        print("Ending the script now; try to restart it and/or report the error.", file=sys.stderr)
         sys.exit(1)
 
 

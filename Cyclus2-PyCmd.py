@@ -64,10 +64,10 @@ def send_and_receive_ascii(sock, command: str, timeout: float):
 
     response = recv_stream(sock, timeout=timeout)
     if not response:
-        print("<no response>")
+        print("<no response from Cyclus2>")
         return response
 
-    print(printable_ascii(response))
+    print(printable_ascii(response) + "\n")
     return response
 
 
@@ -80,8 +80,8 @@ def main():
     try:
         with socket.create_connection((HOST, PORT), timeout=TIMEOUT_SOCKET) as sock:
             print(f"Connected to {HOST}:{PORT}, assuming it is a Cyclus2 ergometer.")
-            print("Type any Cyclus2 command, or type 'quit' or 'exit' to end the session.")
-            print("For example, enter 'vers?' and press <Enter> to request the version.")
+            print("Type any Cyclus2 command or type `quit` or `exit` to end the session.")
+            print("For example, try `vers?` and press <Return> for the software version.\n")
 
             while True:
                 try:
@@ -91,16 +91,16 @@ def main():
                     break
 
                 if not user_input:
-                    print("\nNo command received; type a Cyclus2 command or 'quit'/'exit' to stop.")
+                    print("\nNo command received; type a Cyclus2 command or `quit`/`exit` to stop.")
                     continue
                 if user_input.lower() in {"quit", "exit"}:
-                    # User wants to exit the program.
+                    print("Closing the connection to the Cyclus2 ergometer.")
                     break
 
                 send_and_receive_ascii(sock, user_input, timeout=TIMEOUT_SOCKET)
 
     except KeyboardInterrupt:
-        print("\nInterrupted by keyboard interrupt; ending the session.")
+        print("\nReceived keyboard interrupt (Ctrl+C); closing the connection.")
         sys.exit(0)
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)

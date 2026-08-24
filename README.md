@@ -14,12 +14,12 @@ A command-line interface to interactively send commands to [Cyclus2 ergometers](
 
 ## Description
 
-The idea of this project is to create a command-line interface to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
+This project offers a command-line interface to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
 
-Cyclus2 ergometers offer a command interface that can be accessed over a serial interface or Ethernet, or WiFi.
+Cyclus2 ergometers include a command interface that can be accessed over a serial interface, Ethernet cable, or WiFi.
 Via that interface, you can request data and/or send commands in (near) real-time.
-This project creates a simple Python-based command-line interface for interactive exploration.
-Eventually, this can serve as a starting point for more sophisticated programming-based interaction with the Cyclus2.
+This project provides a simple Python-based command-line interface for interactive exploration.
+Eventually, this project can serve as a starting point for more sophisticated programming-based interaction with the Cyclus2.
 
 ## Usage
 
@@ -33,7 +33,27 @@ python Cyclus2-PyCmd.py
 
 ### Example session
 
-TODO: Showcase a brief session of some simple commands with our own ergometer.
+```txt
+$ python Cyclus2-PyCmd.py
+Connected to 192.168.1.200:25000, assuming it is a Cyclus2 ergometer.
+Type any Cyclus2 command or type `quit` or `exit` to end the session.
+For example, try `vers?` and press <Return> for the software version.
+
+> vers?
+vers:Cyclus2, Version 5.0.9083.30724
+
+> data?
+data:0,0,0.00,0.00,0.00,0.00,0.00,0.00,8.61,0.00,0.00,0.00,0.00
+
+> something-wrong
+error:unknown command
+
+> exit
+Closing the connection to the Cyclus2 ergometer.
+```
+
+> [!NOTE]
+> The Cyclus2 will send "`error:unknown command`" either the command you entered is unknown/invalid, or if the [setup](#setup) is not correct (i.e., not yet logged in as Admin, or the command connection was not enabled).
 
 ## Installation
 

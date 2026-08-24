@@ -102,8 +102,13 @@ As user of [UHH GitLab](https://gitlab.rrz.uni-hamburg.de), you can also use the
 
 ## License
 
-This project is licensed under the European Union Public License (EUPL-1.2).
-See full English license text in [LICENSE.txt](./LICENSE.txt); for other languages, see <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12>.
+This project aims to be [REUSE compliant](https://reuse.software/), indicating for each file the license and copyright information.
+
+All software code is licensed under the European Union Public License (EUPL-1.2) to allow free use and modification, while ensuring that any modifications are also shared under the same license.
+See English license text in [LICENSES/EUPL-1.2.txt](./LICENSES/EUPL-1.2.txt); for other languages, see <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12>.
+
+Other materials (so far) are licensed under CC0 1.0 Universal Public Domain Dedication for maximal reusability.
+See English license text in [LICENSES/CC0-1.0.txt](./LICENSES/CC0-1.0.txt); for a summary and other languages, see <https://creativecommons.org/publicdomain/zero/1.0/deed>.
 
 ## Project status
 

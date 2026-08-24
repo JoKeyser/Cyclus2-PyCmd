@@ -5,27 +5,27 @@ SPDX-License-Identifier: EUPL-1.2
 
 # Cyclus2-PyCmd
 
-A command-line interface to interactively send commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/).
+A Python script to interactively send commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/).
 
 > [!warning]
 > 🚧 This is prototyping in progress. 🚧
 
-![logo](./media/logo-Cyclus2-PyCmd.svg){width=120}
+![logo](./media/logo-Cyclus2-PyCmd.svg){width=130}
 
 ## Description
 
-This project offers a command-line interface to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
+This project provides a Python script to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
 
 Cyclus2 ergometers include a command interface that can be accessed over a serial interface, Ethernet cable, or WiFi.
 Via that interface, you can request data and/or send commands in (near) real-time.
-This project provides a simple Python-based command-line interface for interactive exploration.
-Eventually, this project can serve as a starting point for more sophisticated programming-based interaction with the Cyclus2.
+This project provides a command-line interface for interactive exploration of Cyclus2 commands.
+Eventually, this project can serve as a starting point for more sophisticated scripted interactions with the Cyclus2.
 
 ## Usage
 
-Using this script requires some [Installation](#installation) and [Setup](#setup), see sections below.
+Using this script requires some [installation](#installation) and [setup](#setup), see sections below.
 
-Then you can run the code:
+Then you can start the command session by running the Python script in a terminal:
 
 ```sh
 python Cyclus2-PyCmd.py
@@ -53,7 +53,7 @@ Closing the connection to the Cyclus2 ergometer.
 ```
 
 > [!NOTE]
-> The Cyclus2 will send "`error:unknown command`" either the command you entered is unknown/invalid, or if the [setup](#setup) is not correct (i.e., not yet logged in as Admin, or the command connection was not enabled).
+> The Cyclus2 will send "`error:unknown command`" if the command you entered is unknown/invalid.
 
 ## Installation
 
@@ -84,6 +84,9 @@ You need to set up a network connection to your Cyclus2 ergometer, e.g. via a di
 
 ### Enable command connection on the Cyclus2
 
+> [!NOTE]
+> The two steps below may not be necessary; best clarify with RBM.
+
 1. On the Cyclus2, login as _Admin_ by selecting _System → Login_ and entering the administrator password.
    In the bottom right corner, you should see "Admin" now.
 2. On the Cyclus2, enable connections by selecting _System → Connect_.
@@ -105,10 +108,10 @@ At this point, this script was only tested on Ubuntu 24.04 LTS with Python 3.12.
 
 ## Roadmap
 
-- Document how to setup and use it, along with some simple examples.
-- Test on Windows and perhaps MacOS.
+- Clarify with RBM if any setup is necessary on the Cyclus2 to enable command connections.
+- Test on Windows (and perhaps MacOS) to ensure cross-platform compatibility.
 - Add more explanation what's going on inside the code and during the session (e.g., on what level are errors happening?).
-- Discuss with RBM about command documentation inside this project and/or where to get more information.
+- Clarify with RBM about command documentation inside this project and/or where to get more information.
 
 ## Contributing
 

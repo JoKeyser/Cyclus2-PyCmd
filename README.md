@@ -91,9 +91,12 @@ At this point, this script was only tested on Ubuntu 24.04 LTS with Python 3.12.
 
 ## Roadmap
 
+- Handling of commands like `data=7` that keep sending data for a long time.
 - Test on Windows (and perhaps MacOS) to ensure cross-platform compatibility.
 - Add more explanation what's going on inside the code and during the session (e.g., on what level are errors happening?).
 - Clarify with RBM about command documentation inside this project and/or where to get more information.
+- Try to package this project into a single executable file for even easier usage.
+  Perhaps possible with <https://pyinstaller.org>?
 
 ## Contributing
 

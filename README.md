@@ -69,11 +69,8 @@ On your Cyclus2, all required software should be installed, but it requires some
 
 ## Setup
 
-To use this script, you need a working network connection to your Cyclus2 ergometer and enable a command connection on the Cyclus2.
-
-### Network connection
-
-You need to set up a network connection to your Cyclus2 ergometer, e.g. via a direct Ethernet cable.
+To use this script, you only need a working network connection to your Cyclus2 ergometer.
+Perhaps as the simplest example, you can connect via a direct Ethernet cable between your computer and the Cyclus2.
 
 - Make sure your computer and the Cyclys2 share the same network.
   For example, you can assign the Cyclus2 a fixed IP address like `192.168.1.200` and your computer an address like `192.168.1.100`.
@@ -82,22 +79,8 @@ You need to set up a network connection to your Cyclus2 ergometer, e.g. via a di
 - Make sure you can ping the ergometer from your computer, e.g., `ping 192.168.1.200`.
   You should see something like `Reply from 192.168.1.200`.
 
-### Enable command connection on the Cyclus2
-
-> [!NOTE]
-> The two steps below may not be necessary; best clarify with RBM.
-
-1. On the Cyclus2, login as _Admin_ by selecting _System → Login_ and entering the administrator password.
-   In the bottom right corner, you should see "Admin" now.
-2. On the Cyclus2, enable connections by selecting _System → Connect_.
-   You should see a dialog like this:
-
-   ![Screenshot Cyclus2: System → Connect dialog.](./media/screenshot-Cyclus2-System-Connect-dialog.png){width=400}
-
-   Once you press the OK button on the Cyclus2 (or click checkmark if you're using VNC), the Cyclus2 will be ready to accept connections.
-   The menu bar at the top of the Cyclus2 screen should now only show "Cyclus2 Interface" instead of the menu items:
-
-   ![Screenshot Cyclus2: Interface, ready to connect.](./media/screenshot-Cyclus2-Interface-ready-to-connect.png){width=400}
+> [!TIP]
+> With this setup, all commands should work, except [changing the baud rate](Further-Info.md#login-as-admin-to-change-serial-baud-rate)
 
 ## Support
 
@@ -108,7 +91,6 @@ At this point, this script was only tested on Ubuntu 24.04 LTS with Python 3.12.
 
 ## Roadmap
 
-- Clarify with RBM if any setup is necessary on the Cyclus2 to enable command connections.
 - Test on Windows (and perhaps MacOS) to ensure cross-platform compatibility.
 - Add more explanation what's going on inside the code and during the session (e.g., on what level are errors happening?).
 - Clarify with RBM about command documentation inside this project and/or where to get more information.

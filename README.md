@@ -10,7 +10,7 @@ A Python script to interactively send commands to [Cyclus2 ergometers](https://w
 > [!warning]
 > 🚧 This is prototyping in progress. 🚧
 
-![logo](./media/logo-Cyclus2-PyCmd.svg){width=130}
+![logo](./materials/logo-Cyclus2-PyCmd.svg){width=130}
 
 ## Description
 

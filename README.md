@@ -94,9 +94,10 @@ At this point, this script was only tested on Ubuntu 24.04 LTS with Python 3.12.
 - Handling of commands like `data=7` that keep sending data for a long time.
 - Test on Windows (and perhaps MacOS) to ensure cross-platform compatibility.
 - Add more explanation what's going on inside the code and during the session (e.g., on what level are errors happening?).
-- Clarify with RBM about command documentation inside this project and/or where to get more information.
 - Try to package this project into a single executable file for even easier usage.
   Perhaps possible with <https://pyinstaller.org>?
+- Incorporate the [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) into the code and perhaps a text-based reference for the user, e.g. for a `help` command.
+  (Perhaps convert the PDF content into text files that can be read by humans and the script, to avoid too much duplication?)
 
 ## Contributing
 
@@ -117,6 +118,8 @@ See English license text in [LICENSES/EUPL-1.2.txt](./LICENSES/EUPL-1.2.txt); fo
 
 Other materials (so far) are licensed under CC0 1.0 Universal Public Domain Dedication for maximal reusability.
 See English license text in [LICENSES/CC0-1.0.txt](./LICENSES/CC0-1.0.txt); for a summary and other languages, see <https://creativecommons.org/publicdomain/zero/1.0/deed>.
+
+The [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) is published here to allow software development in the context of research and education, but no formal license terms have been decided yet; see [more explanation here](./materials/Cyclus2-protocol-specs.pdf.license).
 
 ## Project status
 

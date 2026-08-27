@@ -1,0 +1,4 @@
+# Quarto render output/dependencies
+README.html
+README_files/
+/.quarto/

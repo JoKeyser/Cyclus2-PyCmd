@@ -126,3 +126,7 @@ The [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) is 
 Experimental:
 This project is currently being prototyped.
 Expect breaking changes at any moment.
+
+On August 26, 2026 we tested the Cyclus2-PyCmd.py on Windows using python version 3.14.7 and succesfully connected to the Cyclus2 ergometer via Ethernet port. Basic functions from the [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) such as data, data=7 have been tested. The slave mode with the command slave=1 did work and it was able to start and stop a training session on the Ergometer via the python console. 
+
+FIXME: Test on MacOS

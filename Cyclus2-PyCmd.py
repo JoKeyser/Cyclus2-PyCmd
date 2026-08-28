@@ -11,6 +11,7 @@
 # SPDX-FileCopyrightText: Johannes Keyser <johannes.keyser@uni-hamburg.de>
 # SPDX-License-Identifier: EUPL-1.2
 
+import argparse
 import socket
 import sys
 import time
@@ -71,15 +72,31 @@ def send_and_receive_ascii(sock, command: str, timeout: float):
     return response
 
 
+def parse_args():
+    # NOTE: The initial prototype script only supports TCP/IP; the connection target
+    #       is a network address. If serial support is added later, this could
+    #       be separated into a --transport option (e.g., tcp | serial) with options
+    #       --address and --device for each transport instead of reusing --address.
+    parser = argparse.ArgumentParser(
+        description="Interactively send commands to a Cyclus2 ergometer over TCP/IP."
+    )
+    parser.add_argument(
+        "--address",
+        default="192.168.1.200",
+        help="IP address of your Cyclus2 ergometer (default: %(default)s).",
+    )
+    return parser.parse_args()
+
+
 def main():
-    # Settings worked for initial test; TODO: Make Host IP configurable.
-    HOST = "192.168.1.200"
-    PORT = 25000  # Cyclus2 default port is 25000
+    args = parse_args()
+    addr = args.address
+    PORT = 25000  # default port 25000 on the Cyclus2 Ethernet/TCP interface  
     TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
 
     try:
-        with socket.create_connection((HOST, PORT), timeout=TIMEOUT_SOCKET) as sock:
-            print(f"Connected to {HOST}:{PORT}, assuming it is a Cyclus2 ergometer.")
+        with socket.create_connection((addr, PORT), timeout=TIMEOUT_SOCKET) as sock:
+            print(f"Connected to {addr}:{PORT}, assuming it is a Cyclus2 ergometer.")
             print("Type any Cyclus2 command or type `quit` or `exit` to end the session.")
             print("For example, try `vers?` and press <Return> for the software version.\n")
 
@@ -102,6 +119,11 @@ def main():
     except KeyboardInterrupt:
         print("\nReceived keyboard interrupt (Ctrl+C); closing the connection.")
         sys.exit(0)
+    except OSError as exc:
+        print(f"Could not connect to {addr} at port {PORT}.", file=sys.stderr)
+        print("Please check the address; is the Cyclus2 reachable on the network?", file=sys.stderr)
+        print(f"Connection error details: {exc}", file=sys.stderr)
+        sys.exit(1)
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         print("Something went wrong with the script, see error above.", file=sys.stderr)

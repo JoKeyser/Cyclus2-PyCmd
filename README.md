@@ -25,10 +25,12 @@ Eventually, this project can serve as a starting point for more sophisticated sc
 
 Using this script requires some [installation](#installation) and [setup](#setup), see sections below.
 
-Then you can start the command session by running the Python script in a terminal:
+Then you can start the command session by running the Python script in a terminal and passing the IP address of your Cyclus2 ergometer.
+
+For example, if your Cyclus2 ergometer has the IP address `192.168.1.200`:
 
 ```sh
-python Cyclus2-PyCmd.py
+python Cyclus2-PyCmd.py --address 192.168.1.200
 ```
 
 ### Example session
@@ -87,7 +89,8 @@ Perhaps as the simplest example, you can connect via a direct Ethernet cable bet
 This project is provided in the hope to be useful, without warranties of any kind (see also section [License](#license)).
 No support is included, but feel free to reach out to the [authors](#authors) to ask for help.
 
-At this point, this script was only tested on Ubuntu 24.04 LTS with Python 3.12.
+This script gets tested on Ubuntu 24.04 LTS with Python 3.12 and on Windows 11 with Python version 3.14.
+TODO: Test on MacOS?
 
 ## Roadmap
 
@@ -124,9 +127,6 @@ The [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) is 
 ## Project status
 
 Experimental:
-This project is currently being prototyped.
-Expect breaking changes at any moment.
+This project is currently being prototyped as a lightweight experimental tool for interactive protocol exploration, not as a general-purpose end-user product.
+For now, expect breaking changes in each revision.
 
-On August 26, 2026 we tested the Cyclus2-PyCmd.py on Windows using python version 3.14.7 and succesfully connected to the Cyclus2 ergometer via Ethernet port. Basic functions from the [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) such as data, data=7 have been tested. The slave mode with the command slave=1 did work and it was able to start and stop a training session on the Ergometer via the python console. 
-
-FIXME: Test on MacOS

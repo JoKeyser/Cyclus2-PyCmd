@@ -17,7 +17,7 @@ A Python script to interactively send commands to [Cyclus2 ergometers](https://w
 This project provides a Python script to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
 
 Cyclus2 ergometers include a command interface that can be accessed over a serial interface, Ethernet cable, or WiFi.
-Via that interface, you can request data and/or send commands in (near) real-time.
+Via that interface, you can request data and/or send commands in (near) real time.
 This project provides a command-line interface for interactive exploration of Cyclus2 commands.
 Eventually, this project can serve as a starting point for more sophisticated scripted interactions with the Cyclus2.
 
@@ -32,6 +32,8 @@ For example, if your Cyclus2 ergometer has the IP address `192.168.1.200`:
 ```sh
 python Cyclus2-PyCmd.py --address 192.168.1.200
 ```
+
+You can find the command reference in [docs/command-reference/](./docs/command-reference/).
 
 ### Example session
 
@@ -77,7 +79,6 @@ Perhaps as the simplest example, you can connect via a direct Ethernet cable bet
 - Make sure your computer and the Cyclys2 share the same network.
   For example, you can assign the Cyclus2 a fixed IP address like `192.168.1.200` and your computer an address like `192.168.1.100`.
   Alternatively, use a DHCP server to assign addresses automatically.
-
 - Make sure you can ping the ergometer from your computer, e.g., `ping 192.168.1.200`.
   You should see something like `Reply from 192.168.1.200`.
 
@@ -99,8 +100,6 @@ TODO: Test on MacOS?
 - Add more explanation what's going on inside the code and during the session (e.g., on what level are errors happening?).
 - Try to package this project into a single executable file for even easier usage.
   Perhaps possible with <https://pyinstaller.org>?
-- Incorporate the [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) into the code and perhaps a text-based reference for the user, e.g. for a `help` command.
-  (Perhaps convert the PDF content into text files that can be read by humans and the script, to avoid too much duplication?)
 
 ## Contributing
 
@@ -122,11 +121,10 @@ See English license text in [LICENSES/EUPL-1.2.txt](./LICENSES/EUPL-1.2.txt); fo
 Other materials (so far) are licensed under CC0 1.0 Universal Public Domain Dedication for maximal reusability.
 See English license text in [LICENSES/CC0-1.0.txt](./LICENSES/CC0-1.0.txt); for a summary and other languages, see <https://creativecommons.org/publicdomain/zero/1.0/deed>.
 
-The [Cyclus2 protocol specification](./materials/Cyclus2-protocol-specs.pdf) is published here to allow software development in the context of research and education, but no formal license terms have been decided yet; see [more explanation here](./materials/Cyclus2-protocol-specs.pdf.license).
+The [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) is published here to allow software development in the context of research and education, but no formal license terms have been decided yet; see [more explanation here](./docs/command-reference/Cyclus2-protocol-specs.pdf.license).
 
 ## Project status
 
 Experimental:
 This project is currently being prototyped as a lightweight experimental tool for interactive protocol exploration, not as a general-purpose end-user product.
 For now, expect breaking changes in each revision.
-

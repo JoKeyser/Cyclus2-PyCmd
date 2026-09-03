@@ -33,15 +33,31 @@ For example, if your Cyclus2 ergometer has the IP address `192.168.1.200`:
 python Cyclus2-PyCmd.py --address 192.168.1.200
 ```
 
-You can find the command reference in [docs/command-reference/](./docs/command-reference/).
+During the session, you can use the following commands:
+
+- `HELP` shows the list of available commands.
+- `HELP <command>` shows the reference for a specific command.
+  For example, `HELP os` shows the reference for command `os`.
+- `DISCONNECT` closes the connection to the Cyclus2 ergometer.
+
+The specific command reference is also available from the command line, for example:
+
+```sh
+python Cyclus2-PyCmd.py --help-command os
+```
+
+> [!TIP]
+> You can also browse the command reference in folder [docs/command-reference/](./docs/command-reference/).
+> (In fact, the Python code loads the reference from that folder.)
 
 ### Example session
 
 ```txt
 $ python Cyclus2-PyCmd.py
 Connected to 192.168.1.200:25000, assuming it is a Cyclus2 ergometer.
-Type any Cyclus2 command or type `quit` or `exit` to end the session.
-For example, try `vers?` and press <Return> for the software version.
+Type any Cyclus2 command or use HELP [command] for command help.
+Type DISCONNECT to disconnect from the Cyclus2 and end the session.
+For example, try vers? and press <Return> for the software version.
 
 > vers?
 vers:Cyclus2, Version 5.0.9083.30724
@@ -52,7 +68,7 @@ data:0,0,0.00,0.00,0.00,0.00,0.00,0.00,8.61,0.00,0.00,0.00,0.00
 > something-wrong
 error:unknown command
 
-> exit
+> DISCONNECT
 Closing the connection to the Cyclus2 ergometer.
 ```
 

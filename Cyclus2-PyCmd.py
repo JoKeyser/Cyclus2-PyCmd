@@ -15,10 +15,145 @@ import argparse
 import socket
 import sys
 import time
+from pathlib import Path
+
+import yaml
 
 # Cyclus2 uses ASCII commands and a CRLF terminator on requests.
 # Responses are plain ASCII and end with CR, with no trailing LF.
 REQUEST_NEWLINE = b"\r\n"
+
+
+# The command reference is kept as local project data at this location:
+REF_PATH = Path(__file__).resolve().parent / "docs" / "command-reference"
+
+
+def strip_html_comments(text: str) -> str:
+    """
+    Remove HTML-style comments while leaving the Markdown text intact.
+    NOTE: Simple parser, no regexes, assumes the comment markers are plain.
+    """
+    result = []
+    index = 0
+    while index < len(text):
+        start = text.find("<!--", index)
+        if start == -1:
+            result.append(text[index:])
+            break
+        result.append(text[index:start])
+        end = text.find("-->", start + 4)
+        if end == -1:
+            break
+        index = end + 3
+    return "".join(result)
+
+
+def strip_yaml_front_matter(text: str) -> str:
+    """
+    Remove an optional YAML front matter block from a Markdown file.
+    NOTE: The project layout keeps YAML metadata in the opening block only.
+    """
+    cleaned = strip_html_comments(text).lstrip()
+    if not cleaned.startswith("---\n"):
+        return cleaned
+
+    end = cleaned.find("\n---\n", len("---\n"))
+    if end == -1:
+        raise ValueError("Missing closing YAML front matter")
+    return cleaned[end + len("\n---\n") :].lstrip()
+
+
+def load_command_reference() -> dict:
+    """Read the command reference files into a lookup table keyed by command name."""
+    if not REF_PATH.exists():
+        raise FileNotFoundError(f"Command reference directory not found: {REF_PATH}")
+
+    catalog = {}
+    # The project keeps native commands in one folder and Ergoline commands in another.
+    for directory in (REF_PATH / "commands", REF_PATH / "ergoline"):
+        if not directory.exists():
+            raise FileNotFoundError(f"Command reference dir is missing: {directory}")
+
+        for path in sorted(directory.glob("*.md")):
+            if path.name.lower() == "readme.md":
+                continue
+
+            markdown = path.read_text(encoding="utf-8")
+            body = strip_yaml_front_matter(markdown).strip()
+            if not body:
+                raise ValueError(f"Empty command reference in {path}")
+
+            front_matter = strip_html_comments(markdown).lstrip()
+            command_data = {}
+            if front_matter.startswith("---\n"):
+                marker_end = front_matter.find("\n---\n", len("---\n"))
+                if marker_end == -1:
+                    raise ValueError(f"Missing closing YAML front matter in {path}")
+
+                yaml_text = front_matter[len("---\n") : marker_end]
+                parsed = yaml.safe_load(yaml_text)
+                if isinstance(parsed, dict):
+                    command_data = parsed.get("command", {})
+
+            name = str(command_data.get("name", path.stem)).strip()
+            summary = str(command_data.get("summary", "")).strip()
+            if not summary:
+                summary = path.stem
+
+            category = "ergoline" if path.parent.name == "ergoline" else "cyclus2"
+            catalog[name] = {"name": name,
+                             "summary": summary,
+                             "body": body,
+                             "category": category}
+
+    return catalog
+
+
+def list_command_names(command_catalog : dict) -> str:
+    """
+    List the available commands in the catalog, grouped by category.
+    """
+    groups = {"cyclus2": [], "ergoline": []}
+    for name, record in sorted(command_catalog.items()):
+        category = record.get("category", "cyclus2")
+        groups.setdefault(category, []).append(name)
+
+    sections = []
+    for category_name, heading in (("cyclus2", "Cyclus2 native commands:"),
+                                   ("ergoline", "Ergoline-compatible commands:")):
+        names = groups.get(category_name, [])
+        if not names:
+            continue
+        lines = [heading]
+        for name in names:
+            summary = command_catalog[name].get("summary", "")
+            if summary:
+                lines.append(f"  {name}: {summary}")
+            else:
+                lines.append(f"  {name}")
+        sections.append("\n".join(lines))
+
+    if not sections:
+        return "No command reference entries are available."
+    return "\n\n".join(sections)
+
+def format_command_help(command_catalog : dict, command_name: str) -> str:
+    """
+    Format the reference text for a specific command,
+    or the list of available commands if the command is not found.
+    """
+    key = str(command_name).strip()
+    if not key:
+        return list_command_names(command_catalog)
+
+    command_record = command_catalog.get(key)
+    if command_record is None:
+        message = f"Command not found: {command_name}\n\n"
+        return message + list_command_names(command_catalog)
+
+    body = command_record.get("body", "")
+    plain_text = body.replace("`", "")
+    return "\n" + plain_text.rstrip() + "\n"
 
 
 def recv_stream(sock, timeout=2.0, chunk_size=1024):
@@ -85,11 +220,22 @@ def parse_args():
         default="192.168.1.200",
         help="IP address of your Cyclus2 ergometer (default: %(default)s).",
     )
+    parser.add_argument(
+        "--help-command",
+        metavar="COMMAND",
+        help="Show the reference for a specific command.",
+    )
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
+    command_catalog = load_command_reference()
+
+    if args.help_command:
+        print(format_command_help(command_catalog, args.help_command))
+        return
+
     addr = args.address
     PORT = 25000  # default port 25000 on the Cyclus2 Ethernet/TCP interface  
     TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
@@ -97,8 +243,9 @@ def main():
     try:
         with socket.create_connection((addr, PORT), timeout=TIMEOUT_SOCKET) as sock:
             print(f"Connected to {addr}:{PORT}, assuming it is a Cyclus2 ergometer.")
-            print("Type any Cyclus2 command or type `quit` or `exit` to end the session.")
-            print("For example, try `vers?` and press <Return> for the software version.\n")
+            print("Type any Cyclus2 command or use HELP [command] for command help.\n")
+            print("Type DISCONNECT to disconnect from the Cyclus2 and end the session.\n")
+            print("For example, try vers? and press <Return> for the software version.\n")
 
             while True:
                 try:
@@ -108,11 +255,24 @@ def main():
                     break
 
                 if not user_input:
-                    print("\nNo command received; type a Cyclus2 command or `quit`/`exit` to stop.")
+                    print("\nNo command received; type a Cyclus2 command or HELP or DISCONNECT.")
                     continue
-                if user_input.lower() in {"quit", "exit"}:
-                    print("Closing the connection to the Cyclus2 ergometer.")
+
+                raw_input = user_input.strip()
+                command_name = raw_input
+
+                if command_name == "DISCONNECT":
+                    print("Closing the connection to the Cyclus2 ergometer. Bye.")
                     break
+
+                if command_name == "HELP":
+                    print(list_command_names(command_catalog))
+                    continue
+
+                if command_name.startswith("HELP "):
+                    help_target = command_name[5:].strip()
+                    print(format_command_help(command_catalog, help_target))
+                    continue
 
                 send_and_receive_ascii(sock, user_input, timeout=TIMEOUT_SOCKET)
 

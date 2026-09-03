@@ -1,3 +1,5 @@
+# Python cache folder
+__pycache__/
 # Quarto render output/dependencies
 README.html
 README_files/

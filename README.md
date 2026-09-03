@@ -56,8 +56,8 @@ python Cyclus2-PyCmd.py --help-command os
 $ python Cyclus2-PyCmd.py
 Connected to 192.168.1.200:25000, assuming it is a Cyclus2 ergometer.
 Type any Cyclus2 command or use HELP [command] for command help.
-Type DISCONNECT to disconnect from the Cyclus2 and end the session.
-For example, try vers? and press <Return> for the software version.
+For example, use 'vers?' to ask for the Cyclus2 software version.
+To end the session, type DISCONNECT to disconnect from the Cyclus2.
 
 > vers?
 vers:Cyclus2, Version 5.0.9083.30724
@@ -114,6 +114,8 @@ TODO: Test on MacOS?
 - Handling of commands like `data=7` that keep sending data for a long time.
 - Test on Windows (and perhaps MacOS) to ensure cross-platform compatibility.
 - Add more explanation what's going on inside the code and during the session (e.g., on what level are errors happening?).
+  Specifically, make clearer what the Cyclus2 replies and distinguish from that from what the script is printing;
+  Something like `Cyclus2 reply: ...` for any actual reply from the Cyclus2?
 - Try to package this project into a single executable file for even easier usage.
   Perhaps possible with <https://pyinstaller.org>?
 

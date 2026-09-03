@@ -244,8 +244,8 @@ def main():
         with socket.create_connection((addr, PORT), timeout=TIMEOUT_SOCKET) as sock:
             print(f"Connected to {addr}:{PORT}, assuming it is a Cyclus2 ergometer.")
             print("Type any Cyclus2 command or use HELP [command] for command help.\n")
-            print("Type DISCONNECT to disconnect from the Cyclus2 and end the session.\n")
-            print("For example, try vers? and press <Return> for the software version.\n")
+            print("For example, use 'vers?' to ask for the Cyclus2 software version.\n")
+            print("To end the session, type DISCONNECT to disconnect from the Cyclus2.\n")
 
             while True:
                 try:

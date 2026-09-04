@@ -115,7 +115,7 @@ Perhaps as the simplest example, you can connect via a direct Ethernet cable bet
 
 ## Support
 
-This project is provided in the hope to be useful, without warranties of any kind (see also section [License](#license)).
+This project is provided in the hope to be useful, without warranties of any kind (see also section [Licenses](#licenses)).
 No support is included, but feel free to reach out to the [authors](#authors) to ask for help.
 
 This script gets tested on Ubuntu 24.04 LTS with Python 3.12 and on Windows 11 with Python version 3.14.

@@ -94,7 +94,7 @@ Closing the connection to the Cyclus2 ergometer.
 1. Clone or download this project to your computer, e.g.:
 
    ```sh
-   git clone https://gitlab.rrz.uni-hamburg.de/dhprl/software/Cyclus2-PyCmd.git
+   git clone git@github.com:dhprlab/Cyclus2-PyCmd.git
    ```
 
 On your Cyclus2, all required software should be installed, but it requires some [setup, see next section](#setup).
@@ -131,15 +131,22 @@ This script gets tested on Ubuntu 24.04 LTS with Python 3.12 and on Windows 11 w
 
 ## Contributing
 
-Any contribution will be very welcome.
-At this stage, please write an email to the authors to report issues, discuss feature requests, or offer patches.
-As user of [UHH GitLab](https://gitlab.rrz.uni-hamburg.de), you can also use the GitLab functions.
+Bug reports, feature requests, and other contributions are very welcome.
+
+The project is hosted on two platforms to make collaboration easier:
+
+- GitHub, for many users outside of the University of Hamburg (UHH)
+  - URL: <https://github.com/dhprlab/Cyclus2-PyCmd>
+- UHH GitLab, for members of the University of Hamburg
+  - URL: <https://gitlab.rrz.uni-hamburg.de/dhprlab/Cyclus2-PyCmd>
+
+If you don't have/want an account on either platform, you can also send an email to the [authors](#authors), or suggest a third platform for collaboration.
 
 ## Authors
 
 - Johannes Keyser <johannes.keyser@uni-hamburg.de>
 
-## License
+## Licenses
 
 This project aims to be [REUSE compliant](https://reuse.software/), indicating for each file the license and copyright information.
 

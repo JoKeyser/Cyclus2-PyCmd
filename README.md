@@ -8,24 +8,30 @@ SPDX-License-Identifier: EUPL-1.2
 A Python script to interactively send commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/).
 
 > [!warning]
-> 🚧 This is prototyping in progress. 🚧
+> 🚧 Prototyping in progress... 🚧
 
-![logo](./materials/logo-Cyclus2-PyCmd.svg){width=130}
+![logo](./materials/logo-Cyclus2-PyCmd.svg)
 
 ## Description
 
-This project provides a Python script to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
+This project provides _Cyclus2-PyCmd_, a Python script to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
 
-Cyclus2 ergometers include a command interface that can be accessed over a serial interface, Ethernet cable, or WiFi.
+Cyclus2 ergometers include a command interface that can be accessed over Ethernet cable, serial connection, or WiFi.
 Via that interface, you can request data and/or send commands in (near) real time.
-This project provides a command-line interface for interactive exploration of Cyclus2 commands.
-Eventually, this project can serve as a starting point for more sophisticated scripted interactions with the Cyclus2.
+_Cyclus2-PyCmd_ aims to create a convenient way to interact with a Cyclus2 ergometer:
+
+- Pre-configured to show the typed commands and their corresponding responses.
+  (No need to configure a general-purpose terminal program.)
+  All you need is the IP address of your Cyclus2 ergometer.
+- Keep the command reference at your fingertips via `HELP <command>`.
+
+You can use this project for exploration and as basis for development of scripted interactions with the Cyclus2.
 
 ## Usage
 
 Using this script requires some [installation](#installation) and [setup](#setup), see sections below.
 
-Then you can start the command session by running the Python script in a terminal and passing the IP address of your Cyclus2 ergometer.
+Then you can start a command session by running the Python script in a terminal and passing the IP address of your Cyclus2 ergometer.
 
 For example, if your Cyclus2 ergometer has the IP address `192.168.1.200`:
 
@@ -33,14 +39,15 @@ For example, if your Cyclus2 ergometer has the IP address `192.168.1.200`:
 python Cyclus2-PyCmd.py --address 192.168.1.200
 ```
 
-During the session, you can use the following commands:
+After connecting, PyCmd will show a prompt `>` where you can type any Cyclus2 command.
+In addition, you can use the following PyCmd helper commands:
 
 - `HELP` shows the list of available commands.
 - `HELP <command>` shows the reference for a specific command.
   For example, `HELP os` shows the reference for command `os`.
 - `DISCONNECT` closes the connection to the Cyclus2 ergometer.
 
-The specific command reference is also available from the command line, for example:
+The command reference is also available without starting a session, for example:
 
 ```sh
 python Cyclus2-PyCmd.py --help-command os
@@ -54,8 +61,13 @@ python Cyclus2-PyCmd.py --help-command os
 
 ```txt
 $ python Cyclus2-PyCmd.py
-Connected to 192.168.1.200:25000, assuming it is a Cyclus2 ergometer.
-Type any Cyclus2 command or use HELP [command] for command help.
+Welcome to
+ ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌
+ ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌
+ ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌
+   ▄▌              ▄▌       
+Trying to connect to 192.168.1.200:25000 ... connection success :).
+Type any Cyclus2 command or use HELP [command] for command reference.
 For example, use 'vers?' to ask for the Cyclus2 software version.
 To end the session, type DISCONNECT to disconnect from the Cyclus2.
 
@@ -99,7 +111,7 @@ Perhaps as the simplest example, you can connect via a direct Ethernet cable bet
   You should see something like `Reply from 192.168.1.200`.
 
 > [!TIP]
-> With this setup, all commands should work, except [changing the baud rate](Further-Info.md#login-as-admin-to-change-serial-baud-rate)
+> With this setup, all commands should work, except [changing the baud rate](docs/README.md#login-as-admin-to-change-serial-baud-rate).
 
 ## Support
 
@@ -107,17 +119,15 @@ This project is provided in the hope to be useful, without warranties of any kin
 No support is included, but feel free to reach out to the [authors](#authors) to ask for help.
 
 This script gets tested on Ubuntu 24.04 LTS with Python 3.12 and on Windows 11 with Python version 3.14.
-TODO: Test on MacOS?
+
+> [!NOTE]
+> Not yet tested on MacOS. It should work, but who knows...
 
 ## Roadmap
 
-- Handling of commands like `data=7` that keep sending data for a long time.
-- Test on Windows (and perhaps MacOS) to ensure cross-platform compatibility.
-- Add more explanation what's going on inside the code and during the session (e.g., on what level are errors happening?).
-  Specifically, make clearer what the Cyclus2 replies and distinguish from that from what the script is printing;
-  Something like `Cyclus2 reply: ...` for any actual reply from the Cyclus2?
+- Handling of commands like `data=7` that keep sending data without further user input.
 - Try to package this project into a single executable file for even easier usage.
-  Perhaps possible with <https://pyinstaller.org>?
+  Probably possible with <https://pyinstaller.org>, hopefully in CI?
 
 ## Contributing
 
@@ -136,10 +146,10 @@ This project aims to be [REUSE compliant](https://reuse.software/), indicating f
 All software code is licensed under the European Union Public License (EUPL-1.2) to allow free use and modification, while ensuring that any modifications are also shared under the same license.
 See English license text in [LICENSES/EUPL-1.2.txt](./LICENSES/EUPL-1.2.txt); for other languages, see <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12>.
 
-Other materials (so far) are licensed under CC0 1.0 Universal Public Domain Dedication for maximal reusability.
-See English license text in [LICENSES/CC0-1.0.txt](./LICENSES/CC0-1.0.txt); for a summary and other languages, see <https://creativecommons.org/publicdomain/zero/1.0/deed>.
-
 The [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) is published here to allow software development in the context of research and education, but no formal license terms have been decided yet; see [more explanation here](./docs/command-reference/Cyclus2-protocol-specs.pdf.license).
+
+Other materials, like the logo, are licensed under CC0 1.0 Universal Public Domain Dedication for maximal reusability.
+See English license text in [LICENSES/CC0-1.0.txt](./LICENSES/CC0-1.0.txt); for a summary and other languages, see <https://creativecommons.org/publicdomain/zero/1.0/deed>.
 
 ## Project status
 

@@ -7,16 +7,18 @@ SPDX-Contributor: Johannes Keyser <johannes.keyser@uni-hamburg.de>
 
 # Command reference
 
-This directory contains the command reference for the Cyclus2 protocol in several formats.
+This directory contains the command reference for the Cyclus2 protocol in three complementary formats.
 
 - The source of truth is the [Cyclus2 protocol specification](./Cyclus2-protocol-specs.pdf), provided as PDF by RBM elektronik-automation GmbH.
-  The PDF shows the commands in tabular form, which is great for human readers with enough screen space.
-- In addition, every command is described in a separate Markdown file, for easier reading and processing in different contexts like terminals or software tools.
-  The goal is to remain true to the PDF content, while making the content more accessible and reliable for machine processing.
+  The PDF lists the commands in compact tabular form, which is great for human readers with enough screen space.
+- In addition, every command is described in a separate Markdown file with YAML front matter.
+  These files allow for easier reading and processing in different contexts like terminals or software tools.
+  The goal is to remain true to the PDF content; mismatches are considered bugs and should be reported.
+  For more information, see the [file structure of the command reference](#file-structure-of-the-command-reference).
 
-## File structure
+## File structure of the command reference
 
-Each command file follows the same pattern:
+Each command is in a separate file and follows the same combination of YAML front matter and Markdown body.
 
 - YAML front matter holds the technical protocol data.
   - The command object is keyed under command, so each file can be loaded as a single command entry.

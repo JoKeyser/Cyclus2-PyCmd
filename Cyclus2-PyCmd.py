@@ -240,12 +240,19 @@ def main():
     PORT = 25000  # default port 25000 on the Cyclus2 Ethernet/TCP interface  
     TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
 
-    try:
+    print("Welcome to\n" +
+          " ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌\n"
+          " ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌\n" +
+          " ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌\n" +
+          "   ▄▌              ▄▌       ")
+    print(f"Trying to connect to {addr}:{PORT} ... ", end="", flush=True)
+
+    try:            
         with socket.create_connection((addr, PORT), timeout=TIMEOUT_SOCKET) as sock:
-            print(f"Connected to {addr}:{PORT}, assuming it is a Cyclus2 ergometer.")
-            print("Type any Cyclus2 command or use HELP [command] for command help.\n")
-            print("For example, use 'vers?' to ask for the Cyclus2 software version.\n")
-            print("To end the session, type DISCONNECT to disconnect from the Cyclus2.\n")
+            print("connection success :).")  # complete above message "Trying to connect..."
+            print("Type any Cyclus2 command or use HELP [command] for command reference.\n" +
+                  "For example, use 'vers?' to ask for the Cyclus2 software version.\n" +
+                  "To end the session, type DISCONNECT to disconnect from the Cyclus2.\n")
 
             while True:
                 try:
@@ -262,7 +269,7 @@ def main():
                 command_name = raw_input
 
                 if command_name == "DISCONNECT":
-                    print("Closing the connection to the Cyclus2 ergometer. Bye.")
+                    print("Disconnecting and ending the session. Bye.")
                     break
 
                 if command_name == "HELP":
@@ -277,17 +284,18 @@ def main():
                 send_and_receive_ascii(sock, user_input, timeout=TIMEOUT_SOCKET)
 
     except KeyboardInterrupt:
-        print("\nReceived keyboard interrupt (Ctrl+C); closing the connection.")
+        print("\nReceived keyboard interrupt (Ctrl+C); disconnecting.")
         sys.exit(0)
     except OSError as exc:
-        print(f"Could not connect to {addr} at port {PORT}.", file=sys.stderr)
-        print("Please check the address; is the Cyclus2 reachable on the network?", file=sys.stderr)
-        print(f"Connection error details: {exc}", file=sys.stderr)
+        print(f"connection failed :(.")  # complete above message "Trying to connect..." 
+        print("Please check the address; is the Cyclus2 reachable on the network?\n" +
+              f"Connection error details: {exc}", file=sys.stderr)
         sys.exit(1)
     except Exception as exc:
-        print(f"ERROR: {exc}", file=sys.stderr)
-        print("Something went wrong with the script, see error above.", file=sys.stderr)
-        print("Ending the script now; try to restart it and/or report the error.", file=sys.stderr)
+        print(f"ERROR: {exc}\n" +
+              "Something went wrong with the script, see error above.\n" +
+              "Ending the script now; try to restart it and/or report the error.",
+              file=sys.stderr)
         sys.exit(1)
 
 

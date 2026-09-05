@@ -19,6 +19,20 @@ from pathlib import Path
 
 import yaml
 
+
+
+def read_version() -> str:
+    """Read the project version from the bundled VERSION file."""
+    # In a download/checkout, the VERSIONfile sits next to the script.
+    # In a PyInstaller bundle, the app runs from a temporary extraction
+    # directory, it must be read from sys._MEIPASS instead.
+    base_dir = Path(sys._MEIPASS) if getattr(sys, "frozen", False) \
+        else Path(__file__).resolve().parent
+    return (base_dir / "VERSION").read_text(encoding="utf-8").strip()
+
+
+VERSION = read_version()
+
 # Cyclus2 uses ASCII commands and a CRLF terminator on requests.
 # Responses are plain ASCII and end with CR, with no trailing LF.
 REQUEST_NEWLINE = b"\r\n"
@@ -225,11 +239,21 @@ def parse_args():
         metavar="COMMAND",
         help="Show the reference for a specific command.",
     )
+    parser.add_argument(
+        "--version",
+        action="store_true",
+        help="Show the project version and exit.",
+    )
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
+
+    if args.version:
+        print(f"Cyclus2-PyCmd {VERSION}")
+        return
+
     command_catalog = load_command_reference()
 
     if args.help_command:
@@ -240,6 +264,7 @@ def main():
     PORT = 25000  # default port 25000 on the Cyclus2 Ethernet/TCP interface  
     TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
 
+    print(f"Cyclus2-PyCmd version {VERSION}")
     print("Welcome to\n" +
           " ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌\n"
           " ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌\n" +

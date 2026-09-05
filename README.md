@@ -123,11 +123,17 @@ This script gets tested on Ubuntu 24.04 LTS with Python 3.12 and on Windows 11 w
 > [!NOTE]
 > Not yet tested on MacOS. It should work, but who knows...
 
+## Release versions and packaging
+
+The project offers releases with clear version numbers, including executables that do not require Python to be installed on the computer.
+The executables are built in a GitHub workflow and can be downloaded from the release page of this project.
+
+For more details, please see [docs/README.md](./docs/README.md#release-versions-and-packaging).
+
 ## Roadmap
 
 - Handling of commands like `data=7` that keep sending data without further user input.
-- Try to package this project into a single executable file for even easier usage.
-  Probably possible with <https://pyinstaller.org>, hopefully in CI?
+- Keep improving the packaged executables and release process for end users.
 
 ## Contributing
 

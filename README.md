@@ -86,6 +86,9 @@ Closing the connection to the Cyclus2 ergometer.
 > [!NOTE]
 > The Cyclus2 will send "`error:unknown command`" if the command you entered is unknown/invalid.
 
+> [!TIP]
+> See [Examples](./docs/Examples.md) for more interesting examples of the capabilities of the Cyclus2 protocol interface.
+
 ## Installation
 
 There are two practical ways to get _Cyclus2-PyCmd_ onto your computer:
@@ -149,8 +152,9 @@ The Python code should work on MacOS (if Python is installed), but this has not 
 
 ## Roadmap
 
-- Add examples from the Cyclus2 protocol specification to the documentation.
 - Support for commands like `data=7` that keep sending data without further user input.
+- _Maybe_ make [the examples](./docs/Examples.md) available in the terminal?
+- _Maybe_ convert more of the [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) into Markdown for easier browsing?
 - _Maybe_ support serial connection (instead of network connection) to the Cyclus2?
 
 ## Contributing

@@ -6,6 +6,9 @@ SPDX-License-Identifier: CC0-1.0
 
 This folder holds extra documentation beyond the main [README](../README.md).
 
+Also, the command reference is available in folder [docs/command-reference/](./command-reference/).
+For examples how to chain them together into useful workflows, see [Examples.md](./Examples.md).
+
 ## Release versions and packaging
 
 The project keeps the version number in file [/VERSION](/VERSION).

@@ -13,24 +13,8 @@ This directory contains the command reference for the Cyclus2 protocol in three 
   The PDF lists the commands in compact tabular form, which is great for human readers with enough screen space.
 - In addition, every command is described in a separate Markdown file with YAML front matter.
   These files allow for easier reading and processing in different contexts like terminals or software tools.
-  The goal is to remain true to the PDF content; mismatches are considered bugs and should be reported.
-  For more information, see the [file structure of the command reference](#file-structure-of-the-command-reference).
-
-## File structure of the command reference
-
-Each command is in a separate file and follows the same combination of YAML front matter and Markdown body.
-
-- YAML front matter holds the technical protocol data.
-  - The command object is keyed under command, so each file can be loaded as a single command entry.
-  - The base command name and its query/configuration syntax remain separate.
-  - Parameters, replies, enums, and ordered sequences are stored in explicit structures.
-  - Format-dependent payloads keep their structure instead of being flattened into a string.
-- The Markdown body holds the readable summary and prose from the PDF.
-  - It is intended for people, terminal output, and simple rendering (e.g., for the web).
-  - Headings are kept short and plain-text friendly.
-- The schema is intentionally simple and avoids semantics not present in the PDF.
-  - It stays flat for simple commands.
-  - It adds nested structures only where the PDF clearly defines a payload or sequence.
+  The goal is to remain true to the PDF content; content mismatches are probably bugs and should be reported.
+  For more information, see section [file structure of the command reference](#file-structure-of-the-command-reference).
 
 ## Cyclus2 command set
 
@@ -38,7 +22,7 @@ Each command is in a separate file and follows the same combination of YAML fron
 - [br](./commands/br.md) — Configuration of baud rate
 - [calc](./commands/calc.md) — Configuration of calculation parameter
 - [cassette](./commands/cassette.md) — Configuration of the cassette with the available rear sprockets for virtual gear shifting
-- [check](./commands/check.md) — Configuration of monitoring (cf. mon)
+- [check](./commands/check.md) — Configuration of monitoring (cf. [`mon`](./commands/mon.md))
 - [cond](./commands/cond.md) — Configuration of external field conditions
 - [ctrl](./commands/ctrl.md) — Control of exercise
 - [curr](./commands/curr.md) — Query of motor current
@@ -51,10 +35,10 @@ Each command is in a separate file and follows the same combination of YAML fron
 - [graph](./commands/graph.md) — Configuration of chart
 - [heap](./commands/heap.md) — Query of available heap size
 - [jump](./commands/jump.md) — Jump to a load stage
-- [keydown](./commands/keydown.md) — KeyDown Events (see above command slave)
+- [keydown](./commands/keydown.md) — KeyDown Events (see command [`slave`](./commands/slave.md))
 - [load](./commands/load.md) — Configuration of the current load setting
 - [mct](./commands/mct.md) — Configuration of Maximum Strength Test with hold time
-- [mon](./commands/mon.md) — Configuration of monitoring (cf. check)
+- [mon](./commands/mon.md) — Configuration of monitoring (cf. [`check`](./commands/check.md))
 - [mpt](./commands/mpt.md) — Configuration of Maximum Strength Test
 - [obla](./commands/obla.md) — Configuration of the OBLA threshold test
 - [os](./commands/os.md) — Query of version of operating system
@@ -68,7 +52,7 @@ Each command is in a separate file and follows the same combination of YAML fron
 - [temp](./commands/temp.md) — Query of motor temperature
 - [text](./commands/text.md) — Write text to the info bar
 - [time](./commands/time.md) — Configuration of the local time
-- [user](./commands/user.md) — Configuration of athlete (out-of-date, use user1!)
+- [user](./commands/user.md) — Configuration of athlete (out-of-date, use [`user1`](./commands/user1.md))
 - [user1](./commands/user1.md) — Configuration of athlete (new version)
 - [vers](./commands/vers.md) — Query of software version
 - [want](./commands/want.md) — Configuration of the threshold of the WAnT test
@@ -91,3 +75,20 @@ See [ergoline/README.md](./ergoline/README.md) for the compatibility-mode comman
 - [u](./ergoline/u.md) — Query of diastole (dummy irrelevant)
 - [w](./ergoline/w.md) — Set the target value during exercise
 - [x](./ergoline/x.md) — Leave slave mode
+
+## File structure of the command reference
+
+The command reference is stored in a simple file structure that allows for easy reading and processing.
+Each command is in a separate file and follows the same combination of YAML front matter and Markdown body.
+
+- YAML front matter holds the technical protocol data.
+  - The command object is keyed under command, so each file can be loaded as a single command entry.
+  - The base command name and its query/configuration syntax remain separate.
+  - Parameters, replies, enums, and ordered sequences are stored in explicit structures.
+  - Format-dependent payloads keep their structure instead of being flattened into a string.
+- The Markdown body holds the readable summary and prose from the PDF.
+  - It is intended for people, terminal output, and simple rendering (e.g., for the web).
+  - Headings are kept short and plain-text friendly.
+- The schema is intentionally simple and avoids semantics not present in the PDF.
+  - It stays flat for simple commands.
+  - It adds nested structures only where the PDF clearly defines a payload or sequence.

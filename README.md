@@ -39,7 +39,7 @@ Assuming the Cyclus2 ergometer has the IP address `192.168.1.200`, you can start
   - On Windows: `Cyclus2-PyCmd.exe --address 192.168.1.200`
     (On Windows, you can also double-click the executable to start it; if no IP address is supplied, the program will ask for it.)
 
-After connecting, PyCmd will show a prompt `>` where you can type any Cyclus2 command.
+After connecting, you can type any Cyclus2 command into the prompt and see the response.
 In addition, you can use the following PyCmd helper commands:
 
 - `HELP` shows the list of available commands.
@@ -101,10 +101,8 @@ Now it is ready for use; no Python installation is required on your computer.
 
 > [!NOTE]
 > On Windows, running the executable may show a security warning.
-> For example, your antivirus software may say the executable is from an unknown publisher (that's because the executables are not signed with a certificate).
->
-> If you trust the executable, you can click "Run anyway" to continue; the build process is described in [docs/README.md](./docs/README.md#release-versions-and-packaging).
-> If you prefer not to trust the downloaded file, use the Python-based option instead.
+> For example, your antivirus software may say the executable is from an unknown publisher; the build process is described in [docs/README.md](./docs/README.md#release-versions-and-packaging).
+> If you prefer not to trust the executable, use the [installation with Python](#installation-with-python).
 
 ### Installation with Python
 
@@ -149,17 +147,11 @@ No support is included, but feel free to reach out to the [authors](#authors) to
 _Cyclus2-PyCmd_ gets tested on Linux and Windows.
 The Python code should work on MacOS (if Python is installed), but this has not been tested yet.
 
-## Release versions and packaging
-
-The project offers releases with clear version numbers, including zipped executables that do not require Python to be installed on the computer.
-The release assets are built in a GitHub workflow and can be downloaded from the [GitHub Releases page](https://github.com/dhprlab/Cyclus2-PyCmd/releases); they can be extracted and run directly without any local Python setup.
-
-For more details, please see [docs/README.md](./docs/README.md#release-versions-and-packaging).
-
 ## Roadmap
 
-- Handling of commands like `data=7` that keep sending data without further user input.
-- Keep improving the packaged executables and release process for end users.
+- Add examples from the Cyclus2 protocol specification to the documentation.
+- Support for commands like `data=7` that keep sending data without further user input.
+- _Maybe_ support serial connection (instead of network connection) to the Cyclus2?
 
 ## Contributing
 

@@ -261,6 +261,12 @@ def main():
         print(format_command_help(command_catalog, args.help_command))
         return
 
+    print("Welcome to\n" +
+          " ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌\n"
+          " ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌\n" +
+          " ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌, " + f"version {VERSION}\n" +
+          "   ▄▌              ▄▌       ")
+
     addr = args.address
     if addr is None:
         # If the address is not provided, prompt the user for it now.
@@ -277,11 +283,6 @@ def main():
     PORT = 25000  # default port 25000 on the Cyclus2 Ethernet/TCP interface  
     TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
 
-    print("Welcome to\n" +
-          " ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌\n"
-          " ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌\n" +
-          " ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌, " + f"version {VERSION}\n" +
-          "   ▄▌              ▄▌       ")
     print(f"Trying to connect to {addr}:{PORT} ... ", end="", flush=True)
 
     try:            

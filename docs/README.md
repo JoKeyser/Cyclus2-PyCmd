@@ -35,23 +35,23 @@ To practically create a new release:
 2. Build locally and check the version:
 
    ```sh
-   $ pyinstaller --onefile --add-data "docs/command-reference:docs/command-reference" --add-data "VERSION:." Cyclus2-PyCmd.py
-   $ ./dist/Cyclus2-PyCmd --version
+   pyinstaller --onefile --add-data "docs/command-reference:docs/command-reference" --add-data "VERSION:." Cyclus2-PyCmd.py
+   ./dist/Cyclus2-PyCmd --version
    ```
 
 3. Commit the version bump together with the changes for that release:
 
    ```sh
-   $ git add VERSION
-   $ git commit -m "Release version 0.1.1"
-   $ git push github main
+   git add VERSION
+   git commit -m "Release version 0.1.1"
+   git push github main
    ```
 
 4. Create the matching Git tag using the helper script [/tag-release.sh](/tag-release.sh) and then push it:
 
    ```sh
-   $ ./tag-release.sh
-   $ git push github "v$(tr -d '\r\n' < VERSION)"
+   ./tag-release.sh
+   git push github "v$(tr -d '\r\n' < VERSION)"
    ```
 
 Once the release tag is pushed, GitHub Actions should run on that tag and builds the versioned artifacts.

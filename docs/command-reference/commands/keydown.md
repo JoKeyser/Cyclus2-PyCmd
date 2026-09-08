@@ -7,7 +7,7 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 ---
 command:
   name: keydown
-  summary: KeyDown Events (see above command slave)
+  summary: KeyDown Events (see command slave)
   message: keydown:<keycode>,modifiers
   parameters:
   - name: <keycode>
@@ -21,7 +21,7 @@ command:
 keydown
 =======
 
-KeyDown Events (see above command slave)
+KeyDown Events (see command slave)
 
 Message
 -------

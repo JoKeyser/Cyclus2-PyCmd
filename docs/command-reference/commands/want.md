@@ -71,7 +71,7 @@ Parameters
 - `<LimitValue>`,
 - `<InitialLoad>`,
 - `<UnitId>`,
-- `<Threshold>`,
+- `<Threshold>`
 
 Notes
 -----

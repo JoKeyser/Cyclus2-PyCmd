@@ -1,3 +1,7 @@
+<!--
+SPDX-FileCopyrightText: Johannes Keyser <johannes.keyser@uni-hamburg.de>
+SPDX-License-Identifier: CC0-1.0
+-->
 # Further information
 
 This folder holds extra documentation beyond the main [README](../README.md).

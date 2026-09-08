@@ -1,6 +1,11 @@
+# PURPOSE: List of paths to ignore for Git version control.
+# SPDX-FileCopyrightText: Johannes Keyser <johannes.keyser@uni-hamburg.de>
+# SPDX-License-Identifier: CC0-1.0
+
 # Python cache folder
 __pycache__/
 .venv/
+# PyInstaller output folders
 build/
 dist/
 # Quarto render output/dependencies

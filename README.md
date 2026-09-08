@@ -29,15 +29,15 @@ You can use this project for exploration and as basis for development of scripte
 
 ## Usage
 
-Using this script requires some [installation](#installation) and [setup](#setup), see sections below.
+Using _Cyclus2-PyCmd_ requires some [installation](#installation) and [setup](#setup), see sections below.
+Once installed, the command-line interface is the same in both cases.
+Assuming the Cyclus2 ergometer has the IP address `192.168.1.200`, you can start the program as follows:
 
-Then you can start a command session by running the Python script in a terminal and passing the IP address of your Cyclus2 ergometer.
-
-For example, if your Cyclus2 ergometer has the IP address `192.168.1.200`:
-
-```sh
-python Cyclus2-PyCmd.py --address 192.168.1.200
-```
+- From source: `python Cyclus2-PyCmd.py --address 192.168.1.200`
+- From a downloaded executable:
+  - On Linux: `./Cyclus2-PyCmd --address 192.168.1.200`
+  - On Windows: `Cyclus2-PyCmd.exe --address 192.168.1.200`
+    (On Windows, you can also double-click the executable to start it; if no IP address is supplied, the program will ask for it.)
 
 After connecting, PyCmd will show a prompt `>` where you can type any Cyclus2 command.
 In addition, you can use the following PyCmd helper commands:
@@ -50,21 +50,20 @@ In addition, you can use the following PyCmd helper commands:
 The command reference is also available without starting a session, for example:
 
 ```sh
-python Cyclus2-PyCmd.py --help-command os
+Cyclus2-PyCmd.exe --help-command os
 ```
 
 > [!TIP]
 > You can also browse the command reference in folder [docs/command-reference/](./docs/command-reference/).
-> (In fact, the Python code loads the reference from that folder.)
+> Also, Cyclus2-PyCmd loads the reference from that folder and prints the content.
 
 ### Example session
 
 ```txt
-$ python Cyclus2-PyCmd.py
 Welcome to
  ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌
  ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌
- ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌
+ ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌, version 0.1.4
    ▄▌              ▄▌       
 Trying to connect to 192.168.1.200:25000 ... connection success :).
 Type any Cyclus2 command or use HELP [command] for command reference.
@@ -89,32 +88,49 @@ Closing the connection to the Cyclus2 ergometer.
 
 ## Installation
 
-There are two practical ways to get started:
-
-1. Download a ready-to-run executable from the [GitHub Releases page](https://github.com/dhprlab/Cyclus2-PyCmd/releases).
-   No Python installation is required on your computer.
-   Pick the zipped file for your platform (currently Windows or Linux), extract it, and run the program directly.
-
-   > [!NOTE]
-   > On Windows, running the executable may show a security warning.
-   > For example, your antivirus software may flag the executable as from an unknown publisher because they are not signed.
-   >
-   > If you trust the executable, you can click "Run anyway" to continue; the build process is described in [docs/README.md](./docs/README.md#release-versions-and-packaging).
-   > If you prefer not to trust the downloaded file, use the Python-based option instead.
-
-2. Install [Python](http://python.org) using a method that matches your operating system (and institutional) policies).
-   Then clone or download this project to your computer, e.g.:
-
-   ```sh
-   git clone git@github.com:dhprlab/Cyclus2-PyCmd.git
-   ```
+There are two practical ways to get _Cyclus2-PyCmd_ onto your computer:
+Download as an executable app, or install the Python script from source.
 
 On your Cyclus2, all required software should be installed, but some minor [setup](#setup) is required.
 
+### Installation without Python
+
+To download an executable, go to the [GitHub Releases page](https://github.com/dhprlab/Cyclus2-PyCmd/releases).
+Download the file for your platform (e.g., `Cyclus2-PyCmd-v0.1.3-windows.zip`) and extract it.
+Now it is ready for use; no Python installation is required on your computer.
+
+> [!NOTE]
+> On Windows, running the executable may show a security warning.
+> For example, your antivirus software may say the executable is from an unknown publisher (that's because the executables are not signed with a certificate).
+>
+> If you trust the executable, you can click "Run anyway" to continue; the build process is described in [docs/README.md](./docs/README.md#release-versions-and-packaging).
+> If you prefer not to trust the downloaded file, use the Python-based option instead.
+
+### Installation with Python
+
+To directly use the Python script, you need to install [Python](http://python.org), using a method that matches your operating system (and perhaps institutional policies).
+
+Then download this project to your computer, e.g. as file `Source code (zip)` from the [GitHub releases page](https://github.com/dhprlab/Cyclus2-PyCmd/releases), or by using Git to clone it:
+
+```sh
+git clone git@github.com:dhprlab/Cyclus2-PyCmd.git
+```
+
+Once you have downloaded the project, install the required Python packages and run the script:
+
+```sh
+cd Cyclus2-PyCmd
+python -m pip install -r requirements.txt
+python Cyclus2-PyCmd.py --address <IP-ADDRESS-OF-CYCLUS2>
+```
+
 ## Setup
 
-To use this script, you only need a working network connection to your Cyclus2 ergometer.
-Perhaps as the simplest example, you can connect via a direct Ethernet cable between your computer and the Cyclus2.
+To use this script, you need a working network connection between your computer and your Cyclus2 ergometer.
+
+> [!TIP]
+> Perhaps as the simplest setup, you can connect your computer directly to the Cyclus2 with any Ethernet cable.
+> Modern computers don't need a cross-over cable for a direct connection.
 
 - Make sure your computer and the Cyclys2 share the same network.
   For example, you can assign the Cyclus2 a fixed IP address like `192.168.1.200` and your computer an address like `192.168.1.100`.
@@ -130,10 +146,8 @@ Perhaps as the simplest example, you can connect via a direct Ethernet cable bet
 This project is provided in the hope to be useful, without warranties of any kind (see also section [Licenses](#licenses)).
 No support is included, but feel free to reach out to the [authors](#authors) to ask for help.
 
-This script gets tested on Ubuntu 24.04 LTS with Python 3.12 and on Windows 11 with Python version 3.14.
-
-> [!NOTE]
-> Not yet tested on MacOS. It should work, but who knows...
+_Cyclus2-PyCmd_ gets tested on Linux and Windows.
+The Python code should work on MacOS (if Python is installed), but this has not been tested yet.
 
 ## Release versions and packaging
 

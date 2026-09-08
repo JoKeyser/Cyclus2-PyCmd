@@ -32,6 +32,7 @@ def read_version() -> str:
 
 
 VERSION = read_version()
+DEFAULT_ADDRESS = "192.168.1.200"  # a local address as default/example
 
 # Cyclus2 uses ASCII commands and a CRLF terminator on requests.
 # Responses are plain ASCII and end with CR, with no trailing LF.
@@ -231,8 +232,8 @@ def parse_args():
     )
     parser.add_argument(
         "--address",
-        default="192.168.1.200",
-        help="IP address of your Cyclus2 ergometer (default: %(default)s).",
+        default=None,
+        help=f"IP address of your Cyclus2 ergometer (default: {DEFAULT_ADDRESS}).",
     )
     parser.add_argument(
         "--help-command",
@@ -261,6 +262,18 @@ def main():
         return
 
     addr = args.address
+    if addr is None:
+        # If the address is not provided, prompt the user for it now.
+        # For example, double-clicking the Windows executable will leave address unset.
+        try:
+            if sys.stdin.isatty():
+                entered = input(f"Enter your Cyclus2 IP address [default is {DEFAULT_ADDRESS}]: ").strip()
+                addr = entered or DEFAULT_ADDRESS
+            else:
+                addr = DEFAULT_ADDRESS
+        except EOFError:
+            addr = DEFAULT_ADDRESS
+
     PORT = 25000  # default port 25000 on the Cyclus2 Ethernet/TCP interface  
     TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
 

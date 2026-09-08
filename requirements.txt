@@ -1,2 +1,6 @@
-PyYAML>=6.0
-PyInstaller>=6.0
+# PURPOSE: List of the Python packages required for Cyclus2-PyCmd.
+# SPDX-FileCopyrightText: Johannes Keyser <johannes.keyser@uni-hamburg.de>
+# SPDX-License-Identifier: CC0-1.0
+
+PyYAML>=6.0  # needed for reading the command reference files
+PyInstaller>=6.0  # only needed if you want to build executables yourself

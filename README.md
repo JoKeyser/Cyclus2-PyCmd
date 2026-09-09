@@ -63,10 +63,12 @@ Cyclus2-PyCmd.exe --help-command os
 
 ```txt
 Welcome to
- ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌
- ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌
- ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌, version 0.1.4
-   ▄▌              ▄▌       
+   _____         __         ___     ___       _____         __
+  / ___/_ ______/ /_ _____ |_  |___/ _ \__ __/ ___/_ _  ___/ /
+ / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \/ _  /
+ \___/\_, /\__/_/\_,_/___/____/  /_/   \_, /\___/_/_/_/\_,_/
+     /___/                            /___/     version 0.1.5
+
 Trying to connect to 192.168.1.200:25000 ... connection success :).
 Type any Cyclus2 command or use HELP [command] for command reference.
 For example, use 'vers?' to ask for the Cyclus2 software version.
@@ -101,7 +103,7 @@ On your Cyclus2, all required software should be installed, but some minor [conn
 ### Installation without Python
 
 To download an executable, go to the [GitHub Releases page](https://github.com/dhprlab/Cyclus2-PyCmd/releases).
-Download the file for your platform (e.g., `Cyclus2-PyCmd-v0.1.3-windows.zip`) and extract it.
+Download the file for your platform (e.g., `Cyclus2-PyCmd-v0.1.5-windows.zip`) and extract it.
 Now it is ready for use; no Python installation is required on your computer.
 
 > [!NOTE]
@@ -116,7 +118,7 @@ To directly use the Python script, you need to install [Python](http://python.or
 Then download this project to your computer, e.g. as file `Source code (zip)` from the [GitHub releases page](https://github.com/dhprlab/Cyclus2-PyCmd/releases), or by using Git to clone it:
 
 ```sh
-git clone git@github.com:dhprlab/Cyclus2-PyCmd.git
+git clone https://github.com/dhprlab/Cyclus2-PyCmd.git
 ```
 
 Once you have downloaded the project, install the required Python packages and run the script:
@@ -124,7 +126,7 @@ Once you have downloaded the project, install the required Python packages and r
 ```sh
 cd Cyclus2-PyCmd
 python -m pip install -r requirements.txt
-python Cyclus2-PyCmd.py --address <IP-ADDRESS-OF-CYCLUS2>
+python Cyclus2-PyCmd.py --address IP-ADDRESS-OF-CYCLUS2
 ```
 
 ## Connection setup

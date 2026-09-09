@@ -23,11 +23,9 @@ import yaml
 
 def read_version() -> str:
     """Read the project version from the bundled VERSION file."""
-    # In a download/checkout, the VERSIONfile sits next to the script.
-    # In a PyInstaller bundle, the app runs from a temporary extraction
-    # directory, it must be read from sys._MEIPASS instead.
-    base_dir = Path(sys._MEIPASS) if getattr(sys, "frozen", False) \
-        else Path(__file__).resolve().parent
+    # NOTE: In a download/checkout, the VERSION file sits next to the script.
+    #       This assumes PyInstaller handles this well in its file bundling. 
+    base_dir = Path(__file__).resolve().parent
     return (base_dir / "VERSION").read_text(encoding="utf-8").strip()
 
 
@@ -261,11 +259,14 @@ def main():
         print(format_command_help(command_catalog, args.help_command))
         return
 
-    print("Welcome to\n" +
-          " ▄▖    ▜     ▄▖  ▄▖  ▄▖    ▌\n"
-          " ▌ ▌▌▛▘▐ ▌▌▛▘▄▌▄▖▙▌▌▌▌ ▛▛▌▛▌\n" +
-          " ▙▖▙▌▙▖▐▖▙▌▄▌▙▖  ▌ ▙▌▙▖▌▌▌▙▌, " + f"version {VERSION}\n" +
-          "   ▄▌              ▄▌       ")
+    # Print name in ASCII art font "Small Slant"; yes, that is important.
+    print(
+      "Welcome to\n" +
+      "   _____         __         ___     ___       _____         __\n" +
+      "  / ___/_ ______/ /_ _____ |_  |___/ _ \\__ __/ ___/_ _  ___/ /\n" +
+      " / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \\/ _  /\n" +
+      " \\___/\\_, /\\__/_/\\_,_/___/____/  /_/   \\_, /\\___/_/_/_/\\_,_/\n" +
+     f"     /___/                            /___/     version {VERSION}\n")
 
     addr = args.address
     if addr is None:
@@ -277,6 +278,9 @@ def main():
                 addr = entered or DEFAULT_ADDRESS
             else:
                 addr = DEFAULT_ADDRESS
+        except KeyboardInterrupt:
+            print("\nReceived keyboard interrupt; aborting.")
+            sys.exit(0)
         except EOFError:
             addr = DEFAULT_ADDRESS
 
@@ -322,7 +326,7 @@ def main():
                 send_and_receive_ascii(sock, user_input, timeout=TIMEOUT_SOCKET)
 
     except KeyboardInterrupt:
-        print("\nReceived keyboard interrupt (Ctrl+C); disconnecting.")
+        print("\nReceived keyboard interrupt; disconnecting.")
         sys.exit(0)
     except OSError as exc:
         print(f"connection failed :(.")  # complete above message "Trying to connect..." 

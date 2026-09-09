@@ -24,7 +24,7 @@ Query of device id
 Query command and replies
 -------------------------
 
-`<i>` → `<er800P10V243>`
+`<i>` 🡺 `<er800P10V243>`
 
 Notes
 -----

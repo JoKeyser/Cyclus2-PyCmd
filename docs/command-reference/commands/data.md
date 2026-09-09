@@ -146,12 +146,12 @@ Query of exercise data
 Query command and replies
 -------------------------
 
-data? → data:`<val>`, `<data>`
+data? 🡺 data:`<val>`, `<data>`
 
 Configuration command and replies
 ---------------------------------
 
-data=`<val>` → ok or error:`<message>`
+data=`<val>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

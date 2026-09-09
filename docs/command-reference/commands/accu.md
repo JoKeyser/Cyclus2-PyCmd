@@ -29,7 +29,7 @@ Query of battery capacity
 Query command and replies
 -------------------------
 
-accu? → accu:`<present>`[,`<val>`]
+accu? 🡺 accu:`<present>`[,`<val>`]
 
 Parameters
 ----------

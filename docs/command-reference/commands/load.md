@@ -41,12 +41,12 @@ Configuration of the current load setting
 Query command and replies
 -------------------------
 
-load? → load:`<CtrlId>`,`<Val>`
+load? 🡺 load:`<CtrlId>`,`<Val>`
 
 Configuration command and replies
 ---------------------------------
 
-load=`<CtrlId>`,`<Val>` → ok or error:`<message>`
+load=`<CtrlId>`,`<Val>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

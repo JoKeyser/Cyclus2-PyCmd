@@ -38,7 +38,7 @@ To practically create a new release:
 2. Build locally and check the version:
 
    ```sh
-   pyinstaller --onefile --add-data "docs/command-reference:docs/command-reference" --add-data "VERSION:." Cyclus2-PyCmd.py
+   pyinstaller Cyclus2-PyCmd.spec
    ./dist/Cyclus2-PyCmd --version
    ```
 
@@ -65,7 +65,7 @@ If you connect via serial connection (not via network), you may want to change t
 To change the baud rate of the Cyclus2, you need to login as _Admin_.
 (For all other commands, you do not need to login as Admin.)
 
-To login as Admin, select _System → Login_ and enter the administrator password.
+To login as Admin, select _System ➜ Login_ and enter the administrator password.
 You should get the Admin password from your RBM contact.
 
 Once you are logged in as Admin, you should see "Admin" in the bottom-right corner of the Cyclus2 screen (instead showing nothing or "Expert").

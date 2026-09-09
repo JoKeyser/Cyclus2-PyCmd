@@ -42,14 +42,14 @@ Configuration of monitoring (cf. check)
 Query command and replies
 -------------------------
 
-mon? → mon:`<Id-Flags>`
+mon? 🡺 mon:`<Id-Flags>`
 
-mon? `<Id>` → mon:`<Id>`, `<Min>`, `<Max>`
+mon? `<Id>` 🡺 mon:`<Id>`, `<Min>`, `<Max>`
 
 Configuration command and replies
 ---------------------------------
 
-mon=`<Id>`, `<Min>`, `<Max>`,`<State>`,`<Band>` → ok or error:`<message>`
+mon=`<Id>`, `<Min>`, `<Max>`,`<State>`,`<Band>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

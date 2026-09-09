@@ -66,12 +66,12 @@ Configuration of ergometry loads with the load generator
 Query command and replies
 -------------------------
 
-gen? → gen:`<val>`[,data]
+gen? 🡺 gen:`<val>`[,data]
 
 Configuration command and replies
 ---------------------------------
 
-gen=`<val>`,`<data>` → ok or error:`<message>`
+gen=`<val>`,`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

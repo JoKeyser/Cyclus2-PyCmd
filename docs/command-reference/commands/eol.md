@@ -34,12 +34,12 @@ Configuration of the end of line
 Query command and replies
 -------------------------
 
-eol? → eol:`<val1>`,`<val2>`
+eol? 🡺 eol:`<val1>`,`<val2>`
 
 Configuration command and replies
 ---------------------------------
 
-eol=`<val1>`,`<val2>` → ok or error:`<message>`
+eol=`<val1>`,`<val2>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

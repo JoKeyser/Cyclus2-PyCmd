@@ -50,12 +50,12 @@ Configuration of Maximum Strength Test with hold time
 Query command and replies
 -------------------------
 
-mct? → mct:`<val>`[,data]
+mct? 🡺 mct:`<val>`[,data]
 
 Configuration command and replies
 ---------------------------------
 
-mct=`<val>`,`<data>` → ok or error:`<message>`
+mct=`<val>`,`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

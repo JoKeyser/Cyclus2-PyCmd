@@ -27,7 +27,7 @@ Query of version of operating system
 Query command and replies
 -------------------------
 
-os? → os:`<val>`
+os? 🡺 os:`<val>`
 
 Parameters
 ----------

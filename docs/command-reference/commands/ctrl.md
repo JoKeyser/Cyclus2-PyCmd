@@ -39,12 +39,12 @@ Control of exercise
 Query command and replies
 -------------------------
 
-ctrl? → ctrl:`<val>`
+ctrl? 🡺 ctrl:`<val>`
 
 Configuration command and replies
 ---------------------------------
 
-ctrl=`<val>` → ok or error:`<message>`
+ctrl=`<val>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

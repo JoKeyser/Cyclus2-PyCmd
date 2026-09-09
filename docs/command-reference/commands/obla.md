@@ -50,12 +50,12 @@ Configuration of the OBLA threshold test
 Query command and replies
 -------------------------
 
-obla? → obla:`<val>`[,data]
+obla? 🡺 obla:`<val>`[,data]
 
 Configuration command and replies
 ---------------------------------
 
-obla=`<val>`,`<data>` → ok or error:`<message>`
+obla=`<val>`,`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

@@ -24,7 +24,7 @@ Query of diastole (dummy irrelevant)
 Query command and replies
 -------------------------
 
-`<u>` → `<U000>`
+`<u>` 🡺 `<U000>`
 
 Notes
 -----

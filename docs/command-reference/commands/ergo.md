@@ -50,12 +50,12 @@ Configuration of ergoline mode
 Query command and replies
 -------------------------
 
-ergo? → ergo:`<val>`
+ergo? 🡺 ergo:`<val>`
 
 Configuration command and replies
 ---------------------------------
 
-ergo=`<val>` → ok or error:`<message>`
+ergo=`<val>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

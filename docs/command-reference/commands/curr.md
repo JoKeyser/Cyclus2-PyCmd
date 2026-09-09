@@ -27,7 +27,7 @@ Query of motor current
 Query command and replies
 -------------------------
 
-curr? → curr:`<val>`
+curr? 🡺 curr:`<val>`
 
 Parameters
 ----------

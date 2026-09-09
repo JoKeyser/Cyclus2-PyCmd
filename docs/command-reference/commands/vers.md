@@ -27,7 +27,7 @@ Query of software version
 Query command and replies
 -------------------------
 
-vers? → vers: Cyclus2, Version `<val>`
+vers? 🡺 vers: Cyclus2, Version `<val>`
 
 Parameters
 ----------

@@ -49,12 +49,12 @@ Configuration of athlete (out-of-date, use user1!)
 Query command and replies
 -------------------------
 
-user? → user:`<data>`
+user? 🡺 user:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-user=`<data>` → ok or error:`<message>`
+user=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

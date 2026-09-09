@@ -33,12 +33,12 @@ Configuration of baud rate
 Query command and replies
 -------------------------
 
-br? → br:`<val>`
+br? 🡺 br:`<val>`
 
 Configuration command and replies
 ---------------------------------
 
-br=`<val>` → ok or error:`<message>`
+br=`<val>` 🡺 ok or error:`<message>`
 
 The response is sent with the so far preset baud rate.
 

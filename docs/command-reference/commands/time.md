@@ -32,12 +32,12 @@ Configuration of the local time
 Query command and replies
 -------------------------
 
-time? → time:`<data>`
+time? 🡺 time:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-time=`<data>` → ok or error:`<message>`
+time=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

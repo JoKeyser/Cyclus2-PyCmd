@@ -46,12 +46,12 @@ Configuration of external field conditions
 Query command and replies
 -------------------------
 
-cond? → cond:`<data>`
+cond? 🡺 cond:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-cond=`<data>` → ok or error:`<message>`
+cond=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

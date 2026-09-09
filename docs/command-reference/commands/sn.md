@@ -27,7 +27,7 @@ Query of serial number
 Query command and replies
 -------------------------
 
-sn? → sn:`<val>`
+sn? 🡺 sn:`<val>`
 
 Parameters
 ----------

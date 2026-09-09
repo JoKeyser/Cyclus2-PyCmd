@@ -52,12 +52,12 @@ Configuration of Maximum Strength Test
 Query command and replies
 -------------------------
 
-mpt? → mpt:`<val>`[,data]
+mpt? 🡺 mpt:`<val>`[,data]
 
 Configuration command and replies
 ---------------------------------
 
-mpt=`<val>`,`<data>` → ok or error:`<message>`
+mpt=`<val>`,`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

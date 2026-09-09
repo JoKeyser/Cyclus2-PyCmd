@@ -32,12 +32,12 @@ Write text to the info bar
 Query command and replies
 -------------------------
 
-text? → text:`<data>`
+text? 🡺 text:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-text=`<data>` → ok or error:`<message>`
+text=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

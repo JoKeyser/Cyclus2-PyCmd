@@ -5,7 +5,7 @@ SPDX-License-Identifier: EUPL-1.2
 
 # Cyclus2-PyCmd
 
-A Python script to interactively send commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/).
+🧑‍💻 ⇄ 🚲 Interactively send commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/).
 
 > [!warning]
 > 🚧 Prototyping in progress... 🚧
@@ -14,22 +14,24 @@ A Python script to interactively send commands to [Cyclus2 ergometers](https://w
 
 ## Description
 
-This project provides _Cyclus2-PyCmd_, a Python script to interactively send commands to a [Cyclus2 ergometer](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
+This project provides _Cyclus2-PyCmd_, a Python script to interact with [Cyclus2 ergometers](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
+Cyclus2 ergometers offer a command interface, accessible over Ethernet cable, serial connection, or WiFi.
+Thanks to that interface, you can connect any computer to remotely obtain data and control the ergometry in real time.
 
-Cyclus2 ergometers include a command interface that can be accessed over Ethernet cable, serial connection, or WiFi.
-Via that interface, you can request data and/or send commands in (near) real time.
 _Cyclus2-PyCmd_ aims to create a convenient way to interact with a Cyclus2 ergometer:
 
-- Pre-configured to show the typed commands and their corresponding responses.
+- It is pre-configured to show the typed commands and their corresponding replies.
   (No need to configure a general-purpose terminal program.)
   All you need is the IP address of your Cyclus2 ergometer.
-- Keep the command reference at your fingertips via `HELP <command>`.
+- You have the command reference at your fingertips via `HELP <command>`.
 
-You can use this project for exploration and as basis for development of scripted interactions with the Cyclus2.
+> [!TIP]
+> You can use this project for exploration and as basis for development of scripted interactions with the Cyclus2.
+> Browse the [examples](./docs/Examples.md) for inspiration.
 
 ## Usage
 
-Using _Cyclus2-PyCmd_ requires some [installation](#installation) and [setup](#setup), see sections below.
+Using _Cyclus2-PyCmd_ requires [installation](#installation) and a [connection setup](#connection-setup), see sections below.
 Once installed, the command-line interface is the same in both cases.
 Assuming the Cyclus2 ergometer has the IP address `192.168.1.200`, you can start the program as follows:
 
@@ -54,8 +56,8 @@ Cyclus2-PyCmd.exe --help-command os
 ```
 
 > [!TIP]
-> You can also browse the command reference in folder [docs/command-reference/](./docs/command-reference/).
-> Also, Cyclus2-PyCmd loads the reference from that folder and prints the content.
+> You can also browse the [command reference](./docs/command-reference/README.md).
+> (The `HELP` tool in _Cyclus2-PyCmd_ loads that reference and prints the content.)
 
 ### Example session
 
@@ -87,14 +89,14 @@ Closing the connection to the Cyclus2 ergometer.
 > The Cyclus2 will send "`error:unknown command`" if the command you entered is unknown/invalid.
 
 > [!TIP]
-> See [Examples](./docs/Examples.md) for more interesting examples of the capabilities of the Cyclus2 protocol interface.
+> See RBM's more interesting [examples](./docs/Examples.md) of the capabilities of the Cyclus2 protocol interface.
 
 ## Installation
 
 There are two practical ways to get _Cyclus2-PyCmd_ onto your computer:
 Download as an executable app, or install the Python script from source.
 
-On your Cyclus2, all required software should be installed, but some minor [setup](#setup) is required.
+On your Cyclus2, all required software should be installed, but some minor [connection setup](#connection-setup) is required.
 
 ### Installation without Python
 
@@ -125,7 +127,7 @@ python -m pip install -r requirements.txt
 python Cyclus2-PyCmd.py --address <IP-ADDRESS-OF-CYCLUS2>
 ```
 
-## Setup
+## Connection setup
 
 To use this script, you need a working network connection between your computer and your Cyclus2 ergometer.
 
@@ -153,7 +155,7 @@ The Python code should work on MacOS (if Python is installed), but this has not 
 ## Roadmap
 
 - Support for commands like `data=7` that keep sending data without further user input.
-- _Maybe_ make [the examples](./docs/Examples.md) available in the terminal?
+- _Maybe_ make [the examples](./docs/Examples.md) available from the app, for easy play-through?
 - _Maybe_ convert more of the [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) into Markdown for easier browsing?
 - _Maybe_ support serial connection (instead of network connection) to the Cyclus2?
 

@@ -62,14 +62,14 @@ Configuration of load stages
 Query command and replies
 -------------------------
 
-stage? → stage:`<count>`
+stage? 🡺 stage:`<count>`
 
 The query form stage?`<no>` returns stage:`<no>`, `<data>`.
 
 Configuration command and replies
 ---------------------------------
 
-stage=type[, data] → ok or error:`<message>`
+stage=type[, data] 🡺 ok or error:`<message>`
 
 Parameters
 ----------

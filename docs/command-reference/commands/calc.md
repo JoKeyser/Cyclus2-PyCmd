@@ -34,12 +34,12 @@ Configuration of calculation parameter
 Query command and replies
 -------------------------
 
-calc? → calc:`<interval>`, `<avg>`
+calc? 🡺 calc:`<interval>`, `<avg>`
 
 Configuration command and replies
 ---------------------------------
 
-calc=`<interval>`,`<avg>` → ok or error:`<message>`
+calc=`<interval>`,`<avg>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

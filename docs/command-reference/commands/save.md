@@ -42,12 +42,12 @@ Configuration of auto-save after finish of ergometry
 Query command and replies
 -------------------------
 
-save? → save:`<val>`
+save? 🡺 save:`<val>`
 
 Configuration command and replies
 ---------------------------------
 
-save=`<val>` → ok or error:`<message>`
+save=`<val>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

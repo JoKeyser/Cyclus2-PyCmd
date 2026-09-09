@@ -27,7 +27,7 @@ Query of motor temperature
 Query command and replies
 -------------------------
 
-temp? → temp:`<val>`
+temp? 🡺 temp:`<val>`
 
 Parameters
 ----------

@@ -32,12 +32,12 @@ Configuration of the front chain rings for virtual gear shifting
 Query command and replies
 -------------------------
 
-rings? → rings:`<data>`
+rings? 🡺 rings:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-rings=`<data>` → ok or error:`<message>`
+rings=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

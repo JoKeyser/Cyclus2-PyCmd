@@ -27,7 +27,7 @@ Query of current heart rate
 Query command and replies
 -------------------------
 
-`<h>` → H`<val>`
+`<h>` 🡺 H`<val>`
 
 Parameters
 ----------

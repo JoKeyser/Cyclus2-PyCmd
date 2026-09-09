@@ -27,7 +27,7 @@ Query of current power
 Query command and replies
 -------------------------
 
-`<b>` → B`<val>`
+`<b>` 🡺 B`<val>`
 
 Parameters
 ----------

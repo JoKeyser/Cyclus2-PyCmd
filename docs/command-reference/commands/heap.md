@@ -27,7 +27,7 @@ Query of available heap size
 Query command and replies
 -------------------------
 
-heap? → heap:`<val>`
+heap? 🡺 heap:`<val>`
 
 Parameters
 ----------

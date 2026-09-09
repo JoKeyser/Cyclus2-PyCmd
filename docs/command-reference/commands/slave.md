@@ -49,12 +49,12 @@ Configuration of slave mode
 Query command and replies
 -------------------------
 
-slave? → slave:`<val>`
+slave? 🡺 slave:`<val>`
 
 Configuration command and replies
 ---------------------------------
 
-slave=`<val>` → ok or error:`<message>`
+slave=`<val>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

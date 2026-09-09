@@ -53,12 +53,12 @@ Configuration of chart
 Query command and replies
 -------------------------
 
-graph? → graph:`<data>`
+graph? 🡺 graph:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-graph=`<data>` → ok or error:`<message>`
+graph=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

@@ -32,12 +32,12 @@ Jump to a load stage
 Query command and replies
 -------------------------
 
-jump? → jump:`<val>`
+jump? 🡺 jump:`<val>`
 
 Configuration command and replies
 ---------------------------------
 
-jump=`<val>` → ok or error:`<message>`
+jump=`<val>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

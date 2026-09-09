@@ -45,12 +45,12 @@ Configuration of the mounted bike
 Query command and replies
 -------------------------
 
-cycle? → cycle:`<data>`
+cycle? 🡺 cycle:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-cycle=`<data>` → ok or error:`<message>`
+cycle=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

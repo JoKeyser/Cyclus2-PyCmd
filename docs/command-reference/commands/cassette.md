@@ -33,12 +33,12 @@ Configuration of the cassette with the available rear sprockets for virtual gear
 Query command and replies
 -------------------------
 
-cassette? → cassette:`<data>`
+cassette? 🡺 cassette:`<data>`
 
 Configuration command and replies
 ---------------------------------
 
-cassette=`<data>` → ok or error:`<message>`
+cassette=`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

@@ -24,7 +24,7 @@ Query of systole (dummy irrelevant)
 Query command and replies
 -------------------------
 
-`<o>` → `<O000>`
+`<o>` 🡺 `<O000>`
 
 Notes
 -----

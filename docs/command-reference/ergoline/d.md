@@ -27,7 +27,7 @@ Query of current cadence
 Query command and replies
 -------------------------
 
-`<d>` → n`<val>`
+`<d>` 🡺 n`<val>`
 
 Parameters
 ----------

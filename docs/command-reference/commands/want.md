@@ -50,12 +50,12 @@ Configuration of the threshold of the WAnT test
 Query command and replies
 -------------------------
 
-want? → want:`<val>`[,data]
+want? 🡺 want:`<val>`[,data]
 
 Configuration command and replies
 ---------------------------------
 
-want=`<val>`,`<data>` → ok or error:`<message>`
+want=`<val>`,`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

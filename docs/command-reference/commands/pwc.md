@@ -50,12 +50,12 @@ Configuration of the Power Warm-up Cycle
 Query command and replies
 -------------------------
 
-pwc? → pwc:`<val>`[,data]
+pwc? 🡺 pwc:`<val>`[,data]
 
 Configuration command and replies
 ---------------------------------
 
-pwc=`<val>`,`<data>` → ok or error:`<message>`
+pwc=`<val>`,`<data>` 🡺 ok or error:`<message>`
 
 Parameters
 ----------

@@ -38,7 +38,7 @@ Query of the current type of ergometry
 Query command and replies
 -------------------------
 
-prog? → prog:`<val>`
+prog? 🡺 prog:`<val>`
 
 Parameters
 ----------

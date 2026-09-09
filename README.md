@@ -108,8 +108,9 @@ Now it is ready for use; no Python installation is required on your computer.
 
 > [!NOTE]
 > On Windows, running the executable may show a security warning.
-> For example, your antivirus software may say the executable is from an unknown publisher; the build process is described in [docs/README.md](./docs/README.md#release-versions-and-packaging).
-> If you prefer not to trust the executable, use the [installation with Python](#installation-with-python).
+> For example, Windows Defender SmartScreen may warn that the executable is from an unknown publisher.
+> If want to trust the executable, you can click "More info" and then "Run anyway"; read about the packging process in [docs/README.md](./docs/README.md#packaging-as-executables).
+> If you prefer not to trust the executable, you can use the [installation with Python](#installation-with-python).
 
 ### Installation with Python
 

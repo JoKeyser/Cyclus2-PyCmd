@@ -14,9 +14,9 @@ SPDX-License-Identifier: EUPL-1.2
 
 ## Description
 
-This project provides _Cyclus2-PyCmd_, a Python script to interact with [Cyclus2 ergometers](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
+This project provides _Cyclus2-PyCmd_, a Python app to interact with [Cyclus2 ergometers](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
 Cyclus2 ergometers offer a command interface, accessible over Ethernet cable, serial connection, or WiFi.
-Thanks to that interface, you can connect any computer to remotely obtain data and control the ergometry in real time.
+This allows you to connect any computer to remotely obtain data and control the ergometry in real time.
 
 _Cyclus2-PyCmd_ aims to create a convenient way to interact with a Cyclus2 ergometer:
 
@@ -132,7 +132,7 @@ python Cyclus2-PyCmd.py --address IP-ADDRESS-OF-CYCLUS2
 
 ## Connection setup
 
-To use this script, you need a working network connection between your computer and your Cyclus2 ergometer.
+To use _Cyclus2-PyCmd_, you need a working network connection between your computer and your Cyclus2 ergometer.
 
 > [!TIP]
 > Perhaps as the simplest setup, you can connect your computer directly to the Cyclus2 with any Ethernet cable.
@@ -144,20 +144,23 @@ To use this script, you need a working network connection between your computer 
 - Make sure you can ping the ergometer from your computer, e.g., `ping 192.168.1.200`.
   You should see something like `Reply from 192.168.1.200`.
 
-> [!TIP]
-> With this setup, all commands should work, except [changing the baud rate](docs/README.md#login-as-admin-to-change-serial-baud-rate).
+> [!NOTE]
+> All commands should work, regardless how you login to your Cyclus2.
+> You only need to login as Admin for [changing the baud rate](docs/README.md#login-as-admin-to-change-serial-baud-rate), but that applies only to serial connections that are not (yet?) supported by this project.
 
 ## Support
 
-This project is provided in the hope to be useful, without warranties of any kind (see also section [Licenses](#licenses)).
+This project is made public in the hope to be useful, without warranties of any kind (see also section [Licenses](#licenses)).
 No support is included, but feel free to reach out to the [authors](#authors) to ask for help.
 
 _Cyclus2-PyCmd_ gets tested on Linux and Windows.
-The Python code should work on MacOS (if Python is installed), but this has not been tested yet.
+The Python code probably works on MacOS (if Python is installed), but this has not been tested yet.
 
 ## Roadmap
 
 - Support for commands like `data=7` that keep sending data without further user input.
+  The idea would be to have a window for the commands from the user and the replies from the Cyclus2.
+  Perhaps a minimal TUI for a separate row to write the next command, such that incoming data don't mash up the command input.
 - _Maybe_ make [the examples](./docs/Examples.md) available from the app, for easy play-through?
 - _Maybe_ convert more of the [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) into Markdown for easier browsing?
 - _Maybe_ support serial connection (instead of network connection) to the Cyclus2?
@@ -168,12 +171,12 @@ Bug reports, feature requests, and other contributions are very welcome.
 
 The project is hosted on two platforms to make collaboration easier:
 
-- GitHub, for many users outside of the University of Hamburg (UHH)
+- GitHub, open to users outside of the University of Hamburg
   - URL: <https://github.com/dhprlab/Cyclus2-PyCmd>
-- UHH GitLab, for members of the University of Hamburg
+- UHH GitLab, mainly for members of the University of Hamburg (UHH)
   - URL: <https://gitlab.rrz.uni-hamburg.de/dhprlab/Cyclus2-PyCmd>
 
-If you don't have/want an account on either platform, you can also send an email to the [authors](#authors), or suggest a third platform for collaboration.
+If you don't have/want an account on those platforms, you can also send an email to the [authors](#authors), or suggest a third platform for collaboration.
 
 ## Authors
 

@@ -3,4 +3,5 @@
 # SPDX-License-Identifier: CC0-1.0
 
 PyYAML>=6.0  # needed for reading the command reference files
+prompt_toolkit>=3.0.0  # used for the chat-style terminal interface
 PyInstaller>=6.0  # only needed if you want to build executables yourself

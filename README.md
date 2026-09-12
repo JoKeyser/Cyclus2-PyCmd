@@ -7,9 +7,6 @@ SPDX-License-Identifier: EUPL-1.2
 
 🧑‍💻 ⇄ 🚲 Interactively send commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/).
 
-> [!warning]
-> 🚧 Prototyping in progress... 🚧
-
 ![logo](./materials/logo-Cyclus2-PyCmd.svg)
 
 ## Description
@@ -20,8 +17,7 @@ This allows you to connect any computer to remotely obtain data and control the 
 
 _Cyclus2-PyCmd_ aims to create a convenient way to interact with a Cyclus2 ergometer:
 
-- It is pre-configured to show the typed commands and their corresponding replies.
-  (No need to configure a general-purpose terminal program.)
+- It is pre-configured to show the typed commands and their corresponding replies, in a chat-like interface.
   All you need is the IP address of your Cyclus2 ergometer.
 - You have the command reference at your fingertips via `HELP <command>`.
 
@@ -67,24 +63,22 @@ Welcome to
   / ___/_ ______/ /_ _____ |_  |___/ _ \__ __/ ___/_ _  ___/ /
  / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \/ _  /
  \___/\_, /\__/_/\_,_/___/____/  /_/   \_, /\___/_/_/_/\_,_/
-     /___/                            /___/     version 0.1.5
+     /___/                            /___/     version 1.0.0
 
-Trying to connect to 192.168.1.200:25000 ... connection success :).
 Type any Cyclus2 command or use HELP [command] for command reference.
-For example, use 'vers?' to ask for the Cyclus2 software version.
 To end the session, type DISCONNECT to disconnect from the Cyclus2.
 
-> vers?
-vers:Cyclus2, Version 5.0.9083.30724
+Command> vers?
+Cyclus2> vers:Cyclus2, Version 5.0.9083.30724
 
-> data?
-data:0,0,0.00,0.00,0.00,0.00,0.00,0.00,8.61,0.00,0.00,0.00,0.00
+Command> data?
+Cyclus2> data:0,0,0.00,0.00,0.00,0.00,0.00,0.00,8.61,0.00,0.00,0.00,0.00
 
-> something-wrong
-error:unknown command
+Command> something-wrong
+Cyclus2> error:unknown command
 
-> DISCONNECT
-Closing the connection to the Cyclus2 ergometer.
+Command> DISCONNECT
+Disconnecting and ending the session. Bye.
 ```
 
 > [!NOTE]
@@ -158,9 +152,6 @@ The Python code probably works on MacOS (if Python is installed), but this has n
 
 ## Roadmap
 
-- Support for commands like `data=7` that keep sending data without further user input.
-  The idea would be to have a window for the commands from the user and the replies from the Cyclus2.
-  Perhaps a minimal TUI for a separate row to write the next command, such that incoming data don't mash up the command input.
 - _Maybe_ make [the examples](./docs/Examples.md) available from the app, for easy play-through?
 - _Maybe_ convert more of the [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) into Markdown for easier browsing?
 - _Maybe_ support serial connection (instead of network connection) to the Cyclus2?

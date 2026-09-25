@@ -7,36 +7,34 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 ---
 command:
   name: want
-  summary: Configuration of the threshold of the WAnT test
+  summary: Configuration of Wingate Anaerobic Test
   query:
     syntax: want?
     replies:
-      ok: want:val[,<data>]
+      ok: want:<val>[,<data>]
   configuration:
     syntax: want=val,data
     replies:
       ok: ok
       error: error:message
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
     values:
-    - code: '5'
-      meaning: Data data are available, WAnT test
+    - code: 12
+      meaning: Data <data> are available, Wingate Anaerobic Test
     - code: else
-      meaning: No parameter of WAnT available
-  - name: <data>
+      meaning: no parameter of Maximum Cadence Test available
+  - name: data
     type: sequence
     sequence:
-    - name: <LimitId>
-      type: unsigned short int
-    - name: <LimitValue>
+    - name: Profile
+      type: int
+    - name: Factor
       type: float
-    - name: <InitialLoad>
+    - name: Time
       type: float
-    - name: <UnitId>
-      type: unsigned short int
-    - name: <Threshold>
+    - name: StartCadence
       type: float
 ---
 
@@ -45,37 +43,35 @@ command:
 want
 ====
 
-Configuration of the threshold of the WAnT test
+Configuration of Wingate Anaerobic Test
 
 Query command and replies
 -------------------------
 
-want? 🡺 want:`<val>`[,data]
+`want?` 🡺 `want:<val>[, <data>]`
 
 Configuration command and replies
 ---------------------------------
 
-want=`<val>`,`<data>` 🡺 ok or error:`<message>`
+`want=<val>,<data>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<val>` — Type of ergometry.
+- `<val>` — Type of ergometry.
+  - `12` — Data `<data>` are available, Wingate Anaerobic Test
+  - else — no parameter of Maximum Cadence Test available
+- `<data>` — Parameter of Wingate Anaerobic Test
+  - `<Profile >`,
+  - `<Factor>`,
+  - `<Time>`,
+  - `<StartCadence>`
 
-- 5 — Data `<data>` are available, WAnT test.
-- else — No parameter of WAnT available.
-
-`<data>` — Parameter of WAnT.
-
-- `<LimitId>`,
-- `<LimitValue>`,
-- `<InitialLoad>`,
-- `<UnitId>`,
-- `<Threshold>`
+A description of the individual parameters is shown in chapter 2.6.
+When writing always set for `<val> = 12`.
 
 Notes
 -----
 
 - Version 3.100
 - Parameters must not be changed during a running training programme.
-- In case of WAnT testing, the threshold is set with this command.

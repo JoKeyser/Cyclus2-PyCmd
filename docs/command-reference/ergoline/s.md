@@ -11,7 +11,7 @@ command:
   configuration:
     syntax: s
     replies:
-      ok: no reply
+      ok: NONE
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -24,11 +24,12 @@ Start exercise
 Configuration command
 --------------------
 
-`<s>`
+`s`
+
+(in slave mode only)
 
 Notes
 -----
 
 - Version 2.200
 - Supported in release 5.0
-- Only valid in slave mode.

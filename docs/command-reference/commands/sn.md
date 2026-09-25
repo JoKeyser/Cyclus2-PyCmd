@@ -11,10 +11,10 @@ command:
   query:
     syntax: sn?
     replies:
-      ok: sn:val
+      ok: sn:<val>
   parameters:
-  - name: <val>
-    type: serial number string
+  - name: val
+    type: string
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -27,12 +27,12 @@ Query of serial number
 Query command and replies
 -------------------------
 
-sn? 🡺 sn:`<val>`
+`sn?` 🡺 `sn:<val>`
 
 Parameters
 ----------
 
-`<val>` — Serial number in format dddd-ddddd-ddddd (e.g. 0297-10020-00046)
+`<val>` — Serial number in format `dddd-ddddd-ddddd` (e.g., `0297-10020-00046`).
 
 Notes
 -----

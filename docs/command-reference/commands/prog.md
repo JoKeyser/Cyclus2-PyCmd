@@ -11,21 +11,33 @@ command:
   query:
     syntax: prog?
     replies:
-      ok: prog:val
+      ok: prog:<val>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
     values:
-    - code: '0'
-      meaning: No programme
-    - code: '1'
-      meaning: User-defined programme
-    - code: '2'
-      meaning: Preset test or workout
-    - code: '3'
-      meaning: Custom ergometry mode
-    - code: '4'
-      meaning: Maintenance or calibration mode
+    - code: 0
+      meaning: manual control, without control of load duration
+    - code: 1
+      meaning: ergometry with some stages
+    - code: 4
+      meaning: Maximum Cadence Test
+    - code: 5
+      meaning: Maximum Strength Test
+    - code: 8
+      meaning: Source of ergometry is the load generator
+    - code: 9
+      meaning: Conconi Test
+    - code: 10
+      meaning: OBLA Test
+    - code: 11
+      meaning: Slave mode without control of the duration
+    - code: 12
+      meaning: Wingate Anaerobic Test
+    - code: 13
+      meaning: PWC Test
+    - code: 14
+      meaning: Real life track
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -38,21 +50,30 @@ Query of the current type of ergometry
 Query command and replies
 -------------------------
 
-prog? 🡺 prog:`<val>`
+`prog?` 🡺 `prog:<val>`
 
 Parameters
 ----------
 
 `<val>` — Current ergometry program type.
 
-- 0 — No programme.
-- 1 — User-defined programme.
-- 2 — Preset test or workout.
-- 3 — Custom ergometry mode.
-- 4 — Maintenance or calibration mode.
+- `0` — manual control, without control of load duration
+- `1` — ergometry with some stages
+- `4` — Maximum Cadence Test
+- `5` — Maximum Strength Test
+- `8` — Source of ergometry is the load generator
+- `9` — Conconi Test
+- `10` — OBLA Test
+- `11` — Slave mode without control of the duration
+
+new with version 4
+
+- `12` — Wingate Anaerobic Test
+- `13` — PWC Test
+- `14` — Real life track
 
 Notes
 -----
 
-- See the related command family for the active protocol and training programme state.
-- The exact interpretation of the value depends on the connected device and firmware.
+- Version 3.100
+- Note: Changed in version 4

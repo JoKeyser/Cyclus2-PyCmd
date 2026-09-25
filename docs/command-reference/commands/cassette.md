@@ -7,19 +7,18 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 ---
 command:
   name: cassette
-  summary: Configuration of the cassette with the available rear sprockets for virtual
-    gear shifting
+  summary: Configuration of the cassette with the available rear sprockets for virtual gear shifting
   query:
     syntax: cassette?
     replies:
-      ok: cassette:data
+      ok: cassette:<data>
   configuration:
-    syntax: cassette=data
+    syntax: cassette=<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <data>
+  - name: data
     type: sequence of unsigned short int
 ---
 
@@ -33,28 +32,29 @@ Configuration of the cassette with the available rear sprockets for virtual gear
 Query command and replies
 -------------------------
 
-cassette? 🡺 cassette:`<data>`
+`cassette?` 🡺 `cassette:<data>`
 
 Configuration command and replies
 ---------------------------------
 
-cassette=`<data>` 🡺 ok or error:`<message>`
+`cassette=<data>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
 `<data>` — Preset sprockets separated by commas.
 
-- `<rear sprocket 1>`,
-- `<rear sprocket 2>`,
-- ...
-
-If no parameters have been explicitly set, 0 is rendered. In this case stepless gear shift is applied. The number of parameters is variable. The command `<cycle>` and `<cycle1>` delete the presets.
+If no parameters have been explicitly set, `0` is rendered.
+In this case, stepless gear shift is applied.
+The number of parameters is variable.
+The command `cycle` and `cycle1` delete the presets!
 
 Examples:
 
-- cassette=0 (presets will be deleted, stepless gear shift)
-- cassette=12,13,14,15,16,17,19,21,23,25
+- `cassette=0` (presets will be deleted, stepless gear shift)
+- `cassette=12,13,14,15,16,17,19,21,23,25`
 
 Notes
 -----

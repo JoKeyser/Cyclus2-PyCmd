@@ -11,9 +11,9 @@ command:
   query:
     syntax: curr?
     replies:
-      ok: curr:val
+      ok: curr:<val>
   parameters:
-  - name: <val>
+  - name: val
     type: float
 ---
 
@@ -27,12 +27,12 @@ Query of motor current
 Query command and replies
 -------------------------
 
-curr? 🡺 curr:`<val>`
+`curr?` 🡺 `curr:<val>`
 
 Parameters
 ----------
 
-`<val>` — Current in amperes.
+`<val>` — Current in Amperes
 
 Notes
 -----

@@ -11,14 +11,14 @@ command:
   query:
     syntax: br?
     replies:
-      ok: br:val
+      ok: br:<val>
   configuration:
-    syntax: br=val
+    syntax: br=<val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
 ---
 
@@ -33,12 +33,12 @@ Configuration of baud rate
 Query command and replies
 -------------------------
 
-br? 🡺 br:`<val>`
+`br?` 🡺 `br:<val>`
 
 Configuration command and replies
 ---------------------------------
 
-br=`<val>` 🡺 ok or error:`<message>`
+`br=<val>` 🡺 `ok` or `error:<message>`
 
 The response is sent with the so far preset baud rate.
 
@@ -47,9 +47,9 @@ Parameters
 
 `<val>` — baud rate.
 
-Permitted presets are: 1200, 2400, 4800 (default), 9600, 19200, 38400, 56000, 57600, and 115200.
+Permitted presets are: `1200`, `2400`, `4800` (default), `9600`, `19200`, `38400`, `56000`, `57600`, and `115200`.
 
-The 56000 setting does not exist any longer as from version 4, and the settings 57600 and 115200 are added instead.
+The `56000` setting does not exist any longer as from version 4, and the settings `57600` and `115200` are added instead.
 
 The next command must be sent with the new baud rate.
 

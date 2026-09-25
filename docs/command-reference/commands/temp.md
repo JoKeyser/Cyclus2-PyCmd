@@ -11,9 +11,9 @@ command:
   query:
     syntax: temp?
     replies:
-      ok: temp:val
+      ok: temp:<val>
   parameters:
-  - name: <val>
+  - name: val
     type: float
 ---
 
@@ -27,7 +27,7 @@ Query of motor temperature
 Query command and replies
 -------------------------
 
-temp? 🡺 temp:`<val>`
+`temp?` 🡺 `temp:<val>`
 
 Parameters
 ----------

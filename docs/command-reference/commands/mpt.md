@@ -11,34 +11,34 @@ command:
   query:
     syntax: mpt?
     replies:
-      ok: mpt:val[,<data>]
+      ok: mpt:<val>[,<data>]
   configuration:
-    syntax: mpt=val,data
+    syntax: mpt=<val>,<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
     values:
-    - code: '5'
-      meaning: Data data are available, Maximum Strength Test
+    - code: 5
+      meaning: Data <data> are available, Maximum Strength Test
     - code: else
       meaning: No parameter of Maximum Strength Test available
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
-    - name: <LimitId>
+    - name: LimitId
       type: unsigned short int
-    - name: <LimitValue>
+    - name: LimitValue
       type: float
-    - name: <InitialLoad>
+    - name: InitialLoad
       type: float
-    - name: <Len>
+    - name: Len
       type: unsigned long
-    - name: <UnitId>
+    - name: UnitId
       type: unsigned short int
-    - name: <StartValue>
+    - name: StartValue
       type: float
 ---
 
@@ -52,34 +52,33 @@ Configuration of Maximum Strength Test
 Query command and replies
 -------------------------
 
-mpt? 🡺 mpt:`<val>`[,data]
+`mpt?` 🡺 `mpt:<val>[,<data>]`
 
 Configuration command and replies
 ---------------------------------
 
-mpt=`<val>`,`<data>` 🡺 ok or error:`<message>`
+`mpt=<val>,<data>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<val>` — Type of ergometry.
+- `<val>` — Type of ergometry.
+  - 5 — Data `<data>` are available, Maximum Strength Test.
+  - else — No parameter of Maximum Strength Test available.
+- `<data>` — Parameter of Maximum Strength Test.
+  - `<LimitId>`,
+  - `<LimitValue>`,
+  - `<InitialLoad>`,
+  - `<Len>`,
+  - `<UnitId>`,
+  - `<StartValue>` (new as from Version 4)
 
-- 5 — Data `<data>` are available, Maximum Strength Test.
-- else — No parameter of Maximum Strength Test available.
-
-`<data>` — Parameter of Maximum Strength Test.
-
-- `<LimitId>`,
-- `<LimitValue>`,
-- `<InitialLoad>`,
-- `<Len>`,
-- `<UnitId>`,
-- `<StartValue>`,
+A description of the individual parameters is shown in chapter 2.4.
+When writing always set for `<val> = 5`.
 
 Notes
 -----
 
 - Version 3.100
 - Parameters must not be changed during a running training programme.
-- Note: Changed in version 4; see chapter 2.4.
-- When writing, always set `<val>` = 5.
+- Note: Changed in version 4; see chapter 2.4

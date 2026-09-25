@@ -8,11 +8,11 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 command:
   name: keydown
   summary: KeyDown Events (see command slave)
-  message: keydown:<keycode>,modifiers
+  message: keydown:<keycode>,<modifiers>
   parameters:
-  - name: <keycode>
+  - name: keycode
     type: unsigned short int
-  - name: <modifiers>
+  - name: modifiers
     type: unsigned short int
 ---
 
@@ -21,23 +21,23 @@ command:
 keydown
 =======
 
-KeyDown Events (see command slave)
+KeyDown Events (see command `slave`)
 
 Message
 -------
 
-keydown:`<keycode>`,`<modifiers>`
+`keydown:<keycode>,<modifiers>`
 
 Parameters
 ----------
 
-`<keycode>` — Key Code of the pressed key on the Cyclus2.
+- `<keycode>` — Key Code of the pressed key on the Cyclus2.
+- `<modifiers>` — Flags of the modifiers like _Shift_, _Control_ or _Alt_.
 
-`<modifiers>` — Flags of the modifiers like Shift, Control or Alt.
+KeyDown events are sent during the slave modes `5` and `6` when the user press a key on the Cyclus2.
 
 Notes
 -----
 
 - Version 4.2.4218
 - Supported in release 5.0
-- KeyDown events are sent during the slave modes 5 and 6 when the user press a key on the Cyclus2.

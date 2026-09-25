@@ -11,32 +11,32 @@ command:
   query:
     syntax: ergo?
     replies:
-      ok: ergo:val
+      ok: ergo:<val>
   configuration:
-    syntax: ergo=val
+    syntax: ergo=<val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
   - name: val
     type: unsigned short int
     values:
-    - code: '0'
+    - code: 0
       meaning: Standard; Cyclus2 set back to manual control
-    - code: '1'
+    - code: 1
       meaning: Ergoline mode; Cyclus2 can be controlled with Ergoline commands
-    - code: '2'
+    - code: 2
       meaning: As in 1, but slave mode is automatically quit when ending ergometry
         and displaying analysis results
-    - code: '3'
+    - code: 3
       meaning: Slave mode, operator can use the electronic gear shift, info line not
         displayed
-    - code: '4'
+    - code: 4
       meaning: As in 3, but slave mode is automatically quit when ending ergometry
         and displaying analysis results
-    - code: '5'
+    - code: 5
       meaning: As in 3, but with sending of KeyDown events
-    - code: '6'
+    - code: 6
       meaning: As in 4, but with sending of KeyDown events
 ---
 
@@ -50,25 +50,30 @@ Configuration of ergoline mode
 Query command and replies
 -------------------------
 
-ergo? 🡺 ergo:`<val>`
+`ergo?` 🡺 `ergo:<val>`
 
 Configuration command and replies
 ---------------------------------
 
-ergo=`<val>` 🡺 ok or error:`<message>`
+`ergo=<val>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<val>` — Mode.
+`<val>` — Mode
 
-- 0 — Standard; Cyclus2 is set back to manual control.
-- 1 — Ergoline mode; Cyclus2 can be controlled with Ergoline commands.
-- 2 — As in 1, but slave mode is automatically quit when ending ergometry and displaying analysis results.
-- 3 — Slave mode; operator can use the electronic gear shift, info line is not displayed.
-- 4 — As in 3, but slave mode is automatically quit when ending ergometry and displaying analysis results.
-- 5 — As in 3, but with sending of KeyDown events.
-- 6 — As in 4, but with sending of KeyDown events.
+- `0` — Standard; Cyclus2 is set back to manual control.
+- `1` — Ergoline mode; Cyclus2 can be controlled with Ergoline commands.
+- `2` — As in `1`, but slave mode is automatically quit when ending ergometry and displaying analysis results (new as from version 4.2.4409).
+- `3` — Slave mode; operator can use the electronic gear shift, info line is not displayed (new as from version 4.2.4409).
+- `4` — As in `3`, but slave mode is automatically quit when ending ergometry and displaying analysis results (new as from version 4.2.4409).
+- `5` — As in `3`, but with sending of `KeyDown` events (new as from version 4.2.4409).
+- `6` — As in `4`, but with sending of `KeyDown` events (new as from version 4.2.4409).
+
+See example in chapter 3.5
+
+A potentially active ergometry is terminated when receiving this command.
+If the Cyclus2 is in the analysis mode, it will be switched to the standard operating mode.
 
 Notes
 -----

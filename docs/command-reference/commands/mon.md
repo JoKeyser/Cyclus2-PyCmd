@@ -11,12 +11,12 @@ command:
   query:
     syntax: mon?
     replies:
-      ok: mon:Id-Flags
+      ok: mon:<Id-Flags>
   configuration:
-    syntax: mon=Id, Min, Max,<State>,Band
+    syntax: mon=<Id>,<Min>,<Max>,<State>,<Band>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
   - name: Id-Flags
     type: unsigned short int
@@ -37,38 +37,41 @@ command:
 mon
 ===
 
-Configuration of monitoring (cf. check)
+Configuration of monitoring (cf. `check`)
 
 Query command and replies
 -------------------------
 
-mon? 🡺 mon:`<Id-Flags>`
+`mon?` 🡺 `mon:<Id-Flags>`
 
-mon? `<Id>` 🡺 mon:`<Id>`, `<Min>`, `<Max>`
+`mon?<Id>` 🡺 `mon:<Id>,<Min>,<Max>`
 
 Configuration command and replies
 ---------------------------------
 
-mon=`<Id>`, `<Min>`, `<Max>`,`<State>`,`<Band>` 🡺 ok or error:`<message>`
+`mon=<Id>,<Min>,<Max>,<State>,<Band>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
-`<Id-Flags>` — Flags of available monitoring items in hexadecimal format.
+- `<Id-Flags>` — Flags of available monitoring items.
+  The output is in hexadecimal format.
+  For better distinction, the flag `0x8000` is additionally set.
+- `<Id>` — Id of monitoring item.
+- `<Min>` — Lower limit of training range.
+- `<Max>` — Upper limit of training range.
+- `<State>` — Monitoring enabled.
+- `<Band>` — With colour band.
 
-`<Id>` — Identifier of the monitoring item.
-
-`<Min>` — Lower limit of the training range.
-
-`<Max>` — Upper limit of the training range.
-
-`<State>` — Monitoring enabled.
-
-`<Band>` — Colour band setting.
+A description of the flags and IDs is shown in chapter 2.1.
+The unit for the parameters `<Min>` and `<Max>` is also documented there.
+If a monitoring is to be deleted, the parameter `<State>` must be set to `0`.
+The drawing of the colour strip in the diagram can be initiated by setting `<State>`.
+Please note that a colour strip can be drawn only for one parameter.
 
 Notes
 -----
 
 - Version 4.0
-- If monitoring is to be deleted, the parameter `<State>` must be set to 0.
-- A colour strip can only be drawn for one parameter.

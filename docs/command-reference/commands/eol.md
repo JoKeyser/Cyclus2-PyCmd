@@ -11,17 +11,17 @@ command:
   query:
     syntax: eol?
     replies:
-      ok: eol:<val1>,val2
+      ok: eol:<val1>,<val2>
   configuration:
-    syntax: eol=val1,val2
+    syntax: eol=<val1>,<val2>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val1>
-    type: char
-  - name: <val2>
-    type: char
+  - name: val1
+    type: unsigned short int
+  - name: val2
+    type: unsigned short int
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -34,19 +34,18 @@ Configuration of the end of line
 Query command and replies
 -------------------------
 
-eol? 🡺 eol:`<val1>`,`<val2>`
+`eol?` 🡺 `eol:<val1>,<val2>`
 
 Configuration command and replies
 ---------------------------------
 
-eol=`<val1>`,`<val2>` 🡺 ok or error:`<message>`
+`eol=<val1>,<val2>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<val1>` — 1. character. 13 only is accepted for `<CR>`.
-
-`<val2>` — 2. character. Possible settings are 0 (no second character) and 10 for `<LF>`.
+- `<val1>` — 1. character. `13` only is accepted for `<CR>`.
+- `<val2>` — 2. character. Possible settings are `0` (no second character) and `10` for `<LF>`.
 
 Notes
 -----

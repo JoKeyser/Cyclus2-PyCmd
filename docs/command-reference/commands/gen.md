@@ -11,48 +11,48 @@ command:
   query:
     syntax: gen?
     replies:
-      ok: gen:val[,<data>]
+      ok: gen:<val>[,<data>]
   configuration:
-    syntax: gen=val,data
+    syntax: gen=<val>,<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
   - name: <val>
     type: unsigned short int
     values:
-    - code: '8'
-      meaning: Data data are available, source is load generator
-    - code: '9'
-      meaning: Data data are available, source is Conconi Test
-    - code: '10'
-      meaning: Data data are available, source are OBLA test
+    - code: 8
+      meaning: Data <data> are available, source is load generator
+    - code: 9
+      meaning: Data <data> are available, source is Conconi Test
+    - code: 10
+      meaning: Data <data> are available, source are OBLA test
     - code: else
       meaning: No parameter of generator available
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
-    - name: <Len1>
+    - name: Len1
       type: unsigned long
-    - name: <Len2>
+    - name: Len2
       type: unsigned long
-    - name: <Len3>
+    - name: Len3
       type: unsigned long
-    - name: <Len4>
+    - name: Len4
       type: unsigned long
-    - name: <BasicLoad>
+    - name: BasicLoad
       type: float
-    - name: <Plateau1>
+    - name: Plateau1
       type: float
-    - name: <Modification>
+    - name: Modification
       type: float
-    - name: <TypeOfCyclus>
+    - name: TypeOfCyclus
       type: unsigned short int
-    - name: <TypeOfLoad>
+    - name: TypeOfLoad
       type: unsigned short int
-    - name: <TypeOfLen>
+    - name: TypeOfLen
       type: unsigned short int
-    - name: <Repetitions>
+    - name: Repetitions
       type: unsigned short int
 ---
 
@@ -66,40 +66,41 @@ Configuration of ergometry loads with the load generator
 Query command and replies
 -------------------------
 
-gen? 🡺 gen:`<val>`[,data]
+`gen?` 🡺 `gen:<val>[,data]`
 
 Configuration command and replies
 ---------------------------------
 
-gen=`<val>`,`<data>` 🡺 ok or error:`<message>`
+`gen=<val>,<data>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
-`<val>` — Type of generator ergometry loads.
+- `<val>` — Type of generator ergometry loads
+  - `8` — Data `<data>` are available; source is load generator.
+  - `9` — Data `<data>` are available; source is Conconi Test.
+  - `10` — Data `<data>` are available; source are OBLA test.
+  - else — No parameter of generator available.
+- `<data>` — Parameter of generator
+  - `<Len1>`,
+  - `<Len2>`,
+  - `<Len3>`,
+  - `<Len4>`,
+  - `<BasicLoad>`,
+  - `<Plateau1>`,
+  - `<Modification>`,
+  - `<TypeOfCyclus>`,
+  - `<TypeOfLoad>`,
+  - `<TypeOfLen>`,
+  - `<Repetitions>`
 
-- 8 — Data `<data>` are available; source is load generator.
-- 9 — Data `<data>` are available; source is Conconi Test.
-- 10 — Data `<data>` are available; source are OBLA test.
-- else — No parameter of generator available.
-
-`<data>` — Parameter of generator.
-
-- `<Len1>`,
-- `<Len2>`,
-- `<Len3>`,
-- `<Len4>`,
-- `<BasicLoad>`,
-- `<Plateau1>`,
-- `<Modification>`,
-- `<TypeOfCyclus>`,
-- `<TypeOfLoad>`,
-- `<TypeOfLen>`,
-- `<Repetitions>`
+A description of the individual parameters is shown in chapter 2.3.
+When generating, always use `<val> = 8`.
 
 Notes
 -----
 
 - Version 3.100
 - Parameters must not be changed during a running training programme.
-- When generating, always use `<val>` = 8.

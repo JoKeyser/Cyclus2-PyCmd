@@ -11,32 +11,30 @@ command:
   query:
     syntax: slave?
     replies:
-      ok: slave:val
+      ok: slave:<val>
   configuration:
-    syntax: slave=val
+    syntax: slave=<val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
     values:
-    - code: '0'
+    - code: 0
       meaning: Standard-mode
-    - code: '1'
+    - code: 1
       meaning: Slave-Mode, Cyclus2 can be controlled via the interfaces only.
-    - code: '2'
-      meaning: as in 1, but slave mode is automatically quit when ending the ergometry
-        and displaying the analysis results (new as from version 4.2.4155)
-    - code: '3'
-      meaning: Slave-Mode, operator can use the electronic gear shift, the info line
-        is not displayed (new as from version 4.2.4155)
-    - code: '4'
-      meaning: as in 3, but slave mode is automatically quit when ending the ergometry
-        and displaying the analysis results (new as from version 4.2.4155)
-    - code: '5'
+    - code: 2
+      meaning: as in 1, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
+    - code: 3
+      meaning: Slave-Mode, operator can use the electronic gear shift, the info line is not displayed (new as from version 4.2.4155)
+    - code: 4
+      meaning: as in 3, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
+    - code: 5
       meaning: as in 3, but with sending of KeyDown events (new as from version 4.2.4218)
-    - code: '6'
+    - code: 6
+      meaning: as in 4, but with sending of KeyDown events (new as from version 4.2.4218)
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -49,25 +47,25 @@ Configuration of slave mode
 Query command and replies
 -------------------------
 
-slave? 🡺 slave:`<val>`
+`slave?` 🡺 `slave:<val>`
 
 Configuration command and replies
 ---------------------------------
 
-slave=`<val>` 🡺 ok or error:`<message>`
+`slave=<val>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
 `<val>` — Mode.
 
-- 0 — Standard-mode
-- 1 — Slave-Mode, Cyclus2 can be controlled via the interfaces only.
-- 2 — as in 1, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
-- 3 — Slave-Mode, operator can use the electronic gear shift, the info line is not displayed (new as from version 4.2.4155)
-- 4 — as in 3, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
-- 5 — as in 3, but with sending of KeyDown events (new as from version 4.2.4218)
-- 6 — as in 4, but with sending of KeyDown events (new as from version 4.2.4218)
+- `0` — Standard-mode
+- `1` — Slave-Mode, Cyclus2 can be controlled via the interfaces only.
+- `2` — as in 1, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
+- `3` — Slave-Mode, operator can use the electronic gear shift, the info line is not displayed (new as from version 4.2.4155)
+- `4` — as in 3, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
+- `5` — as in 3, but with sending of KeyDown events (new as from version 4.2.4218)
+- `6` — as in 4, but with sending of KeyDown events (new as from version 4.2.4218)
 
 Notes
 -----

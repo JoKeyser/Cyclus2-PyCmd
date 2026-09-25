@@ -11,15 +11,15 @@ command:
   query:
     syntax: time?
     replies:
-      ok: time:data
+      ok: time:<data>
   configuration:
-    syntax: time=data
+    syntax: time=<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <data>
-    type: date/time string
+  - name: data
+    type: string
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -32,17 +32,17 @@ Configuration of the local time
 Query command and replies
 -------------------------
 
-time? 🡺 time:`<data>`
+`time?` 🡺 `time:<data>`
 
 Configuration command and replies
 ---------------------------------
 
-time=`<data>` 🡺 ok or error:`<message>`
+`time=<data>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<data>` — local time with format `dd.mm.yyyy hh:nn:ss`.
+`<data>` — local time with format `dd.mm.yyyy hh:nn:ss`
 
 Notes
 -----

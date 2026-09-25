@@ -11,32 +11,32 @@ command:
   query:
     syntax: obla?
     replies:
-      ok: obla:val[,<data>]
+      ok: obla:<val>[,<data>]
   configuration:
-    syntax: obla=val,data
+    syntax: obla=<val>,<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
     values:
-    - code: '5'
+    - code: 5
       meaning: Data data are available, OBLA threshold test
     - code: else
       meaning: No parameter of OBLA available
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
-    - name: <LimitId>
+    - name: LimitId
       type: unsigned short int
-    - name: <LimitValue>
+    - name: LimitValue
       type: float
-    - name: <InitialLoad>
+    - name: InitialLoad
       type: float
-    - name: <UnitId>
+    - name: UnitId
       type: unsigned short int
-    - name: <OBLA>
+    - name: OBLA
       type: float
 ---
 
@@ -50,32 +50,38 @@ Configuration of the OBLA threshold test
 Query command and replies
 -------------------------
 
-obla? 🡺 obla:`<val>`[,data]
+`obla?` 🡺 `obla:<val>[,<data>]`
 
 Configuration command and replies
 ---------------------------------
 
-obla=`<val>`,`<data>` 🡺 ok or error:`<message>`
+`obla=<val>,<data>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
-`<val>` — Type of ergometry.
+- `<val>` — Type of ergometry.
+  - `5` — Data `<data>` are available, OBLA test.
+  - else — No parameter of OBLA test available.
+- `<data>` — Parameter of OBLA test
+  - `<Start>`,
+  - `<Step>`,
+  - `<Cadence>`,
+  - `<LenType>`,
+  - `<Len>`,
+  - `<CoolDownLenType>`,
+  - `<CoolDownLen>`,
+  - `<CoolDownPower>`
 
-- 5 — Data `<data>` are available, OBLA threshold test.
-- else — No parameter of OBLA available.
+A description of the individual parameters is shown in chapter 2.7.
+When writing always set for `<val> = 10`.
 
-`<data>` — Parameter of OBLA.
-
-- `<LimitId>`,
-- `<LimitValue>`,
-- `<InitialLoad>`,
-- `<UnitId>`,
-- `<OBLA>`
+A monitoring control as well as a start- and a cancellation-condition for the cadence are set respectively in reference to the parameter `Cadence`!
 
 Notes
 -----
 
 - Version 3.100
 - Parameters must not be changed during a running training programme.
-- This command defines the threshold used for the OBLA test.

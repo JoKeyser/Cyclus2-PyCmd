@@ -11,23 +11,26 @@ command:
   query:
     syntax: load?
     replies:
-      ok: load:<CtrlId>,Val
+      ok: load:<CtrlId>,<Val>
   configuration:
-    syntax: load=CtrlId,Val
+    syntax: load=<CtrlId>,<Val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <CtrlId>
+  - name: CtrlId
+    meaning: Id of load value
     type: unsigned short int
     values:
-    - code: '0'
-      meaning: Current load value
-    - code: '1'
-      meaning: Manual override
-    - code: '2'
-      meaning: Target load
-  - name: <Val>
+    - code: 4
+      meaning: Pedal Force in Newtons
+    - code: 5
+      meaning: Power in Watts
+    - code: 6
+      meaning: Inclination in %
+    - code: 255
+      meaning: will be sent on request
+  - name: Val
     type: float
 ---
 
@@ -36,31 +39,45 @@ command:
 load
 ====
 
-Configuration of the current load setting
+Configuration of load value (the same like the manual control mode)
+
+Call the load command before starting of ergometry because of initializing of the load type and load value!
+So you remove also monitoring settings, start conditions and cancel contitions.
+During the ergometry you must not change load type!
+
+An example in chapter 3.4 demonstrates the application of this command.
 
 Query command and replies
 -------------------------
 
-load? 🡺 load:`<CtrlId>`,`<Val>`
+`load? 🡺 load:<CtrlId>,<Val>`
+
+If no manually controlled ergometry has been set (e.g., during a stage-controlled ergometry), the value `255` is rendered as `<CtrlId>`.
+In this case, no further value will be sent for `<Val>`.
 
 Configuration command and replies
 ---------------------------------
 
-load=`<CtrlId>`,`<Val>` 🡺 ok or error:`<message>`
+`load=<CtrlId>,<Val>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
-`<CtrlId>` — Identifier of the controlled load value.
-
-- 0 — Current load value.
-- 1 — Manual override.
-- 2 — Target load.
-
-`<Val>` — Load value to be set or read.
+- `<CtrlId>` — Identifier of the controlled load value.
+  - `4` — Pedal Force in Newtons
+  - `5` — Power in Watts
+  - `6` — Inclination in %
+  - `255` — will be sent on request (see above)
+- `<Val>` — Force value in dependency of `CtrlId` in N, W or %
+  - Co-domains:
+    - Pedal Force 0..1500 Newtons
+    - Power 0..3000 Watts
+    - Inclination –25..25 %
 
 Notes
 -----
 
-- This command is used to read or adjust the active load in the current ergometry mode.
-- The exact units are device-dependent and should be interpreted according to the connected equipment.
+- Version 4
+- Supported in Release 5.0

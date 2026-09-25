@@ -11,7 +11,7 @@ command:
   query:
     syntax: d
     replies:
-      ok: nval
+      ok: n<val>
   parameters:
   - name: val
     type: unsigned short int
@@ -27,10 +27,11 @@ Query of current cadence
 Query command and replies
 -------------------------
 
-`<d>` 🡺 n`<val>`
+`<d>` 🡺 `n<val>`
 
 Parameters
 ----------
+
 `<val>` — Current cadence in rpm.
 
 Notes

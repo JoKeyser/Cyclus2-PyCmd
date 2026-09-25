@@ -9,9 +9,9 @@ command:
   name: w
   summary: Set the target value during exercise
   configuration:
-    syntax: wval
+    syntax: w<val>
     replies:
-      ok: no reply
+      ok: NONE
   parameters:
   - name: val
     type: unsigned short int
@@ -27,15 +27,17 @@ Set the target value during exercise
 Configuration command
 --------------------
 
-w`<val>`
+`w<val>`
+
+(in slave mode only)
 
 Parameters
 ----------
-`<val>` — Target value in watts, range 0..2000.
+
+`<val>` — Target value (0..2000 Watts)
 
 Notes
 -----
 
 - Version 2.200
 - Supported in release 5.0
-- Only valid in slave mode.

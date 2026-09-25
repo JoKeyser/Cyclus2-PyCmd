@@ -11,14 +11,14 @@ command:
   query:
     syntax: jump?
     replies:
-      ok: jump:val
+      ok: jump:<val>
   configuration:
-    syntax: jump=val
+    syntax: jump=<val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
 ---
 
@@ -32,17 +32,17 @@ Jump to a load stage
 Query command and replies
 -------------------------
 
-jump? 🡺 jump:`<val>`
+`jump?` 🡺 `jump:<val>`
 
 Configuration command and replies
 ---------------------------------
 
-jump=`<val>` 🡺 ok or error:`<message>`
+`jump=<val>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<val>` — Number of load stage, from 1 to `<n>`.
+`<val>` — Number of load stage (1..n)
 
 Notes
 -----

@@ -11,7 +11,7 @@ command:
   configuration:
     syntax: x
     replies:
-      ok: no reply
+      ok: NONE
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -24,7 +24,7 @@ Leave slave mode
 Configuration command
 --------------------
 
-`<x>`
+`x`
 
 Notes
 -----

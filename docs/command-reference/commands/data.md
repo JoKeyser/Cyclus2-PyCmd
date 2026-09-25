@@ -11,72 +11,72 @@ command:
   query:
     syntax: data?
     replies:
-      ok: data:<val>, data
+      ok: data:<val>, <data>
   configuration:
-    syntax: data=val
+    syntax: data=<val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
     values:
-    - code: '0'
+    - code: 0
       meaning: Com Format 1 after query command
-    - code: '1'
+    - code: 1
       meaning: Com Format 2 after query command
-    - code: '10'
+    - code: 10
       meaning: Com Format 1 continued
-    - code: '11'
+    - code: 11
       meaning: Com Format 1 continued.
-    - code: '4'
-      meaning: Winsock Format 1 after query command.
-    - code: '6'
+    - code: 4
+      meaning: Winsock Format 1 after query command
+    - code: 6
       meaning: Winsock Format 1 continued
-    - code: '12'
-      meaning: Winsock +Com Format 1 after query command.
-    - code: '14'
+    - code: 12
+      meaning: Winsock +Com Format 1 after query command
+    - code: 14
       meaning: Winsock +Com Format 1 continued
-    - code: '2'
-      meaning: Com Format 3 after query command.
-    - code: '3'
+    - code: 2
+      meaning: Com Format 3 after query command
+    - code: 3
       meaning: Com Format 3 continued
-    - code: '5'
-      meaning: Winsock Format 3 after query command.
-    - code: '7'
+    - code: 5
+      meaning: Winsock Format 3 after query command
+    - code: 7
       meaning: Winsock Format 3 continued
-    - code: '13'
-      meaning: Winsock +Com Format 3 after query command.
-    - code: '15'
+    - code: 13
+      meaning: Winsock +Com Format 3 after query command
+    - code: 15
       meaning: Winsock +Com Format 3 continued
-  - name: <data>
+  - name: data
     type: format-dependent payload
     formats:
     - id: Format 1
       fields:
       - name: Time counted from ergometry start in Milliseconds/10
         type: unsigned int
-      - name: <Distance counted from ergometry start in Meters>
+      - name: Distance counted from ergometry start in Meters
         type: float
-      - name: <Crank rotations counted from ergometry start>
+      - name: Crank rotations counted from ergometry start
         type: float
-      - name: <Work counted from ergometry start in Joules>
+      - name: Work counted from ergometry start in Joules
         type: float
-      - name: <Cadence in rpm>
+      - name: Cadence in rpm
         type: float
-      - name: <Heart Rate bpm>
+      - name: Heart Rate bpm
         type: float
       - name: Speed in kms/h
         type: float
-      - name: <Transmission in Meters>
+      - name: Transmission in Meters
         type: float
-      - name: <Pedal Force in Newtons>
+      - name: Pedal Force in Newtons
         type: float
-      - name: <Power in Watts>
+      - name: Power in Watts
         type: float
       - name: Inclination in %
         type: float
-      - name: <Work in Heart Rate Beat in Joules>
+      - name: Work in Heart Rate Beat in Joules
         type: float
     - id: Format 2
       fields:
@@ -92,47 +92,47 @@ command:
         type: unsigned short int
       - name: Periodic time of belt pully (Bit 16..23)
         type: unsigned short int
-      - name: <Heart rate in bpm>
+      - name: Heart rate in bpm
         type: unsigned short int
       - name: Gear ratio in 1/1000
         type: unsigned short int
-      - name: <Load value>
+      - name: Load value
         type: unsigned short int
-      - name: <manual break>
+      - name: manual break
         type: unsigned short int
-      - name: <Stage id>
+      - name: Stage id
         type: unsigned short int
-      - name: <Target value>
+      - name: Target value
         type: float
     - id: Format 3
       fields:
       - name: Time counted from ergometry start in Milliseconds/10
         type: unsigned int
-      - name: <Distance counted from ergometry start in Meters>
+      - name: Distance counted from ergometry start in Meters
         type: float
-      - name: <Crank rotations counted from ergometry start>
+      - name: Crank rotations counted from ergometry start
         type: float
-      - name: <Work counted from ergometry start in Joules>
+      - name: Work counted from ergometry start in Joules
         type: float
-      - name: <Cadence in rpm>
+      - name: Cadence in rpm
         type: float
-      - name: <Heart Rate bpm>
+      - name: Heart Rate bpm
         type: float
       - name: Speed in kms/h
         type: float
-      - name: <Transmission in Meters>
+      - name: Transmission in Meters
         type: float
-      - name: <Pedal Force in Newtons>
+      - name: Pedal Force in Newtons>
         type: float
-      - name: <Power in Watts>
+      - name: Power in Watts
         type: float
       - name: Inclination in %
         type: float
-      - name: <Work in Heart Rate Beat in Joules>
+      - name: Work in Heart Rate Beat in Joules
         type: float
-      - name: <virtual chain ring>
+      - name: virtual chain ring
         type: unsigned int
-      - name: <virtual rear sprocket>
+      - name: virtual rear sprocket
         type: unsigned int
 ---
 
@@ -158,57 +158,63 @@ Parameters
 
 `<val>` — Data format and data flow.
 
+- `0`  | Com | Format 1 after query command
+- `1`  | Com | Format 2 after query command
+- `10` | Com | Format 1 continued
+- `11` | Com | Format 1 continued
+
+New as from version 4
+
+- `4`  | Winsock      | Format 1 after query command
+- `6`  | Winsock      | Format 1 continued
+- `12` | Winsock +Com | Format 1 after query command
+
+As from version 4 the format 2 is not supported anymore!
+Additionally, the format 3 with the data for the virtual gear shift is introduced as from version 4.2.4155.
+
 `<data>` — The requested data payload as described by the selected format.
 
-Format 1
---------
-
-- `<Time counted from ergometry start in Milliseconds/10>`,
-- `<Distance counted from ergometry start in Meters>`,
-- `<Crank rotations counted from ergometry start>`,
-- `<Work counted from ergometry start in Joules>`,
-- `<Cadence in rpm>`,
-- `<Heart Rate bpm>`,
-- `<Speed in kms/h>`,
-- `<Transmission in Meters>`,
-- `<Pedal Force in Newtons>`,
-- `<Power in Watts>`,
-- `<Inclination in %>`,
-- `<Work in Heart Rate Beat in Joules>`
-
-Format 2
---------
-
-- `<Time stamp in Milliseconds/10>`,
-- `<Torque in Newton/1000>`,
-- `<Periodic time of cadence (Bit 0..15)>`,
-- `<Periodic time of belt pully(Bit 0..15)>`,
-- `<Periodic time of cadence (Bit 16..23)>`,
-- `<Periodic time of belt pully (Bit 16..23)>`,
-- `<Heart rate in bpm>`,
-- `<Gear ratio in 1/1000>`,
-- `<Load value>`,
-- `<manual break>`,
-- `<Stage id>`,
-- `<Target value>`
-
-Format 3
---------
-
-- `<Time counted from ergometry start in Milliseconds/10>`,
-- `<Distance counted from ergometry start in Meters>`,
-- `<Crank rotations counted from ergometry start>`,
-- `<Work counted from ergometry start in Joules>`,
-- `<Cadence in rpm>`,
-- `<Heart Rate bpm>`,
-- `<Speed in kms/h>`,
-- `<Transmission in Meters>`,
-- `<Pedal Force in Newtons>`,
-- `<Power in Watts>`,
-- `<Inclination in %>`,
-- `<Work in Heart Rate Beat in Joules>`,
-- `<virtual chain ring>`,
-- `<virtual rear sprocket>`
+- `<data>` Format 1
+  - `<Time counted from ergometry start in Milliseconds/10>`,
+  - `<Distance counted from ergometry start in Meters>`,
+  - `<Crank rotations counted from ergometry start>`,
+  - `<Work counted from ergometry start in Joules>`,
+  - `<Cadence in rpm>`,
+  - `<Heart Rate bpm>`,
+  - `<Speed in kms/h>`,
+  - `<Transmission in Meters>`,
+  - `<Pedal Force in Newtons>`,
+  - `<Power in Watts>`,
+  - `<Inclination in %>`,
+  - `<Work in Heart Rate Beat in Joules>`
+- `<data>` Format 2
+  - `<Time stamp in Milliseconds/10>`,
+  - `<Torque in Newton/1000>`,
+  - `<Periodic time of cadence (Bit 0..15)>`,
+  - `<Periodic time of belt pully(Bit 0..15)>`,
+  - `<Periodic time of cadence (Bit 16..23)>`,
+  - `<Periodic time of belt pully (Bit 16..23)>`,
+  - `<Heart rate in bpm>`,
+  - `<Gear ratio in 1/1000>`,
+  - `<Load value>`,
+  - `<manual break>`,
+  - `<Stage id>`,
+  - `<Target value>`
+- `<data>` Format 3
+  - `<Time counted from ergometry start in Milliseconds/10>`,
+  - `<Distance counted from ergometry start in Meters>`,
+  - `<Crank rotations counted from ergometry start>`,
+  - `<Work counted from ergometry start in Joules>`,
+  - `<Cadence in rpm>`,
+  - `<Heart Rate bpm>`,
+  - `<Speed in kms/h>`,
+  - `<Transmission in Meters>`,
+  - `<Pedal Force in Newtons>`,
+  - `<Power in Watts>`,
+  - `<Inclination in %>`,
+  - `<Work in Heart Rate Beat in Joules>`,
+  - `<virtual chain ring>`,
+  - `<virtual rear sprocket>`
 
 Notes
 -----
@@ -217,4 +223,3 @@ Notes
 - Note: Changed in version 4
 - Note: Changed in version 4.2.4155
 - Suported in release 5
-- As from version 4 the format 2 is not supported anymore! Additionally the format 3 with the data for the virtual gear shift is introduced as from version 4.2.4155.

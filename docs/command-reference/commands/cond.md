@@ -11,28 +11,28 @@ command:
   query:
     syntax: cond?
     replies:
-      ok: cond:data
+      ok: cond:<data>
   configuration:
-    syntax: cond=data
+    syntax: cond=<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
-    - name: <AirDensity>
+    - name: AirDensity
       type: float
-    - name: <RoadSurface>
+    - name: RoadSurface
       type: unsigned short int
       values:
-      - code: '0'
+      - code: 0
         meaning: Paved road
-      - code: '1'
+      - code: 1
         meaning: Asphaltic road
-      - code: '2'
+      - code: 2
         meaning: Cement cycling track
-      - code: '3'
+      - code: 3
         meaning: Wood cycling track
 ---
 
@@ -46,27 +46,26 @@ Configuration of external field conditions
 Query command and replies
 -------------------------
 
-cond? 🡺 cond:`<data>`
+`cond?` 🡺 `cond:<data>`
 
 Configuration command and replies
 ---------------------------------
 
-cond=`<data>` 🡺 ok or error:`<message>`
+`cond=<data>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
-`<data>` — Field parameter.
+`<data>` — Field parameters
 
-- `<AirDensity>`,
-- `<RoadSurface>`,
-
-`<RoadSurface>` — Road surface type.
-
-- 0 — Paved road.
-- 1 — Asphaltic road.
-- 2 — Cement cycling track.
-- 3 — Wood cycling track.
+- `<Air density in kg/m³>`,
+- `<RoadSurface>`
+  - `0` — Paved road
+  - `1` — Asphaltic road
+  - `2` — Cement cycling track
+  - `3` — Wood cycling track
 
 Notes
 -----

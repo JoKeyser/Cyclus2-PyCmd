@@ -11,25 +11,24 @@ command:
   query:
     syntax: save?
     replies:
-      ok: save:val
+      ok: save:<val>
   configuration:
-    syntax: save=val
+    syntax: save=<val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
   - name: val
     type: unsigned short int
     values:
-    - code: '0'
+    - code: 0
       meaning: Ergometry data will not be saved
-    - code: '1'
+    - code: 1
       meaning: Ergometry data will be saved on the USB memory stick
-    - code: '2'
+    - code: 2
       meaning: Ergometry data will be saved on the network drive
-    - code: '3'
-      meaning: Ergometry data will be saved on the USB memory stick or, if not present,
-        on the network drive
+    - code: 3
+      meaning: Ergometry data will be saved on the USB memory stick or, if not present, on the network drive
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -42,22 +41,26 @@ Configuration of auto-save after finish of ergometry
 Query command and replies
 -------------------------
 
-save? 🡺 save:`<val>`
+`save?` 🡺 `save:<val>`
 
 Configuration command and replies
 ---------------------------------
 
-save=`<val>` 🡺 ok or error:`<message>`
+`save=<val>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
 `<val>` — Mode.
 
-- 0 — Ergometry data will not be saved.
-- 1 — Ergometry data will be saved on the USB memory stick.
-- 2 — Ergometry data will be saved on the network drive.
-- 3 — Ergometry data will be saved on the USB memory stick or, if not present, on the network drive.
+- `0` — Ergometry data will not be saved.
+- `1` — Ergometry data will be saved on the USB memory stick.
+- `2` — Ergometry data will be saved on the network drive.
+- `3` — Ergometry data will be saved on the USB memory stick or, if not present, on the network drive.
+
+If the ergometry data on the Cyclus2 are to be saved, the command for saving the data must be sent before the command for ending the process (`f` or `ctrl`).
+The file name is derived from the time in the format `CONNECT_YYMMDD_hhmm`.
+The application is demonstrated in chapters 3.4 and 3.5.
 
 Notes
 -----

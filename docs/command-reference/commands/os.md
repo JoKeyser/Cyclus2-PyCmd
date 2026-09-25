@@ -11,9 +11,9 @@ command:
   query:
     syntax: os?
     replies:
-      ok: os:val
+      ok: os:<val>
   parameters:
-  - name: <val>
+  - name: val
     type: operating system version string
 ---
 
@@ -27,7 +27,7 @@ Query of version of operating system
 Query command and replies
 -------------------------
 
-os? 🡺 os:`<val>`
+`os?` 🡺 `os:<val>`
 
 Parameters
 ----------

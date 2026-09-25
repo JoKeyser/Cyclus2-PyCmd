@@ -9,9 +9,9 @@ command:
   name: l
   summary: Set load changes in time interval
   configuration:
-    syntax: lval
+    syntax: l<val>
     replies:
-      ok: no reply
+      ok: NONE
   parameters:
   - name: val
     type: unsigned short int
@@ -27,16 +27,16 @@ Set load changes in time interval
 Configuration command
 --------------------
 
-l`<val>`
+`l<val>`
 
 Parameters
 ----------
-`<val>` — Load changes per minute in watts, range 0..1000.
+
+`<val>` — Load changes per minute in Watts (0..1000).
+Reset after commands `w` or `f`.
 
 Notes
 -----
 
 - Version 2.200
 - Supported in release 5.0
-- Reset after commands `<w>` or `<f>`.
-- Only valid in slave mode.

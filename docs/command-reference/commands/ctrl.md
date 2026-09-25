@@ -11,21 +11,21 @@ command:
   query:
     syntax: ctrl?
     replies:
-      ok: ctrl:val
+      ok: ctrl:<val>
   configuration:
-    syntax: ctrl=val
+    syntax: ctrl=<val>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <val>
+  - name: val
     type: unsigned short int
     values:
-    - code: '0'
+    - code: 0
       meaning: Stop exercise or resume after pause, while status is 'no ergometry'
-    - code: '1'
+    - code: 1
       meaning: Start exercise or resume after break, while exercise is running
-    - code: '2'
+    - code: 2
       meaning: Break
 ---
 
@@ -39,24 +39,26 @@ Control of exercise
 Query command and replies
 -------------------------
 
-ctrl? 🡺 ctrl:`<val>`
+`ctrl?` 🡺 `ctrl:<val>`
 
 Configuration command and replies
 ---------------------------------
 
-ctrl=`<val>` 🡺 ok or error:`<message>`
+`ctrl=<val>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
 `<val>` — Status of exercise.
 
-- 0 — Stops exercise or resumes after pause, while status is "no ergometry".
-- 1 — Starts exercise or resumes after break, while exercise is running.
-- 2 — Break.
+- `0` — Stops exercise or resumes after pause, while status is "no ergometry"
+- `1` — Starts exercise or resumes after break, while exercise is running
+- `2` — Break (supported in release 5.0)
 
 Notes
 -----
 
 - Version 3.100
-- Supported in release 5.0
+- `Break` supported in release 5.0

@@ -11,27 +11,27 @@ command:
   query:
     syntax: cycle?
     replies:
-      ok: cycle:data
+      ok: cycle:<data>
   configuration:
-    syntax: cycle=data
+    syntax: cycle=<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
-    - name: <wheel size in Meters>
+    - name: wheel size in Meters
       type: float
-    - name: <Crank length in Meters>
+    - name: Crank length in Meters
       type: float
-    - name: <Weight in Kilogramms>
+    - name: Weight in Kilogramms
       type: float
     - name: Type of gear ratio Sensor=0, fix=1
       type: unsigned short int
-    - name: <Real front chain ring>
+    - name: Real front chain ring
       type: unsigned short int
-    - name: <Real rear sprocket>
+    - name: Real rear sprocket
       type: unsigned short int
 ---
 
@@ -42,31 +42,36 @@ cycle
 
 Configuration of the mounted bike
 
+**Out-of-date, use `cycle1`!**
+
 Query command and replies
 -------------------------
 
-cycle? 🡺 cycle:`<data>`
+`cycle?` 🡺 `cycle:<data>`
+
+(in slave mode only)
 
 Configuration command and replies
 ---------------------------------
 
-cycle=`<data>` 🡺 ok or error:`<message>`
+`cycle=<data>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<data>` — Parameters of the mounted bike.
+`<data>` — Parameters of the mounted bike
 
 - `<wheel size in Meters>`,
 - `<Crank length in Meters>`,
 - `<Weight in Kilogramms>`,
 - `<Type of gear ratio Sensor=0, fix=1>`,
 - `<Real front chain ring>`,
-- `<Real rear sprocket>`,
+- `<Real rear sprocket>`
 
 Notes
 -----
 
 - Version 3.100
 - Parameters must not be changed during a running training programme.
-- Redevelopments are to apply the `<cycle1>` command.
+- Out-of-date, use `cycle1`!
+  Redevelopments are to apply the `<cycle1>` command.

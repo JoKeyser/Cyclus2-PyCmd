@@ -11,15 +11,15 @@ command:
   query:
     syntax: text?
     replies:
-      ok: text:data
+      ok: text:<data>
   configuration:
-    syntax: text=data
+    syntax: text=<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
   - name: <data>
-    type: string
+    type: char[64]
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -32,12 +32,12 @@ Write text to the info bar
 Query command and replies
 -------------------------
 
-text? 🡺 text:`<data>`
+`text?` 🡺 `text:<data>`
 
 Configuration command and replies
 ---------------------------------
 
-text=`<data>` 🡺 ok or error:`<message>`
+`text=<data>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
@@ -45,7 +45,6 @@ Parameters
 `<data>` — Text with maximal 63 characters.
 
 The text is displayed in slave mode at the upper margin of the display. The default is „Cyclus2 Interface“.
-
 If the Cyclus2 is switched to slave mode with the parameter 2, no info line will be available (see above).
 
 Notes

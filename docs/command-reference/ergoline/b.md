@@ -11,7 +11,7 @@ command:
   query:
     syntax: b
     replies:
-      ok: Bval
+      ok: B<val>
   parameters:
   - name: val
     type: unsigned short int
@@ -27,12 +27,12 @@ Query of current power
 Query command and replies
 -------------------------
 
-`<b>` 🡺 B`<val>`
+`b` 🡺 `B<val>`
 
 Parameters
 ----------
 
-`<val>` — Current power in watts.
+`<val>` — Current power in Watts.
 
 Notes
 -----

@@ -18,33 +18,33 @@ command:
       ok: ok
       error: error:message
   parameters:
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
-    - name: <Version>
+    - name: Version
       type: unsigned short int
-    - name: <Firstname>
+    - name: Firstname max. size 32
       type: char[16]
-    - name: <Surname>
+    - name: Surname max. size 32
       type: char[16]
-    - name: <DateOfBirth>
+    - name: Date of birth with format dd.mm.yyyy
       type: char[11]
-    - name: <Gender>
+    - name: Gender
       type: unsigned short int
       values:
-      - code: '0'
+      - code: 0
         meaning: Unknown
-      - code: '1'
+      - code: 1
         meaning: Male
-      - code: '2'
+      - code: 2
         meaning: Female
-    - name: <BodyWeight>
+    - name: Body weight in Kilogramms
       type: float
-    - name: <BodyHeight>
+    - name: Body height in Meters
       type: float
-    - name: <DragArea>
+    - name: Drag area in m²
       type: float
-    - name: <DragCoefficient>
+    - name: Drag coefficient cw
       type: float
 ---
 
@@ -58,35 +58,29 @@ Configuration of athlete (new version)
 Query command and replies
 -------------------------
 
-user1? 🡺 user1:`<data>`
+`user1?` 🡺 `user1:<data>`
 
 Configuration command and replies
 ---------------------------------
 
-user1=`<data>` 🡺 ok or error:`<message>`
+`user1=<data>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
 `<data>` — Parameter of athlete.
 
-- `<Version>`,
-- `<Firstname>`,
-- `<Surname>`,
-- `<DateOfBirth>`,
-- `<Gender>`,
-- `<BodyWeight>`,
-- `<BodyHeight>`,
-- `<DragArea>`,
-- `<DragCoefficient>`
-
-`<Gender>` — Athlete gender.
-
-- 0 — Unknown.
-- 1 — Male.
-- 2 — Female.
+- `<Version for later extensions, 0 for the structure below>`
+- `<Firstname max. size 32>`,
+- `<Surname max. size 32>`,
+- `<Date of birth with format dd.mm.yyyy>`,
+- `<Gender: unknown=0, male=1, female=2>`,
+- `<Body weight in Kilogramms>`,
+- `<Body height in Meters>`,
+- `<Drag area in m²>`,
+- `<Drag coefficient cw>`
 
 Notes
 -----
 
-- Version 4.2.4155, new version for user.
+- Version 4.2.4155, new version for `user`.

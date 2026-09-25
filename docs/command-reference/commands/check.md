@@ -13,10 +13,10 @@ command:
     replies:
       ok: check:Id-Flags
   configuration:
-    syntax: check=Id, Min, Max
+    syntax: check=<Id>,<Min>,<Max>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
   - name: Id-Flags
     type: unsigned short int
@@ -33,30 +33,35 @@ command:
 check
 =====
 
-Configuration of monitoring (cf. mon)
+Configuration of monitoring (cf. `mon`)
 
 Query command and replies
 -------------------------
 
-check? 🡺 check:`<Id-Flags>`
+`check?` 🡺 `check:<Id-Flags>`
 
-check? `<Id>` 🡺 check:`<Id>`, `<Min>`, `<Max>`
+`check?<Id>` 🡺 `check:<Id>,<Min>,<Max>`
 
 Configuration command and replies
 ---------------------------------
 
-check=`<Id>`, `<Min>`, `<Max>` 🡺 ok or error:`<message>`
+`check=<Id>,<Min>,<Max>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
-`<Id-Flags>` — Flags of available monitoring items in hexadecimal format.
+- `<Id-Flags>` — Flags of available monitoring items.
+  The output is in hexadecimal format.
+  For better distinction the flag `0x8000` is additionally set.
+- `<Id>` — Identifier of the monitoring item
+- `<Min>` — Lower limit of the training range
+- `<Max>` — Upper limit of the training range
 
-`<Id>` — Identifier of the monitoring item.
-
-`<Min>` — Lower limit of the training range.
-
-`<Max>` — Upper limit of the training range.
+A description of the flags and IDs is shown in chapter 2.1.
+The unit for the parameters `<Min>` and `<Max>` is also documented there.
+If a monitoring is to be deleted, both parameters, `<Min>` and `<Max>`, must be set to `0`.
 
 Notes
 -----

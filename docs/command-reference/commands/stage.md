@@ -9,46 +9,44 @@ command:
   name: stage
   summary: Configuration of load stages
   query:
-    syntax: stage?
+    syntax: stage? [<no>]
     replies:
-      ok: stage:count
+      ok: stage:<count> or stage:<no>,<data>
   configuration:
-    syntax: stage=type[, data]
+    syntax: stage=<type>[, <data>]
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <count>
+  - name: count
     type: unsigned short int
-  - name: <no>
+  - name: no
     type: unsigned short int
-  - name: <type>
+  - name: type
     type: unsigned short int
     values:
-    - code: '0'
-      meaning: Existing programme will be deleted and the stages will be defined as
-        first stage of the new programme
-    - code: '1'
+    - code: 0
+      meaning: Existing programme will be deleted and the stages will be defined as first stage of the new programme
+    - code: 1
       meaning: Stage will be annexed to the programme
-    - code: '2'
-      meaning: Stage will be annexed to the programme and the programme preview is
-        drawn
-    - code: '3'
+    - code: 2
+      meaning: Stage will be annexed to the programme and the programme preview is drawn
+    - code: 3
       meaning: No stage data; programme preview is drawn
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
-    - name: <Len>
+    - name: Len
       type: unsigned long
-    - name: <Val1>
+    - name: Val1
       type: float
-    - name: <Val2>
+    - name: Val2
       type: float
-    - name: <StageType>
+    - name: StageType
       type: unsigned short int
-    - name: <ControlId>
+    - name: ControlId
       type: unsigned short int
-    - name: <UnitId>
+    - name: UnitId
       type: unsigned short int
 ---
 
@@ -62,37 +60,36 @@ Configuration of load stages
 Query command and replies
 -------------------------
 
-stage? 🡺 stage:`<count>`
+`stage?` 🡺 `stage:<count>`
 
-The query form stage?`<no>` returns stage:`<no>`, `<data>`.
+`stage?<no>` 🡺 `stage:<no>,<data>`
 
 Configuration command and replies
 ---------------------------------
 
-stage=type[, data] 🡺 ok or error:`<message>`
+`stage=type[, <data>]` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
 
-`<count>` — Count of stages (30000..32000). To gain the number of stages, subtract 30000.
-
-`<no>` — Index of stage (0..2000).
-
-`<type>` — Defines the operation carried out with the data.
-
-- 0 — Existing programme will be deleted and the stages will be defined as first stage of the new programme.
-- 1 — Stage will be annexed to the programme.
-- 2 — Stage will be annexed to the programme and the programme preview is drawn.
-- 3 — No stage data; programme preview is drawn.
-
-`<data>` — Parameter of stage.
-
-- `<Len>`,
-- `<Val1>`,
-- `<Val2>`,
-- `<StageType>`,
-- `<ControlId>`,
-- `<UnitId>`
+- `<count>` — Count of stages (30000..32000).
+  To gain the number of stages, subtract 30000.
+- `<no>` — Index of stage (0..2000).
+- `<type>` — Defines the operation carried out with the data.
+  - 0 — Existing programme will be deleted and the stages will be defined as first stage of the new programme.
+  - 1 — Stage will be annexed to the programme.
+  - 2 — Stage will be annexed to the programme and the programme preview is drawn.
+  - 3 — No stage data; programme preview is drawn.
+- `<data>` — Parameter of stage.
+  A description of the individual parameters is shown in chapter 2.2.
+  - `<Len>`,
+  - `<Val1>`,
+  - `<Val2>`,
+  - `<StageType>`,
+  - `<ControlId>`,
+  - `<UnitId>`
 
 Notes
 -----

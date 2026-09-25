@@ -11,10 +11,10 @@ command:
   query:
     syntax: vers?
     replies:
-      ok: 'vers: Cyclus2, Version val'
+      ok: vers: Cyclus2, Version <val>
   parameters:
-  - name: <val>
-    type: version string
+  - name: val
+    type: string
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -27,7 +27,7 @@ Query of software version
 Query command and replies
 -------------------------
 
-vers? 🡺 vers: Cyclus2, Version `<val>`
+`vers?` 🡺 `vers: Cyclus2, Version <val>`
 
 Parameters
 ----------

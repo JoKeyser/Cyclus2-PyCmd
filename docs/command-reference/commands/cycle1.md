@@ -11,31 +11,31 @@ command:
   query:
     syntax: cycle1?
     replies:
-      ok: cycle1:data
+      ok: cycle1:<data>
   configuration:
-    syntax: cycle1=data
+    syntax: cycle1=<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
-  - name: <data>
+  - name: data
     type: sequence
     sequence:
     - name: Version for later extensions, 0 for the structure below
       type: unsigned short int
-    - name: <Wheel size in Meters>
+    - name: Wheel size in Meters
       type: float
-    - name: <Crank length in Meters>
+    - name: Crank length in Meters
       type: float
-    - name: <Weight in Kilogramms>
+    - name: Weight in Kilogramms
       type: float
-    - name: <Real front chain ring>
+    - name: Real front chain ring
       type: unsigned short int
-    - name: <Real rear sprocket>
+    - name: Real rear sprocket
       type: unsigned short int
-    - name: <Virtual front chain ring>
+    - name: Virtual front chain ring
       type: unsigned short int
-    - name: <Virtual rear sprocket>
+    - name: Virtual rear sprocket
       type: unsigned short int
 ---
 
@@ -49,17 +49,19 @@ Configuration of the mounted bike (new version)
 Query command and replies
 -------------------------
 
-cycle1? 🡺 cycle1:`<data>`
+`cycle1?` 🡺 `cycle1:<data>`
+
+(in slave mode only)
 
 Configuration command and replies
 ---------------------------------
 
-cycle1=`<data>` 🡺 ok or error:`<message>`
+`cycle1=<data>` 🡺 `ok` or `error:<message>`
 
 Parameters
 ----------
 
-`<data>` — Comma-separated parameter list for the mounted bike.
+`<data>` — Parameters of the mounted bike
 
 - `<Version for later extensions, 0 for the structure below>`,
 - `<Wheel size in Meters>`,
@@ -68,9 +70,9 @@ Parameters
 - `<Real front chain ring>`,
 - `<Real rear sprocket>`,
 - `<Virtual front chain ring>`,
-- `<Virtual rear sprocket>`,
+- `<Virtual rear sprocket>`
 
 Notes
 -----
 
-- Version 4.2.4155, new version for Cycle
+- Version 4.2.4155, new version for `cycle` command

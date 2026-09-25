@@ -30,5 +30,5 @@ Notes
 -----
 
 - Version 2.200
-- Note: Changed in version 4; the reply is equivalent to the Ergoline 800 software version 2.9.
+- Note: Changed in version 4, the reply is equivalent with the Ergoline 800 to SW-Version 2.9
 - Supported in release 5.0

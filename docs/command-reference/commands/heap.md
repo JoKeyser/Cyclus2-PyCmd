@@ -11,9 +11,9 @@ command:
   query:
     syntax: heap?
     replies:
-      ok: heap:val
+      ok: heap:<val>
   parameters:
-  - name: <val>
+  - name: val
     type: float
 ---
 
@@ -27,7 +27,7 @@ Query of available heap size
 Query command and replies
 -------------------------
 
-heap? 🡺 heap:`<val>`
+`heap?` 🡺 `heap:<val>`
 
 Parameters
 ----------

@@ -11,11 +11,11 @@ command:
   query:
     syntax: accu?
     replies:
-      ok: accu:present[,<val>]
+      ok: accu:<present>[,<val>]
   parameters:
-  - name: <present>
+  - name: present
     type: unsigned short int
-  - name: <val>
+  - name: val
     type: float
 ---
 
@@ -29,18 +29,16 @@ Query of battery capacity
 Query command and replies
 -------------------------
 
-accu? 🡺 accu:`<present>`[,`<val>`]
+`accu?` 🡺 `accu:<present>[,<val>]`
 
 Parameters
 ----------
 
-`<present>` — Battery state.
-
-- 0 — Cyclus2 without battery.
-- 1 — Cyclus2 with battery; `<val>` is battery voltage in volts.
-- 2 — Cyclus2 with battery; `<val>` is capacity in percent.
-
-`<val>` — Battery voltage or capacity, depending on `<present>`.
+- `<present>` — Battery state.
+  - 0 — Cyclus2 without battery.
+  - 1 — Cyclus2 with battery; `<val>` is battery voltage in volts.
+  - 2 — Cyclus2 with battery; `<val>` is capacity in percent.
+- `<val>` — Battery voltage or capacity, depending on `<present>`.
 
 Notes
 -----

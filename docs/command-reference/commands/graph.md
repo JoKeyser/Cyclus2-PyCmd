@@ -11,12 +11,12 @@ command:
   query:
     syntax: graph?
     replies:
-      ok: graph:data
+      ok: graph:<data>
   configuration:
-    syntax: graph=data
+    syntax: graph=<data>
     replies:
       ok: ok
-      error: error:message
+      error: error:<message>
   parameters:
   - name: data
     type: sequence
@@ -53,12 +53,14 @@ Configuration of chart
 Query command and replies
 -------------------------
 
-graph? 🡺 graph:`<data>`
+`graph?` 🡺 `graph:<data>`
 
 Configuration command and replies
 ---------------------------------
 
-graph=`<data>` 🡺 ok or error:`<message>`
+`graph=<data>` 🡺 `ok` or `error:<message>`
+
+(in slave mode only)
 
 Parameters
 ----------
@@ -75,6 +77,12 @@ Parameters
 - `<RightStart>`,
 - `<RightRange>`,
 - `<WithGrid>`
+
+The unit of the x-axis is defined by the parameter `XId`; `XStart` and `XRange` define the absolute values in relation to the unit.
+For further information, please refer to the paragraph length type in chapter 2.1.
+On the Cyclus2, two training parameters can be simultaneously graphically analysed, left and right.
+The respective parameters `LeftId` and `RightId` define the training factor whereas the unit as well as the parameters `LeftStart`, `LeftRange` and `RightStart`, `RightRange` define the absolute values thereof, respectively.
+The parameter `WithGrid` sets the display of the auxiliary grid in the diagram.
 
 Notes
 -----

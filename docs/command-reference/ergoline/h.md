@@ -11,7 +11,7 @@ command:
   query:
     syntax: h
     replies:
-      ok: Hval
+      ok: H<val>
   parameters:
   - name: val
     type: unsigned short int
@@ -27,10 +27,11 @@ Query of current heart rate
 Query command and replies
 -------------------------
 
-`<h>` 🡺 H`<val>`
+`h` 🡺 `H<val>`
 
 Parameters
 ----------
+
 `<val>` — Current heart rate in bpm.
 
 Notes

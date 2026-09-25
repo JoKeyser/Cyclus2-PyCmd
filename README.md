@@ -41,7 +41,7 @@ In addition, you can use the following PyCmd helper commands:
 
 - `HELP` shows the list of available commands.
 - `HELP <command>` shows the reference for a specific command.
-  For example, `HELP os` shows the reference for command `os`.
+  For example, `HELP os` shows the reference for [command `os`](/docs/command-reference/commands/os.md).
 - `QUIT` closes the connection to the Cyclus2 ergometer.
 
 The command reference is also available without starting a session, for example:
@@ -62,7 +62,7 @@ Welcome to
   / ___/_ ______/ /_ _____ |_  |___/ _ \__ __/ ___/_ _  ___/ /
  / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \/ _  /
  \___/\_, /\__/_/\_,_/___/____/  /_/   \_, /\___/_/_/_/\_,_/
-     /___/                            /___/     version 1.1.0
+     /___/                            /___/     version 1.2.0
 
 Type any Cyclus2 command or use HELP [command] for command reference.
 Press Tab to 'cycle through' or complete half-typed commands.
@@ -142,7 +142,13 @@ To use _Cyclus2-PyCmd_, you need a working network connection between your compu
 > All commands should work, regardless how you login to your Cyclus2.
 > You only need to login as Admin for [changing the baud rate](docs/README.md#login-as-admin-to-change-serial-baud-rate), but that applies only to serial connections that are not (yet?) supported by this project.
 
-## Support
+## Project status and support
+
+The paint is still fresh 🖌️, but the main functions should be usable.
+This project's goal is to provide a reference of possibilities and _PyCmd_ as a tool for quick prototyping and as a stepping stone toward more complex/specific software.
+Development of more specialized research software is planned in other, dedicated projects.
+(And if _you_ use it to build something public, please let us know, so we can link it in [related projects](#related-projects)!)
+<!-- TODO: Would it make sense to make this project citable somehow? -->
 
 This project is made public in the hope to be useful, without warranties of any kind (see also section [Licenses](#licenses)).
 No support is included, but feel free to reach out to the [authors](#authors) to ask for help.
@@ -150,11 +156,24 @@ No support is included, but feel free to reach out to the [authors](#authors) to
 _Cyclus2-PyCmd_ gets tested on Linux and Windows.
 The Python code probably works on MacOS (if Python is installed), but this has not been tested yet.
 
+### Related projects
+
+- _c2dParseR_: An (experimental) R package to parse the `.c2d` file format saved by Cyclus2 ergometers.
+  More info at [its R package website](https://dhprlab.github.io/c2dParseR/),
+  the [repo on UHH GitLab](https://gitlab.rrz.uni-hamburg.de/dhprl/software/c2dParseR), or the [repo on GitHub](https://github.com/dhprlab/c2dparseR).
+- _c2dPyParse_: An (experimental) Python package to parse the `.c2d` file format from Cyclus2 ergometers.
+  More info at [repo on UHH GitLab](https://gitlab.rrz.uni-hamburg.de/dhprl/software/c2dpyparse) or the [repo on GitHub](https://github.com/dhprlab/c2dPyParse).
+
 ## Roadmap
 
+- _Maybe_ split the YAML and Markdown parts in [./docs/command-reference/](./docs/command-reference/) into 2 files for each command?
+  E.g., when reading the Markdown, it's confusing/annoying to scroll past the YAML?
+  On the other hand, it's nice that there's a single file...
+  (If split, this must be adapted in the read-in code as well.)
 - _Maybe_ make [the examples](./docs/Examples.md) available from the app, for easy play-through?
 - _Maybe_ convert more of the [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) into Markdown for easier browsing?
 - _Maybe_ support serial connection (instead of network connection) to the Cyclus2?
+- _Maybe_ make this project citable somehow?
 
 ## Contributing
 
@@ -184,9 +203,3 @@ The [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-s
 
 Other materials, like the logo, are licensed under CC0 1.0 Universal Public Domain Dedication for maximal reusability.
 See English license text in [LICENSES/CC0-1.0.txt](./LICENSES/CC0-1.0.txt); for a summary and other languages, see <https://creativecommons.org/publicdomain/zero/1.0/deed>.
-
-## Project status
-
-The paint is still fresh, but the main functions should be usable.
-If need be, there still will be breaking changes, but hopefully nothing major.
-

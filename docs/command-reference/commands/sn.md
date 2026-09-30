@@ -6,15 +6,15 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: sn
-  summary: Query of serial number
+  name: "sn"
+  summary: "Query of serial number"
   query:
-    syntax: sn?
+    syntax: "sn?"
     replies:
-      ok: sn:<val>
+      ok: "sn:<val>"
   parameters:
-  - name: val
-    type: string
+  - name: "val"
+    type: "string"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

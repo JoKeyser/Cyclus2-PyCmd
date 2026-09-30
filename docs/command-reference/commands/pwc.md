@@ -6,46 +6,46 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: pwc
-  summary: Configuration of PWC Test (Physical Working Capacity Test)
+  name: "pwc"
+  summary: "Configuration of PWC Test (Physical Working Capacity Test)"
   query:
-    syntax: pwc?
+    syntax: "pwc?"
     replies:
-      ok: pwc:<val>[,<data>]
+      ok: "pwc:<val>[,<data>]"
   configuration:
-    syntax: pwc=<val>,<data>
+    syntax: "pwc=<val>,<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 13
-      meaning: Data <data> are available, PWC Test
+      meaning: "Data <data> are available, PWC Test"
     - code: else
-      meaning: No parameter of PWC Test available
-  - name: data
-    type: sequence
+      meaning: "No parameter of PWC Test available"
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: Protocol
-      type: int
-    - name: Start
-      type: float
-    - name: Step
-      type: float
-    - name: Cadence
-      type: float
-    - name: LenType
-      type: int
-    - name: Len
-      type: float
-    - name: CoolDownLenType
-      type: int
-    - name: CoolDownLen
-      type: float
-    - name: CoolDownPower
-      type: float
+    - name: "Protocol"
+      type: "int"
+    - name: "Start"
+      type: "float"
+    - name: "Step"
+      type: "float"
+    - name: "Cadence"
+      type: "float"
+    - name: "LenType"
+      type: "int"
+    - name: "Len"
+      type: "float"
+    - name: "CoolDownLenType"
+      type: "int"
+    - name: "CoolDownLen"
+      type: "float"
+    - name: "CoolDownPower"
+      type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

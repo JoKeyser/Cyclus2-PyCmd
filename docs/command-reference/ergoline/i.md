@@ -6,12 +6,12 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: i
-  summary: Query of device id
+  name: "i"
+  summary: "Query of device id"
   query:
-    syntax: i
+    syntax: "i"
     replies:
-      ok: er800P10V243
+      ok: "er800P10V243"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

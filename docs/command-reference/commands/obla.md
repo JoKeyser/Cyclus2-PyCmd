@@ -6,38 +6,38 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: obla
-  summary: Configuration of the OBLA threshold test
+  name: "obla"
+  summary: "Configuration of the OBLA threshold test"
   query:
-    syntax: obla?
+    syntax: "obla?"
     replies:
-      ok: obla:<val>[,<data>]
+      ok: "obla:<val>[,<data>]"
   configuration:
-    syntax: obla=<val>,<data>
+    syntax: "obla=<val>,<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 5
-      meaning: Data data are available, OBLA threshold test
+      meaning: "Data data are available, OBLA threshold test"
     - code: else
-      meaning: No parameter of OBLA available
-  - name: data
-    type: sequence
+      meaning: "No parameter of OBLA available"
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: LimitId
-      type: unsigned short int
-    - name: LimitValue
-      type: float
-    - name: InitialLoad
-      type: float
-    - name: UnitId
-      type: unsigned short int
-    - name: OBLA
-      type: float
+    - name: "LimitId"
+      type: "unsigned short int"
+    - name: "LimitValue"
+      type: "float"
+    - name: "InitialLoad"
+      type: "float"
+    - name: "UnitId"
+      type: "unsigned short int"
+    - name: "OBLA"
+      type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

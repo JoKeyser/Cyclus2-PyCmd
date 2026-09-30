@@ -6,134 +6,134 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: data
-  summary: Query of exercise data
+  name: "data"
+  summary: "Query of exercise data"
   query:
-    syntax: data?
+    syntax: "data?"
     replies:
-      ok: data:<val>, <data>
+      ok: "data:<val>,<data>"
   configuration:
-    syntax: data=<val>
+    syntax: "data=<val>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 0
-      meaning: Com Format 1 after query command
+      meaning: "Com Format 1 after query command"
     - code: 1
-      meaning: Com Format 2 after query command
+      meaning: "Com Format 2 after query command"
     - code: 10
-      meaning: Com Format 1 continued
+      meaning: "Com Format 1 continued"
     - code: 11
-      meaning: Com Format 1 continued.
+      meaning: "Com Format 1 continued"
     - code: 4
-      meaning: Winsock Format 1 after query command
+      meaning: "Winsock Format 1 after query command"
     - code: 6
-      meaning: Winsock Format 1 continued
+      meaning: "Winsock Format 1 continued"
     - code: 12
-      meaning: Winsock +Com Format 1 after query command
+      meaning: "Winsock +Com Format 1 after query command"
     - code: 14
-      meaning: Winsock +Com Format 1 continued
+      meaning: "Winsock +Com Format 1 continued"
     - code: 2
-      meaning: Com Format 3 after query command
+      meaning: "Com Format 3 after query command"
     - code: 3
-      meaning: Com Format 3 continued
+      meaning: "Com Format 3 continued"
     - code: 5
       meaning: Winsock Format 3 after query command
     - code: 7
-      meaning: Winsock Format 3 continued
+      meaning: "Winsock Format 3 continued"
     - code: 13
-      meaning: Winsock +Com Format 3 after query command
+      meaning: "Winsock +Com Format 3 after query command"
     - code: 15
-      meaning: Winsock +Com Format 3 continued
-  - name: data
-    type: format-dependent payload
+      meaning: "Winsock +Com Format 3 continued"
+  - name: "data"
+    type: "format-dependent payload"
     formats:
-    - id: Format 1
+    - id: "Format 1"
       fields:
-      - name: Time counted from ergometry start in Milliseconds/10
-        type: unsigned int
-      - name: Distance counted from ergometry start in Meters
-        type: float
-      - name: Crank rotations counted from ergometry start
-        type: float
-      - name: Work counted from ergometry start in Joules
-        type: float
-      - name: Cadence in rpm
-        type: float
-      - name: Heart Rate bpm
-        type: float
-      - name: Speed in kms/h
-        type: float
-      - name: Transmission in Meters
-        type: float
-      - name: Pedal Force in Newtons
-        type: float
-      - name: Power in Watts
-        type: float
-      - name: Inclination in %
-        type: float
-      - name: Work in Heart Rate Beat in Joules
-        type: float
-    - id: Format 2
+      - name: "Time counted from ergometry start in Milliseconds/10"
+        type: "unsigned int"
+      - name: "Distance counted from ergometry start in Meters"
+        type: "float"
+      - name: "Crank rotations counted from ergometry start"
+        type: "float"
+      - name: "Work counted from ergometry start in Joules"
+        type: "float"
+      - name: "Cadence in rpm"
+        type: "float"
+      - name: "Heart Rate bpm"
+        type: "float"
+      - name: "Speed in kms/h"
+        type: "float"
+      - name: "Transmission in Meters"
+        type: "float"
+      - name: "Pedal Force in Newtons"
+        type: "float"
+      - name: "Power in Watts"
+        type: "float"
+      - name: "Inclination in %"
+        type: "float"
+      - name: "Work in Heart Rate Beat in Joules"
+        type: "float"
+    - id: "Format 2"
       fields:
-      - name: Time stamp in Milliseconds/10
-        type: unsigned int
-      - name: Torque in Newton/1000
-        type: unsigned short int
-      - name: Periodic time of cadence (Bit 0..15)
-        type: unsigned short int
-      - name: Periodic time of belt pully(Bit 0..15)
-        type: unsigned short int
-      - name: Periodic time of cadence (Bit 16..23)
-        type: unsigned short int
-      - name: Periodic time of belt pully (Bit 16..23)
-        type: unsigned short int
-      - name: Heart rate in bpm
-        type: unsigned short int
-      - name: Gear ratio in 1/1000
-        type: unsigned short int
-      - name: Load value
-        type: unsigned short int
-      - name: manual break
-        type: unsigned short int
-      - name: Stage id
-        type: unsigned short int
-      - name: Target value
-        type: float
-    - id: Format 3
+      - name: "Time stamp in Milliseconds/10"
+        type: "unsigned int"
+      - name: "Torque in Newton/1000"
+        type: "unsigned short int"
+      - name: "Periodic time of cadence (Bit 0..15)"
+        type: "unsigned short int"
+      - name: "Periodic time of belt pully(Bit 0..15)"
+        type: "unsigned short int"
+      - name: "Periodic time of cadence (Bit 16..23)"
+        type: "unsigned short int"
+      - name: "Periodic time of belt pully (Bit 16..23)"
+        type: "unsigned short int"
+      - name: "Heart rate in bpm"
+        type: "unsigned short int"
+      - name: "Gear ratio in 1/1000"
+        type: "unsigned short int"
+      - name: "Load value"
+        type: "unsigned short int"
+      - name: "manual break"
+        type: "unsigned short int"
+      - name: "Stage id"
+        type: "unsigned short int"
+      - name: "Target value"
+        type: "float"
+    - id: "Format 3"
       fields:
-      - name: Time counted from ergometry start in Milliseconds/10
-        type: unsigned int
-      - name: Distance counted from ergometry start in Meters
-        type: float
-      - name: Crank rotations counted from ergometry start
-        type: float
-      - name: Work counted from ergometry start in Joules
-        type: float
-      - name: Cadence in rpm
-        type: float
-      - name: Heart Rate bpm
-        type: float
-      - name: Speed in kms/h
-        type: float
-      - name: Transmission in Meters
-        type: float
-      - name: Pedal Force in Newtons>
-        type: float
-      - name: Power in Watts
-        type: float
-      - name: Inclination in %
-        type: float
-      - name: Work in Heart Rate Beat in Joules
-        type: float
-      - name: virtual chain ring
-        type: unsigned int
-      - name: virtual rear sprocket
-        type: unsigned int
+      - name: "Time counted from ergometry start in Milliseconds/10"
+        type: "unsigned int"
+      - name: "Distance counted from ergometry start in Meters"
+        type: "float"
+      - name: "Crank rotations counted from ergometry start"
+        type: "float"
+      - name: "Work counted from ergometry start in Joules"
+        type: "float"
+      - name: "Cadence in rpm"
+        type: "float"
+      - name: "Heart Rate bpm"
+        type: "float"
+      - name: "Speed in kms/h"
+        type: "float"
+      - name: "Transmission in Meters"
+        type: "float"
+      - name: "Pedal Force in Newtons"
+        type: "float"
+      - name: "Power in Watts"
+        type: "float"
+      - name: "Inclination in %"
+        type: "float"
+      - name: "Work in Heart Rate Beat in Joules"
+        type: "float"
+      - name: "virtual chain ring"
+        type: "unsigned int"
+      - name: "virtual rear sprocket"
+        type: "unsigned int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -168,6 +168,16 @@ New as from version 4
 - `4`  | Winsock      | Format 1 after query command
 - `6`  | Winsock      | Format 1 continued
 - `12` | Winsock +Com | Format 1 after query command
+- `14` | Winsock +Com | Format 1 continued
+
+New as from version 4.2.4155
+
+- `2`  | Com          | Format 3 after query command
+- `3`  | Com          | Format 3 continued
+- `5`  | Winsock      | Format 3 after query command
+- `7`  | Winsock      | Format 3 continued
+- `13` | Winsock +Com | Format 3 after query command
+- `15` | Winsock +Com | Format 3 continued
 
 As from version 4 the format 2 is not supported anymore!
 Additionally, the format 3 with the data for the virtual gear shift is introduced as from version 4.2.4155.

@@ -6,22 +6,22 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: eol
-  summary: Configuration of the end of line
+  name: "eol"
+  summary: "Configuration of the end of line"
   query:
-    syntax: eol?
+    syntax: "eol?"
     replies:
-      ok: eol:<val1>,<val2>
+      ok: "eol:<val1>,<val2>"
   configuration:
-    syntax: eol=<val1>,<val2>
+    syntax: "eol=<val1>,<val2>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val1
-    type: unsigned short int
-  - name: val2
-    type: unsigned short int
+  - name: "val1"
+    type: "unsigned short int"
+  - name: "val2"
+    type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

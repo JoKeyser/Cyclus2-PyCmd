@@ -6,20 +6,20 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: jump
-  summary: Jump to a load stage
+  name: "jump"
+  summary: "Jump to a load stage"
   query:
-    syntax: jump?
+    syntax: "jump?"
     replies:
-      ok: jump:<val>
+      ok: "jump:<val>"
   configuration:
-    syntax: jump=<val>
+    syntax: "jump=<val>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

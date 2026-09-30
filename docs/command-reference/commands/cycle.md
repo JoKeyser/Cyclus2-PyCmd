@@ -6,33 +6,33 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: cycle
-  summary: Configuration of the mounted bike
+  name: "cycle"
+  summary: "Configuration of the mounted bike"
   query:
-    syntax: cycle?
+    syntax: "cycle?"
     replies:
-      ok: cycle:<data>
+      ok: "cycle:<data>"
   configuration:
-    syntax: cycle=<data>
+    syntax: "cycle=<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: data
-    type: sequence
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: wheel size in Meters
+    - name: "wheel size in Meters"
       type: float
-    - name: Crank length in Meters
-      type: float
-    - name: Weight in Kilogramms
-      type: float
-    - name: Type of gear ratio Sensor=0, fix=1
-      type: unsigned short int
-    - name: Real front chain ring
-      type: unsigned short int
-    - name: Real rear sprocket
-      type: unsigned short int
+    - name: "Crank length in Meters"
+      type: "float"
+    - name: "Weight in Kilogramms"
+      type: "float"
+    - name: "Type of gear ratio Sensor=0, fix=1"
+      type: "unsigned short int"
+    - name: "Real front chain ring"
+      type: "unsigned short int"
+    - name: "Real rear sprocket"
+      type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

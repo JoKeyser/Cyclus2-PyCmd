@@ -6,29 +6,29 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: save
-  summary: Configuration of auto-save after finish of ergometry
+  name: "save"
+  summary: "Configuration of auto-save after finish of ergometry"
   query:
-    syntax: save?
+    syntax: "save?"
     replies:
-      ok: save:<val>
+      ok: "save:<val>"
   configuration:
-    syntax: save=<val>
+    syntax: "save=<val>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 0
-      meaning: Ergometry data will not be saved
+      meaning: "Ergometry data will not be saved"
     - code: 1
-      meaning: Ergometry data will be saved on the USB memory stick
+      meaning: "Ergometry data will be saved on the USB memory stick"
     - code: 2
-      meaning: Ergometry data will be saved on the network drive
+      meaning: "Ergometry data will be saved on the network drive"
     - code: 3
-      meaning: Ergometry data will be saved on the USB memory stick or, if not present, on the network drive
+      meaning: "Ergometry data will be saved on the USB memory stick or, if not present, on the network drive"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

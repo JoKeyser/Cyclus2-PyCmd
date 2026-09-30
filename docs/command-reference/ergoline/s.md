@@ -6,10 +6,10 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: s
-  summary: Start exercise
+  name: "s"
+  summary: "Start exercise"
   configuration:
-    syntax: s
+    syntax: "s"
     replies:
       ok: NONE
 ---

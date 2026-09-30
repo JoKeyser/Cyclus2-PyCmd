@@ -6,12 +6,12 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: o
-  summary: Query of systole (dummy irrelevant)
+  name: "o"
+  summary: "Query of systole (dummy irrelevant)"
   query:
-    syntax: o
+    syntax: "o"
     replies:
-      ok: O000
+      ok: "O000"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

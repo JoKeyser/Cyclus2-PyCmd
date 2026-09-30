@@ -6,20 +6,20 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: time
-  summary: Configuration of the local time
+  name: "time"
+  summary: "Configuration of the local time"
   query:
-    syntax: time?
+    syntax: "time?"
     replies:
-      ok: time:<data>
+      ok: "time:<data>"
   configuration:
-    syntax: time=<data>
+    syntax: "time=<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: data
-    type: string
+  - name: "data"
+    type: "string"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

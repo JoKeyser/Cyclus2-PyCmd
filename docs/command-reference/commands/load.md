@@ -6,32 +6,32 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: load
-  summary: Configuration of the current load setting
+  name: "load"
+  summary: "Configuration of the current load setting"
   query:
-    syntax: load?
+    syntax: "load?"
     replies:
-      ok: load:<CtrlId>,<Val>
+      ok: "load:<CtrlId>,<Val>"
   configuration:
-    syntax: load=<CtrlId>,<Val>
+    syntax: "load=<CtrlId>,<Val>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: CtrlId
-    meaning: Id of load value
-    type: unsigned short int
+  - name: "CtrlId"
+    meaning: "Id of load value"
+    type: "unsigned short int"
     values:
     - code: 4
-      meaning: Pedal Force in Newtons
+      meaning: "Pedal Force in Newtons"
     - code: 5
-      meaning: Power in Watts
+      meaning: "Power in Watts"
     - code: 6
-      meaning: Inclination in %
+      meaning: "Inclination in %"
     - code: 255
-      meaning: will be sent on request
-  - name: Val
-    type: float
+      meaning: "will be sent on request"
+  - name: "Val"
+    type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->
@@ -40,12 +40,6 @@ load
 ====
 
 Configuration of load value (the same like the manual control mode)
-
-Call the load command before starting of ergometry because of initializing of the load type and load value!
-So you remove also monitoring settings, start conditions and cancel contitions.
-During the ergometry you must not change load type!
-
-An example in chapter 3.4 demonstrates the application of this command.
 
 Query command and replies
 -------------------------
@@ -75,6 +69,12 @@ Parameters
     - Pedal Force 0..1500 Newtons
     - Power 0..3000 Watts
     - Inclination –25..25 %
+
+Call the load command before starting of ergometry because of initializing of the load type and load value!
+So you remove also monitoring settings, start conditions and cancel contitions.
+During the ergometry you must not change load type!
+
+An example in chapter 3.4 demonstrates the application of this command.
 
 Notes
 -----

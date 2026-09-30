@@ -6,41 +6,41 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: graph
-  summary: Configuration of chart
+  name: "graph"
+  summary: "Configuration of chart"
   query:
-    syntax: graph?
+    syntax: "graph?"
     replies:
-      ok: graph:<data>
+      ok: "graph:<data>"
   configuration:
-    syntax: graph=<data>
+    syntax: "graph=<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: data
-    type: sequence
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: XId
-      type: unsigned short int
-    - name: XStart
-      type: float
-    - name: XRange
-      type: float
-    - name: LeftId
-      type: unsigned short int
-    - name: LeftStart
-      type: float
-    - name: LeftRange
-      type: float
-    - name: RightId
-      type: unsigned short int
-    - name: RightStart
-      type: float
-    - name: RightRange
-      type: float
-    - name: WithGrid
-      type: unsigned short int
+    - name: "XId"
+      type: "unsigned short int"
+    - name: "XStart"
+      type: "float"
+    - name: "XRange"
+      type: "float"
+    - name: "LeftId"
+      type: "unsigned short int"
+    - name: "LeftStart"
+      type: "float"
+    - name: "LeftRange"
+      type: "float"
+    - name: "RightId"
+      type: "unsigned short int"
+    - name: "RightStart"
+      type: "float"
+    - name: "RightRange"
+      type: "float"
+    - name: "WithGrid"
+      type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

@@ -6,20 +6,20 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: rings
-  summary: Configuration of the front chain rings for virtual gear shifting
+  name: "rings"
+  summary: "Configuration of the front chain rings for virtual gear shifting"
   query:
-    syntax: rings?
+    syntax: "rings?"
     replies:
-      ok: rings:<data>
+      ok: "rings:<data>"
   configuration:
-    syntax: rings=<data>
+    syntax: "rings=<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: data
-    type: comma-separated sequence of variable length
+  - name: "data"
+    type: "comma-separated sequence of variable length"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

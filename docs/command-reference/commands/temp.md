@@ -6,15 +6,15 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: temp
-  summary: Query of motor temperature
+  name: "temp"
+  summary: "Query of motor temperature"
   query:
-    syntax: temp?
+    syntax: "temp?"
     replies:
-      ok: temp:<val>
+      ok: "temp:<val>"
   parameters:
-  - name: val
-    type: float
+  - name: "val"
+    type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

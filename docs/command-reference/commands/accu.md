@@ -6,17 +6,17 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: accu
-  summary: Query of battery capacity
+  name: "accu"
+  summary: "Query of battery capacity"
   query:
-    syntax: accu?
+    syntax: "accu?"
     replies:
-      ok: accu:<present>[,<val>]
+      ok: "accu:<present>[,<val>]"
   parameters:
-  - name: present
-    type: unsigned short int
-  - name: val
-    type: float
+  - name: "present"
+    type: "unsigned short int"
+  - name: "val"
+    type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

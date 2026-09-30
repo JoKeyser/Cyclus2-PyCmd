@@ -6,54 +6,54 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: gen
-  summary: Configuration of ergometry loads with the load generator
+  name: "gen"
+  summary: "Configuration of ergometry loads with the load generator"
   query:
-    syntax: gen?
+    syntax: "gen?"
     replies:
-      ok: gen:<val>[,<data>]
+      ok: "gen:<val>[,<data>]"
   configuration:
-    syntax: gen=<val>,<data>
+    syntax: "gen=<val>,<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: <val>
-    type: unsigned short int
+  - name: "<val>"
+    type: "unsigned short int"
     values:
     - code: 8
-      meaning: Data <data> are available, source is load generator
+      meaning: "Data <data> are available, source is load generator"
     - code: 9
-      meaning: Data <data> are available, source is Conconi Test
+      meaning: "Data <data> are available, source is Conconi Test"
     - code: 10
-      meaning: Data <data> are available, source are OBLA test
+      meaning: "Data <data> are available, source are OBLA test"
     - code: else
-      meaning: No parameter of generator available
-  - name: data
-    type: sequence
+      meaning: "No parameter of generator available"
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: Len1
-      type: unsigned long
-    - name: Len2
-      type: unsigned long
-    - name: Len3
-      type: unsigned long
-    - name: Len4
-      type: unsigned long
-    - name: BasicLoad
-      type: float
-    - name: Plateau1
-      type: float
-    - name: Modification
-      type: float
-    - name: TypeOfCyclus
-      type: unsigned short int
-    - name: TypeOfLoad
-      type: unsigned short int
-    - name: TypeOfLen
-      type: unsigned short int
-    - name: Repetitions
-      type: unsigned short int
+    - name: "Len1"
+      type: "unsigned long"
+    - name: "Len2"
+      type: "unsigned long"
+    - name: "Len3"
+      type: "unsigned long"
+    - name: "Len4"
+      type: "unsigned long"
+    - name: "BasicLoad"
+      type: "float"
+    - name: "Plateau1"
+      type: "float"
+    - name: "Modification"
+      type: "float"
+    - name: "TypeOfCyclus"
+      type: "unsigned short int"
+    - name: "TypeOfLoad"
+      type: "unsigned short int"
+    - name: "TypeOfLen"
+      type: "unsigned short int"
+    - name: "Repetitions"
+      type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

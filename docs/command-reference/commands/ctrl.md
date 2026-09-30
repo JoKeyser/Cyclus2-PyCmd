@@ -6,27 +6,27 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: ctrl
-  summary: Control of exercise
+  name: "ctrl"
+  summary: "Control of exercise"
   query:
-    syntax: ctrl?
+    syntax: "ctrl?"
     replies:
-      ok: ctrl:<val>
+      ok: "ctrl:<val>"
   configuration:
-    syntax: ctrl=<val>
+    syntax: "ctrl=<val>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 0
-      meaning: Stop exercise or resume after pause, while status is 'no ergometry'
+      meaning: "Stop exercise or resume after pause, while status is 'no ergometry'"
     - code: 1
-      meaning: Start exercise or resume after break, while exercise is running
+      meaning: "Start exercise or resume after break, while exercise is running"
     - code: 2
-      meaning: Break
+      meaning: "Break"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

@@ -6,35 +6,35 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: slave
-  summary: Configuration of slave mode
+  name: "slave"
+  summary: "Configuration of slave mode"
   query:
-    syntax: slave?
+    syntax: "slave?"
     replies:
-      ok: slave:<val>
+      ok: "slave:<val>"
   configuration:
-    syntax: slave=<val>
+    syntax: "slave=<val>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 0
-      meaning: Standard-mode
+      meaning: "Standard-mode"
     - code: 1
-      meaning: Slave-Mode, Cyclus2 can be controlled via the interfaces only.
+      meaning: "Slave-Mode, Cyclus2 can be controlled via the interfaces only"
     - code: 2
-      meaning: as in 1, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
+      meaning: "as in 1, but slave mode is automatically quit when ending the ergometry and displaying the analysis results"
     - code: 3
-      meaning: Slave-Mode, operator can use the electronic gear shift, the info line is not displayed (new as from version 4.2.4155)
+      meaning: "Slave-Mode, operator can use the electronic gear shift, the info line is not displayed"
     - code: 4
-      meaning: as in 3, but slave mode is automatically quit when ending the ergometry and displaying the analysis results (new as from version 4.2.4155)
+      meaning: "as in 3, but slave mode is automatically quit when ending the ergometry and displaying the analysis results"
     - code: 5
-      meaning: as in 3, but with sending of KeyDown events (new as from version 4.2.4218)
+      meaning: "as in 3, but with sending of KeyDown events"
     - code: 6
-      meaning: as in 4, but with sending of KeyDown events (new as from version 4.2.4218)
+      meaning: "as in 4, but with sending of KeyDown events"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

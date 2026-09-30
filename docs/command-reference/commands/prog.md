@@ -6,38 +6,38 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: prog
-  summary: Query of the current type of ergometry
+  name: "prog"
+  summary: "Query of the current type of ergometry"
   query:
-    syntax: prog?
+    syntax: "prog?"
     replies:
-      ok: prog:<val>
+      ok: "prog:<val>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 0
-      meaning: manual control, without control of load duration
+      meaning: "manual control, without control of load duration"
     - code: 1
-      meaning: ergometry with some stages
+      meaning: "ergometry with some stages"
     - code: 4
-      meaning: Maximum Cadence Test
+      meaning: "Maximum Cadence Test"
     - code: 5
-      meaning: Maximum Strength Test
+      meaning: "Maximum Strength Test"
     - code: 8
-      meaning: Source of ergometry is the load generator
+      meaning: "Source of ergometry is the load generator"
     - code: 9
-      meaning: Conconi Test
+      meaning: "Conconi Test"
     - code: 10
-      meaning: OBLA Test
+      meaning: "OBLA Test"
     - code: 11
-      meaning: Slave mode without control of the duration
+      meaning: "Slave mode without control of the duration"
     - code: 12
-      meaning: Wingate Anaerobic Test
+      meaning: "Wingate Anaerobic Test"
     - code: 13
-      meaning: PWC Test
+      meaning: "PWC Test"
     - code: 14
-      meaning: Real life track
+      meaning: "Real life track"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

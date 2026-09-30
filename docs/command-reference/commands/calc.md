@@ -6,22 +6,22 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: calc
-  summary: Configuration of calculation parameter
+  name: "calc"
+  summary: "Configuration of calculation parameter"
   query:
-    syntax: calc?
+    syntax: "calc?"
     replies:
-      ok: calc:<interval>, <avg>
+      ok: "calc:<interval>, <avg>"
   configuration:
-    syntax: calc=<interval>,<avg>
+    syntax: "calc=<interval>,<avg>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: interval
-    type: unsigned short int
-  - name: avg
-    type: unsigned short int
+  - name: "interval"
+    type: "unsigned short int"
+  - name: "avg"
+    type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

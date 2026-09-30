@@ -6,34 +6,34 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: cond
-  summary: Configuration of external field conditions
+  name: "cond"
+  summary: "Configuration of external field conditions"
   query:
-    syntax: cond?
+    syntax: "cond?"
     replies:
-      ok: cond:<data>
+      ok: "cond:<data>"
   configuration:
-    syntax: cond=<data>
+    syntax: "cond=<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: data
-    type: sequence
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: AirDensity
-      type: float
-    - name: RoadSurface
-      type: unsigned short int
+    - name: "AirDensity"
+      type: "float"
+    - name: "RoadSurface"
+      type: "unsigned short int"
       values:
       - code: 0
-        meaning: Paved road
+        meaning: "Paved road"
       - code: 1
-        meaning: Asphaltic road
+        meaning: "Asphaltic road"
       - code: 2
-        meaning: Cement cycling track
+        meaning: "Cement cycling track"
       - code: 3
-        meaning: Wood cycling track
+        meaning: "Wood cycling track"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

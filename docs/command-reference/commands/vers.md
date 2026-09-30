@@ -6,15 +6,15 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: vers
-  summary: Query of software version
+  name: "vers"
+  summary: "Query of software version"
   query:
-    syntax: vers?
+    syntax: "vers?"
     replies:
-      ok: vers: Cyclus2, Version <val>
+      ok: "vers:Cyclus2, Version <val>"
   parameters:
-  - name: val
-    type: string
+  - name: "val"
+    type: "string"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

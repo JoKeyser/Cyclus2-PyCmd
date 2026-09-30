@@ -6,48 +6,48 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: stage
-  summary: Configuration of load stages
+  name: "stage"
+  summary: "Configuration of load stages"
   query:
-    syntax: stage? [<no>]
+    syntax: "stage? [<no>]"
     replies:
-      ok: stage:<count> or stage:<no>,<data>
+      ok: "stage:<count> or stage:<no>,<data>"
   configuration:
-    syntax: stage=<type>[, <data>]
+    syntax: "stage=<type>[, <data>]"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: count
-    type: unsigned short int
-  - name: no
-    type: unsigned short int
-  - name: type
-    type: unsigned short int
+  - name: "count"
+    type: "unsigned short int"
+  - name: "no"
+    type: "unsigned short int"
+  - name: "type"
+    type: "unsigned short int"
     values:
     - code: 0
-      meaning: Existing programme will be deleted and the stages will be defined as first stage of the new programme
+      meaning: "Existing programme will be deleted and the stages will be defined as first stage of the new programme"
     - code: 1
-      meaning: Stage will be annexed to the programme
+      meaning: "Stage will be annexed to the programme"
     - code: 2
-      meaning: Stage will be annexed to the programme and the programme preview is drawn
+      meaning: "Stage will be annexed to the programme and the programme preview is drawn"
     - code: 3
-      meaning: No stage data; programme preview is drawn
+      meaning: "No stage data; programme preview is drawn"
   - name: data
-    type: sequence
+    type: "sequence"
     sequence:
-    - name: Len
-      type: unsigned long
-    - name: Val1
-      type: float
-    - name: Val2
-      type: float
-    - name: StageType
-      type: unsigned short int
-    - name: ControlId
-      type: unsigned short int
-    - name: UnitId
-      type: unsigned short int
+    - name: "Len"
+      type: "unsigned long"
+    - name: "Val1"
+      type: "float"
+    - name: "Val2"
+      type: "float"
+    - name: "StageType"
+      type: "unsigned short int"
+    - name: "ControlId"
+      type: "unsigned short int"
+    - name: "UnitId"
+      type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

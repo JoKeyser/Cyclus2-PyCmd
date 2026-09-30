@@ -6,10 +6,10 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: x
-  summary: Leave slave mode
+  name: "x"
+  summary: "Leave slave mode"
   configuration:
-    syntax: x
+    syntax: "x"
     replies:
       ok: NONE
 ---

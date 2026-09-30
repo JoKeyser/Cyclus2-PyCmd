@@ -6,15 +6,15 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: a
-  summary: Initialize the target value of exercise before start
+  name: "a"
+  summary: "Initialize the target value of exercise before start"
   configuration:
-    syntax: a<val>
+    syntax: "a<val>"
     replies:
       ok: NONE
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

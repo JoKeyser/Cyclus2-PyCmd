@@ -6,46 +6,46 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: user1
-  summary: Configuration of athlete (new version)
+  name: "user1"
+  summary: "Configuration of athlete (new version)"
   query:
-    syntax: user1?
+    syntax: "user1?"
     replies:
-      ok: user1:data
+      ok: "user1:<data>"
   configuration:
-    syntax: user1=data
+    syntax: "user1=<data>"
     replies:
-      ok: ok
-      error: error:message
+      ok: "ok"
+      error: "error:message"
   parameters:
-  - name: data
-    type: sequence
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: Version
-      type: unsigned short int
-    - name: Firstname max. size 32
-      type: char[16]
-    - name: Surname max. size 32
-      type: char[16]
-    - name: Date of birth with format dd.mm.yyyy
-      type: char[11]
-    - name: Gender
-      type: unsigned short int
+    - name: "Version"
+      type: "unsigned short int"
+    - name: "Firstname max. size 32"
+      type: "char[16]"
+    - name: "Surname max. size 32"
+      type: "char[16]"
+    - name: "Date of birth with format dd.mm.yyyy"
+      type: "char[11]"
+    - name: "Gender"
+      type: "unsigned short int"
       values:
       - code: 0
-        meaning: Unknown
+        meaning: "Unknown"
       - code: 1
-        meaning: Male
+        meaning: "Male"
       - code: 2
-        meaning: Female
-    - name: Body weight in Kilogramms
-      type: float
-    - name: Body height in Meters
-      type: float
-    - name: Drag area in m²
-      type: float
-    - name: Drag coefficient cw
-      type: float
+        meaning: "Female"
+    - name: "Body weight in Kilogramms"
+      type: "float"
+    - name: "Body height in Meters"
+      type: "float"
+    - name: "Drag area in m²"
+      type: "float"
+    - name: "Drag coefficient cw"
+      type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

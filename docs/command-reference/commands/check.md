@@ -6,26 +6,26 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: check
-  summary: Configuration of monitoring (cf. mon)
+  name: "check"
+  summary: "Configuration of monitoring (cf. mon)"
   query:
-    syntax: check?
+    syntax: "check?"
     replies:
-      ok: check:Id-Flags
+      ok: "check:<Id-Flags>"
   configuration:
-    syntax: check=<Id>,<Min>,<Max>
+    syntax: "check=<Id>,<Min>,<Max>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: Id-Flags
-    type: unsigned short int
-  - name: Id
-    type: unsigned short int
-  - name: Min
-    type: float
-  - name: Max
-    type: float
+  - name: "Id-Flags"
+    type: "unsigned short int"
+  - name: "Id"
+    type: "unsigned short int"
+  - name: "Min"
+    type: "float"
+  - name: "Max"
+    type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

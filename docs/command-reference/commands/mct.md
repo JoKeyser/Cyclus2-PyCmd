@@ -6,38 +6,38 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: mct
-  summary: Configuration of Maximum Cadence Test
+  name: "mct"
+  summary: "Configuration of Maximum Cadence Test"
   query:
-    syntax: mct?
+    syntax: "mct?"
     replies:
-      ok: mct:<val>[,<data>]
+      ok: "mct:<val>[,<data>]"
   configuration:
-    syntax: mct=<val>,<data>
+    syntax: "mct=<val>,<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 4
-      meaning: Data <data> are available, Maximum Strength Test
+      meaning: "Data <data> are available, Maximum Strength Test"
     - code: else
-      meaning: No parameter of Maximum Strength Test available
-  - name: data
-    type: sequence
+      meaning: "No parameter of Maximum Strength Test available"
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: LimitId
-      type: unsigned short int
-    - name: LimitValue
-      type: float
-    - name: InitialLoad
-      type: float
-    - name: HoldTime
-      type: float
-    - name: UnitId
-      type: unsigned short int
+    - name: "LimitId"
+      type: "unsigned short int"
+    - name: "LimitValue"
+      type: "float"
+    - name: "InitialLoad"
+      type: "float"
+    - name: "HoldTime"
+      type: "float"
+    - name: "UnitId"
+      type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

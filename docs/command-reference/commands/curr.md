@@ -6,15 +6,15 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: curr
-  summary: Query of motor current
+  name: "curr"
+  summary: "Query of motor current"
   query:
-    syntax: curr?
+    syntax: "curr?"
     replies:
-      ok: curr:<val>
+      ok: "curr:<val>"
   parameters:
-  - name: val
-    type: float
+  - name: "val"
+    type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

@@ -6,36 +6,36 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: want
-  summary: Configuration of Wingate Anaerobic Test
+  name: "want"
+  summary: "Configuration of Wingate Anaerobic Test"
   query:
-    syntax: want?
+    syntax: "want?"
     replies:
-      ok: want:<val>[,<data>]
+      ok: "want:<val>[,<data>]"
   configuration:
-    syntax: want=val,data
+    syntax: want=<val>,<data>
     replies:
-      ok: ok
-      error: error:message
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 12
-      meaning: Data <data> are available, Wingate Anaerobic Test
+      meaning: "Data <data> are available, Wingate Anaerobic Test"
     - code: else
-      meaning: no parameter of Maximum Cadence Test available
-  - name: data
-    type: sequence
+      meaning: "no parameter of Maximum Cadence Test available"
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: Profile
-      type: int
-    - name: Factor
-      type: float
-    - name: Time
-      type: float
-    - name: StartCadence
-      type: float
+    - name: "Profile"
+      type: "int"
+    - name: "Factor"
+      type: "float"
+    - name: "Time"
+      type: "float"
+    - name: "StartCadence"
+      type: "float"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

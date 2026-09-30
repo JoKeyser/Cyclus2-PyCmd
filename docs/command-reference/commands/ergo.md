@@ -6,38 +6,35 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: ergo
-  summary: Configuration of ergoline mode
+  name: "ergo"
+  summary: "Configuration of ergoline mode"
   query:
-    syntax: ergo?
+    syntax: "ergo?"
     replies:
-      ok: ergo:<val>
+      ok: "ergo:<val>"
   configuration:
-    syntax: ergo=<val>
+    syntax: "ergo=<val>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: val
-    type: unsigned short int
+  - name: "val"
+    type: "unsigned short int"
     values:
     - code: 0
-      meaning: Standard; Cyclus2 set back to manual control
+      meaning: "Standard; Cyclus2 set back to manual control"
     - code: 1
-      meaning: Ergoline mode; Cyclus2 can be controlled with Ergoline commands
+      meaning: "Ergoline mode; Cyclus2 can be controlled with Ergoline commands"
     - code: 2
-      meaning: As in 1, but slave mode is automatically quit when ending ergometry
-        and displaying analysis results
+      meaning: "As in 1, but slave mode is automatically quit when ending ergometry and displaying analysis results"
     - code: 3
-      meaning: Slave mode, operator can use the electronic gear shift, info line not
-        displayed
+      meaning: "Slave mode, operator can use the electronic gear shift, info line not displayed"
     - code: 4
-      meaning: As in 3, but slave mode is automatically quit when ending ergometry
-        and displaying analysis results
+      meaning: "As in 3, but slave mode is automatically quit when ending ergometry and displaying analysis results"
     - code: 5
-      meaning: As in 3, but with sending of KeyDown events
+      meaning: "As in 3, but with sending of KeyDown events"
     - code: 6
-      meaning: As in 4, but with sending of KeyDown events
+      meaning: "As in 4, but with sending of KeyDown events"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

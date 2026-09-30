@@ -6,37 +6,37 @@ SPDX-Description: Cyclus2 command reference entry derived from the Cyclus2 proto
 
 ---
 command:
-  name: cycle1
-  summary: Configuration of the mounted bike (new version)
+  name: "cycle1"
+  summary: "Configuration of the mounted bike (new version)"
   query:
-    syntax: cycle1?
+    syntax: "cycle1?"
     replies:
-      ok: cycle1:<data>
+      ok: "cycle1:<data>"
   configuration:
-    syntax: cycle1=<data>
+    syntax: "cycle1=<data>"
     replies:
-      ok: ok
-      error: error:<message>
+      ok: "ok"
+      error: "error:<message>"
   parameters:
-  - name: data
-    type: sequence
+  - name: "data"
+    type: "sequence"
     sequence:
-    - name: Version for later extensions, 0 for the structure below
-      type: unsigned short int
-    - name: Wheel size in Meters
-      type: float
-    - name: Crank length in Meters
-      type: float
-    - name: Weight in Kilogramms
-      type: float
-    - name: Real front chain ring
-      type: unsigned short int
-    - name: Real rear sprocket
-      type: unsigned short int
-    - name: Virtual front chain ring
-      type: unsigned short int
-    - name: Virtual rear sprocket
-      type: unsigned short int
+    - name: "Version for later extensions, 0 for the structure below"
+      type: "unsigned short int"
+    - name: "Wheel size in Meters"
+      type: "float"
+    - name: "Crank length in Meters"
+      type: "float"
+    - name: "Weight in Kilogramms"
+      type: "float"
+    - name: "Real front chain ring"
+      type: "unsigned short int"
+    - name: "Real rear sprocket"
+      type: "unsigned short int"
+    - name: "Virtual front chain ring"
+      type: "unsigned short int"
+    - name: "Virtual rear sprocket"
+      type: "unsigned short int"
 ---
 
 <!-- The YAML block above is machine-readable metadata; the Markdown below is for human-readable documentation. -->

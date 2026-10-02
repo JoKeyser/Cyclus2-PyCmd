@@ -48,6 +48,10 @@ Note that steps including _None_ either require no command or send no reply:
 
 ## 3.2 Programme generation and ergometry control
 
+> [!NOTE]
+> The command [`gen`](/docs/command-reference/commands/gen.md) is only available in Cyclus2 software version 3.100.
+> On later versions, you will see `error:unknown command` if you try to use it.
+
 1. `slave?` 🡺 `slave:0` — Cyclus2 is in standard mode.
 2. `slave=1` 🡺 `ok` — Switch Cyclus2 to slave mode.
 3. `gen=8,3000,0,0,0,100,120,20,1,5,0,10` 🡺 `ok` — Sinus programme with 10 hills with a load continuation of 30 seconds each. The first hill has an amplitude of 120 W, for each of the following hills the amplitude will be increased by 20 W. The load in the valley is 100 W.
@@ -60,6 +64,10 @@ Note that steps including _None_ either require no command or send no reply:
 8. `slave=0` 🡺 `ok` — Set Cyclus2 back to standard mode. Cyclus2 can be operated manually.
 
 ## 3.3 Programme initialisation with stages and ergometry control
+
+> [!NOTE]
+> The command [`stage`](/docs/command-reference/commands/stage.md) is only available in Cyclus2 software version 3.100 (and perhaps 4?).
+> On later versions, you will see `error:unknown command` if you try to use it.
 
 1. `slave?` 🡺 `slave:0` — Cyclus2 is in standard mode.
 2. `slave=1` 🡺 `ok` — Switch Cyclus2 to slave mode.
@@ -93,15 +101,15 @@ Note that steps including _None_ either require no command or send no reply:
 
 6. `ctrl=1` 🡺 `ok` — Start of ergometry.
 
-   ... <!-- The ellipsis "..." probably indicates that time may pass here. -->
+   ... <!-- The ellipsis "..." probably indicates that some time may pass here. -->
 
 7. `load=6,0.75` 🡺 `ok` — Set new inclination (0.75 % uphill).
 
-   ... <!-- The ellipsis "..." probably indicates that time may pass here. -->
+   ... <!-- The ellipsis "..." probably indicates that some time may pass here. -->
 
 8. `load=6,-1.25` 🡺 `ok` — Set new inclination (-1.25 % downhill).
 
-   ... <!-- The ellipsis "..." probably indicates that time may pass here. -->
+   ... <!-- The ellipsis "..." probably indicates that some time may pass here. -->
 
 9. `save=3` 🡺 `ok` — Save ergometry data on USB memory stick or if not present on the network drive.
 10. `ctrl=0` 🡺 `ok` — Cancellation of ergometry.
@@ -121,7 +129,7 @@ Note that steps including _None_ either require no command or send no reply:
 9. `d` 🡺 `n081` — Enquire actual cadence (result 81 1/min).
 10. `w120` 🡺 _None_ — New load preset 120 W.
 
-    ... <!-- The ellipsis "..." probably indicates that time may pass here. -->
+    ... <!-- The ellipsis "..." probably indicates that some time may pass here. -->
 
 11. `save=3` 🡺 `ok` — Save ergometry data on USB memory stick or if not present on the network drive.
 12. `f` 🡺 _None_ — Cancellation of ergometry.
@@ -151,7 +159,7 @@ Note that steps including _None_ either require no command or send no reply:
 
     _None_ 🡺 `data:7,0,0,0,0,......` — A new set of data every 500 ms.
 
-    ... <!-- The ellipsis "..." probably indicates that time may pass here. -->
+    ... <!-- The ellipsis "..." probably indicates that some time may pass here. -->
 
 18. `ctrl=1` 🡺 `ok` — Start ergometry.
 19. `data:7,50,......` 🡺 _None_ — 1. data set during the ergometry.

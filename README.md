@@ -62,7 +62,7 @@ Welcome to
   / ___/_ ______/ /_ _____ |_  |___/ _ \__ __/ ___/_ _  ___/ /
  / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \/ _  /
  \___/\_, /\__/_/\_,_/___/____/  /_/   \_, /\___/_/_/_/\_,_/
-     /___/                            /___/     version 1.2.0
+     /___/                            /___/     version 1.2.1
 
 Type any Cyclus2 command or use HELP [command] for command reference.
 Press Tab to 'cycle through' or complete half-typed commands.
@@ -82,7 +82,8 @@ Disconnecting and quitting the session. Bye.
 ```
 
 > [!NOTE]
-> The Cyclus2 will send "`error:unknown command`" if the command you entered is unknown/invalid.
+> The Cyclus2 will reply with "`error:unknown command`" if the command you entered is unknown/invalid.
+> This is also sent if the command is not available in the Cyclus2 software version you are using, e.g., if the command was removed in a later version.
 
 > [!TIP]
 > See RBM's more interesting [examples](./docs/Examples.md) of the capabilities of the Cyclus2 protocol interface.
@@ -166,14 +167,23 @@ The Python code probably works on MacOS (if Python is installed), but this has n
 
 ## Roadmap
 
+- In "chat" history window, enable text selection and copy-to-clipboard, if possible.
+- Support serial connection to the Cyclus2 in addition to the network access.
+- _Maybe_ add a way to "filter" the commands that are (un)available for a specific Cyclus2 software version?
+  Several commands are only available for specific version numbers.
+  Perhaps with a command-line argument like `--cyclus2-version=5`, the program could show available commands differently from those that are only available in version 3.
+  - Unavailable commands could be excluded from the command completion.
+  - Unavailable commands could be listed elesewhere in the overview and dynamically marked in the shown HELP text.
+  - The supported versions of each command should be listed in a YAML key for robust readout.
 - _Maybe_ split the YAML and Markdown parts in [./docs/command-reference/](./docs/command-reference/) into 2 files for each command?
   E.g., when reading the Markdown, it's confusing/annoying to scroll past the YAML?
   On the other hand, it's nice that there's a single file...
   (If split, this must be adapted in the read-in code as well.)
 - _Maybe_ make [the examples](./docs/Examples.md) available from the app, for easy play-through?
 - _Maybe_ convert more of the [Cyclus2 protocol specification](./docs/command-reference/Cyclus2-protocol-specs.pdf) into Markdown for easier browsing?
-- _Maybe_ support serial connection (instead of network connection) to the Cyclus2?
+- _Maybe_ publish as package on <https://pypi.org/> to enable installation via `pip` etc?
 - _Maybe_ make this project citable somehow?
+  [E.g., via Zenodo?](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)
 
 ## Contributing
 

@@ -20,7 +20,9 @@ from pathlib import Path
 
 import yaml
 from prompt_toolkit.application import Application
+from prompt_toolkit.clipboard.pyperclip import PyperclipClipboard
 from prompt_toolkit.document import Document
+from prompt_toolkit.filters import has_focus
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.layout.containers import HSplit, Window, Float, FloatContainer
 from prompt_toolkit.layout.layout import Layout
@@ -48,7 +50,7 @@ ASCII_BANNER = (
     + "  / ___/_ ______/ /_ _____ |_  |___/ _ \\__ __/ ___/_ _  ___/ /\n"
     + " / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \\/ _  /\n"
     + " \\___/\\_, /\\__/_/\\_,_/___/____/  /_/   \\_, /\\___/_/_/_/\\_,_/\n"
-    + f"     /___/                            /___/     version {VERSION}\n"
+    + f"     /___/                            /___/    version {VERSION}\n"
 )
 
 # Cyclus2 uses ASCII commands and a CRLF terminator on requests.
@@ -337,17 +339,23 @@ class ChatSession:
         intro = (
             ASCII_BANNER
             + "\n"
-            + "Type any Cyclus2 command or use HELP [command] for command reference.\n"
+            + "Type any Cyclus2 command or use HELP [command] for reference.\n"
             + "Press Tab to 'cycle through' or complete half-typed commands.\n"
-            "To end the session, type QUIT to disconnect from the Cyclus2.\n"
+            + "You can use the mouse to select text and copy it with Ctrl+C.\n"
+            + "To end the session, type QUIT to disconnect from the Cyclus2.\n"
         )
         self.chatlog_area = TextArea(
-            text=intro, read_only=True, wrap_lines=True, scrollbar=True
+            text=intro,
+            read_only=True,
+            focus_on_click=True,
+            wrap_lines=True,
+            scrollbar=True,
         )
         self.input_area = TextArea(
             height=1,
             prompt="Command> ",
             multiline=False,
+            focus_on_click=True,
             wrap_lines=False,
             style="bg:darkgreen",
             completer=c2completer,
@@ -366,9 +374,19 @@ class ChatSession:
         bindings = KeyBindings()
 
         @bindings.add("c-c")
-        def _quit(event):
-            self.session.close()
-            event.app.exit()
+        def _copy(event):
+            # Only copies; ending the session is done with the QUIT command.
+            buffer = self.chatlog_area.buffer
+            if buffer.selection_state:
+                event.app.clipboard.set_data(buffer.copy_selection())
+                event.app.invalidate()
+
+        @bindings.add("<any>", filter=has_focus(self.chatlog_area))
+        def _type_in_input(event):
+            # The chat history is not for typing: Send typed text to the command row.
+            if event.data.isprintable():
+                event.app.layout.focus(self.input_area)
+                self.input_area.buffer.insert_text(event.data)
 
         def _dismiss_if_popup(event):
             if self._active_popup is not None:
@@ -379,7 +397,11 @@ class ChatSession:
         bindings.add("escape")(_dismiss_if_popup)
 
         self.app = Application(
-            layout=layout, key_bindings=bindings, full_screen=True, mouse_support=True
+            layout=layout,
+            key_bindings=bindings,
+            full_screen=True,
+            mouse_support=True,
+            clipboard=PyperclipClipboard(),
         )
 
     def _append(self, line: str):
@@ -452,7 +474,6 @@ class ChatSession:
             self._append(f"\nCommand> {text}")
 
         if text == "QUIT":
-            self._append("Disconnecting and ending the session. Bye.")
             self.session.close()
             self.app.exit()
             return
@@ -559,6 +580,8 @@ def main():
 
     try:
         ChatSession(session, command_catalog).run()
+        # The chat log vanishes with the full-screen UI, so confirm on the terminal.
+        print("Disconnected from the Cyclus2 and quit the session. Bye.")
     except KeyboardInterrupt:
         print("\nReceived keyboard interrupt; disconnecting.")
     except Exception as exc:

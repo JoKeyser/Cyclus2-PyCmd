@@ -37,6 +37,8 @@ Assuming the Cyclus2 ergometer has the IP address `192.168.1.200`, you can start
     (On Windows, you can also double-click the executable to start it; if no IP address is supplied, the program will ask for it.)
 
 After connecting, you can type any Cyclus2 command into the prompt and see the response.
+To copy text from the chat history, click and drag to select it, then press `Ctrl+C`.
+To end the session, use the `QUIT` command.
 In addition, you can use the following PyCmd helper commands:
 
 - `HELP` shows the list of available commands.
@@ -62,10 +64,11 @@ Welcome to
   / ___/_ ______/ /_ _____ |_  |___/ _ \__ __/ ___/_ _  ___/ /
  / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \/ _  /
  \___/\_, /\__/_/\_,_/___/____/  /_/   \_, /\___/_/_/_/\_,_/
-     /___/                            /___/     version 1.2.1
+     /___/                            /___/    version 1.3.0
 
-Type any Cyclus2 command or use HELP [command] for command reference.
+Type any Cyclus2 command or use HELP [command] for reference.
 Press Tab to 'cycle through' or complete half-typed commands.
+You can use the mouse to select text and copy it with Ctrl+C.
 To end the session, type QUIT to disconnect from the Cyclus2.
 
 Command> vers?
@@ -78,7 +81,7 @@ Command> something-wrong
 Cyclus2> error:unknown command
 
 Command> QUIT
-Disconnecting and quitting the session. Bye.
+Disconnected from the Cyclus2 and quit the session. Bye.
 ```
 
 > [!NOTE]
@@ -167,7 +170,6 @@ The Python code probably works on MacOS (if Python is installed), but this has n
 
 ## Roadmap
 
-- In "chat" history window, enable text selection and copy-to-clipboard, if possible.
 - Support serial connection to the Cyclus2 in addition to the network access.
 - _Maybe_ add a way to "filter" the commands that are (un)available for a specific Cyclus2 software version?
   Several commands are only available for specific version numbers.

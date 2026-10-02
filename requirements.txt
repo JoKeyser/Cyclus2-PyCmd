@@ -4,4 +4,5 @@
 
 PyYAML>=6.0  # needed for reading the command reference files
 prompt_toolkit>=3.0.0  # used for the chat-style terminal interface
+pyperclip>=1.8  # needed for copying selected chat history to the system clipboard
 PyInstaller>=6.0  # only needed if you want to build executables yourself

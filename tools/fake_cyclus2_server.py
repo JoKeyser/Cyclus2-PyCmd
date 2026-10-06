@@ -15,10 +15,18 @@
 #              python tools/fake_cyclus2_server.py
 #              python Cyclus2-PyCmd.py --address 127.0.0.1
 #
+#          To test the serial connection instead (Linux/macOS only), use a
+#          pseudo-terminal, which behaves like a serial port:
+#              python tools/fake_cyclus2_server.py --serial
+#              python Cyclus2-PyCmd.py --transport serial --device /dev/pts/N
+#          where the script prints the actual device path to use.
+#
 # SPDX-FileCopyrightText: Johannes Keyser <johannes.keyser@uni-hamburg.de>
 # SPDX-License-Identifier: EUPL-1.2
 
 import argparse
+import os
+import select
 import socket
 import sys
 import threading
@@ -138,6 +146,64 @@ def handle_client(conn, addr):
     print(f"Client {addr} disconnected.")
 
 
+class PtyConnection:
+    """
+    The master side of a pseudo-terminal, which looks like a socket to
+    handle_client(): it offers the same recv/sendall/settimeout methods.
+    A client (Cyclus2-PyCmd) opens the other side of the pseudo-terminal as if
+    it were a serial port.
+    """
+
+    def __init__(self, master_fd: int):
+        self.master_fd = master_fd
+        self.timeout = None
+        # Never block when writing: if nobody reads (e.g., the client has quit
+        # while data=<val> is streaming), the write fails and the stream stops.
+        os.set_blocking(master_fd, False)
+
+    def settimeout(self, timeout):
+        self.timeout = timeout
+
+    def recv(self, size: int) -> bytes:
+        if not select.select([self.master_fd], [], [], self.timeout)[0]:
+            raise socket.timeout  # same as a socket without data
+        return os.read(self.master_fd, size)
+
+    def sendall(self, data: bytes):
+        while data:
+            written = os.write(self.master_fd, data)
+            data = data[written:]
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc_info):
+        os.close(self.master_fd)
+
+
+def serve_serial():
+    """Serve clients over a pseudo-terminal until stopped with Ctrl+C."""
+    try:
+        import pty  # not available on Windows
+    except ImportError:
+        sys.exit("ERROR: --serial needs pseudo-terminals, so Linux or macOS.")
+
+    master_fd, slave_fd = pty.openpty()
+    device = os.ttyname(slave_fd)
+    # Keep the slave side open ourselves: Without any open slave, reading from
+    # the master fails right away. (A side effect is that we never notice when
+    # a client disconnects; that is fine, a new client can simply connect again.)
+
+    print(f"Fake Cyclus2 serial port: {device}. Press Ctrl+C to stop.")
+    print(f"Connect with: python Cyclus2-PyCmd.py --transport serial --device {device}")
+    try:
+        handle_client(PtyConnection(master_fd), device)
+    except KeyboardInterrupt:
+        print("\nStopping fake Cyclus2 server.")
+    finally:
+        os.close(slave_fd)
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Fake Cyclus2 ergometer for testing Cyclus2-PyCmd without real hardware."
@@ -153,6 +219,12 @@ def parse_args():
         default=DEFAULT_PORT,
         help=f"Port to listen on (default: {DEFAULT_PORT}, the real Cyclus2 default).",
     )
+    parser.add_argument(
+        "--serial",
+        action="store_true",
+        help="Offer a (pseudo-)serial port instead of listening on TCP "
+        "(Linux/macOS only; --host and --port are ignored).",
+    )
     return parser.parse_args()
 
 
@@ -162,6 +234,10 @@ def main():
     # Ensure the traffic log below appears immediately, even if stdout is
     # redirected to a file (e.g., when capturing a test run's output).
     sys.stdout.reconfigure(line_buffering=True)
+
+    if args.serial:
+        serve_serial()
+        return
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_sock:
         server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

@@ -39,6 +39,23 @@ python tools/fake_cyclus2_server.py
 python Cyclus2-PyCmd.py --address 127.0.0.1
 ```
 
+To try the serial connection instead, use option `--serial` (Linux and macOS only, since it relies on a pseudo-terminal that behaves like a serial port):
+
+```sh
+# In one terminal; this prints a device path like /dev/pts/7
+python tools/fake_cyclus2_server.py --serial
+
+# In another terminal, using the printed path:
+python Cyclus2-PyCmd.py --transport serial --device /dev/pts/7
+```
+
+The pseudo-terminal serial variant keeps its device path until you stop it with `Ctrl+C`, so you can start and quit Cyclus2-PyCmd repeatedly.
+
+> [!NOTE]
+> On Windows, this fake script cannot provide a serial port.
+> To test the app without hardware, use the TCP example above.
+> Testing a serial connection would require a real Cyclus2 and serial adapter, or a virtual COM-port pair (e.g., [com0com](https://com0com.sourceforge.net/)) plus a separate program that acts as the fake device.
+
 It understands enough commands (`vers?`, `data=<val>`, etc.) to exercise the interactive chat session, including the continuous `data=<val>` stream; see the script's own comments for details.
 It is not a full protocol implementation, so prefer a real Cyclus2 (or the [examples](./Examples.md)) when in doubt about actual device behavior.
 
@@ -101,4 +118,5 @@ To change the baud rate of the Cyclus2, you need to login as _Admin_.
 To login as Admin, select _System ➜ Login_ and enter the administrator password.
 You should get the Admin password from your RBM contact.
 
-Once you are logged in as Admin, you should see "Admin" in the bottom-right corner of the Cyclus2 screen (instead showing nothing or "Expert").
+Once you are logged in as Admin, you should see "Admin" in the bottom-right corner of the Cyclus2 screen (instead of nothing or "Expert").
+After changing the device baud rate, reconnect with the same rate by passing `--baudrate` to _Cyclus2-PyCmd_.

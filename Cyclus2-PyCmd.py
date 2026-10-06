@@ -3,10 +3,9 @@
 # PURPOSE: An interactive "chat-like" command-line interface to Cyclus2.
 # AUTHORS: Johannes Keyser <johannes.keyser@uni-hamburg.de>
 # LICENSE: EUPL-1.2
-# SUMMARY: This script connects to a Cyclus2 ergometer over TCP/IP and
-#          allows the user to interactively type commands like "data?".
-#          It assumes that the Cyclus2 server is running and accessible
-#          at the specified ADDRESS and PORT, see code below.
+# SUMMARY: This script connects to a Cyclus2 ergometer and allows the user
+#          to interactively type commands like "data?", along with some
+#          convenience features like a built-in command reference.
 #
 # SPDX-FileCopyrightText: Johannes Keyser <johannes.keyser@uni-hamburg.de>
 # SPDX-License-Identifier: EUPL-1.2
@@ -15,9 +14,9 @@ import argparse
 import socket
 import sys
 import threading
-import time
 from pathlib import Path
 
+import serial
 import yaml
 from prompt_toolkit.application import Application
 from prompt_toolkit.clipboard.pyperclip import PyperclipClipboard
@@ -42,6 +41,9 @@ def read_version() -> str:
 
 VERSION = read_version()
 DEFAULT_ADDRESS = "192.168.1.200"  # a local address as default/example
+DEFAULT_PORT = 25000  # port of the Cyclus2 Ethernet/TCP interface
+DEFAULT_SERIAL_BAUDRATE = 4800  # the Cyclus2 serial default after power-up
+READ_TIMEOUT = 0.25  # seconds the reader thread waits for data before re-checking
 
 # Write "Cyclus2-PyCmd" in ASCII art font "Small Slant"; yes, that is important.
 ASCII_BANNER = (
@@ -209,39 +211,6 @@ def local_reply_for(command_catalog: dict, text: str):
     return None
 
 
-def receive_stream(sock, timeout=2.0, chunk_size=1024):
-    """
-    Read until the socket becomes idle for a short moment.
-
-    """
-    sock.settimeout(timeout)
-    chunks = []
-    deadline = time.monotonic() + timeout
-    last_data_time = time.monotonic()
-    TIMEOUT_LIMIT = 0.25  # idle time to consider the stream finished, in seconds
-
-    while True:
-        remaining = max(0.0, deadline - time.monotonic())
-        if remaining <= 0:
-            break
-
-        sock.settimeout(min(remaining, TIMEOUT_LIMIT))
-        try:
-            data = sock.recv(chunk_size)
-        except socket.timeout:
-            if time.monotonic() - last_data_time >= TIMEOUT_LIMIT:
-                break
-            continue
-
-        if not data:
-            break
-
-        chunks.append(data)
-        last_data_time = time.monotonic()
-
-    return b"".join(chunks)
-
-
 def printable_ascii(data: bytes) -> str:
     try:
         text = data.decode("ascii")
@@ -250,50 +219,113 @@ def printable_ascii(data: bytes) -> str:
     return text.rstrip("\r")  # strip trailing CR sent by Cyclus2
 
 
-class Cyclus2Session:
+class SocketConnection:
     """
-    A TCP connection to the Cyclus2, modeled as a two-way conversation.
-    send_line() sends a message to the Cyclus2; any text the Cyclus2 replies
-    is delivered to a callback as soon as it arrives, whenever that is.
-    A background thread does the actual socket reading, because the Cyclus2 does
-    not always wait to be asked: For example, after command data=7,
-    it keeps streaming data until command data=0.
+    Adapt a TCP socket to the small interface that Cyclus2Session expects,
+    which pyserial's Serial objects already provide:
+      read(size) -> bytes; b"" means "nothing arrived yet", None means "closed".
+      write(data), close().
     """
 
-    def __init__(self, host: str, port: int, timeout: float = 2.0):
-        self.timeout = timeout
-        self.sock = socket.create_connection((host, port), timeout=timeout)
+    def __init__(self, sock: socket.socket):
+        self.sock = sock
+
+    def read(self, size: int):
+        try:
+            data = self.sock.recv(size)
+        except socket.timeout:
+            return b""
+        return data if data else None  # recv() returns b"" if the peer closed
+
+    def write(self, data: bytes):
+        self.sock.sendall(data)
+
+    def close(self):
+        try:
+            self.sock.shutdown(socket.SHUT_RDWR)
+        except OSError:
+            pass
+        self.sock.close()
+
+
+class Cyclus2Session:
+    """
+    A connection to the Cyclus2 (over TCP or serial), modeled as a two-way
+    conversation. send_line() sends a message to the Cyclus2; any text the
+    Cyclus2 replies is delivered to a callback as soon as it arrives, whenever
+    that is. A background thread does the actual reading, because the Cyclus2
+    does not always wait to be asked: For example, after command data=7,
+    it keeps streaming data until command data=0.
+
+    Use via_tcp() or via_serial() to create a session.
+    """
+
+    def __init__(self, connection):
+        self.connection = connection
         self._on_message = lambda line: None
         self._running = True
         self._reader_thread = threading.Thread(target=self._read_loop, daemon=True)
         self._reader_thread.start()
+
+    @classmethod
+    def via_tcp(cls, host: str, port: int, timeout: float = 2.0):
+        sock = socket.create_connection((host, port), timeout=timeout)
+        # After connecting, use a short timeout so the reader thread regularly
+        # checks whether the session was closed.
+        sock.settimeout(READ_TIMEOUT)
+        return cls(SocketConnection(sock))
+
+    @classmethod
+    def via_serial(cls, device: str, baudrate: int, timeout: float = 2.0):
+        # The Cyclus2 serial interface uses 8 data bits, no parity, 1 stop bit
+        # and no flow control; only the baud rate is configurable (see "br" command).
+        connection = serial.Serial(
+            port=device,
+            baudrate=baudrate,
+            bytesize=serial.EIGHTBITS,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+            xonxoff=False,
+            rtscts=False,
+            dsrdtr=False,
+            timeout=READ_TIMEOUT,
+            write_timeout=timeout,
+        )
+        return cls(connection)
 
     def set_message_handler(self, callback):
         """Register the function to call for every line received from the Cyclus2."""
         self._on_message = callback
 
     def _read_loop(self):
+        # Data may arrive in arbitrary pieces, so collect it until a complete
+        # line (ended by CR, or LF/CRLF depending on the "eol" command) is there.
+        buffer = b""
         while self._running:
             try:
-                chunk = receive_stream(self.sock, timeout=self.timeout)
-            except OSError:
-                break  # the socket was closed, e.g. via close() below.
+                chunk = self.connection.read(1024)
+            except OSError:  # includes serial.SerialException
+                break  # the connection was closed or lost
+            if chunk is None:
+                break  # the peer closed the connection
+            buffer += chunk.replace(b"\n", b"\r")  # treat LF like CR
 
-            for line in printable_ascii(chunk).splitlines():
-                line = line.strip()
-                if line:
+            *lines, buffer = buffer.split(b"\r")  # the remainder is incomplete
+            for raw_line in lines:
+                line = printable_ascii(raw_line).strip()
+                if line:  # a CRLF ending leaves an empty piece; skip it
                     self._on_message(line)
 
     def send_line(self, command: str):
-        self.sock.sendall(command.encode("ascii") + REQUEST_NEWLINE)
+        self.connection.write(command.encode("ascii") + REQUEST_NEWLINE)
 
     def close(self):
         self._running = False
-        try:
-            self.sock.shutdown(socket.SHUT_RDWR)
-        except OSError:
-            pass
-        self.sock.close()
+        # Wait for the reader to stop first; closing a serial port while another
+        # thread is still reading from it raises errors in that thread.
+        if threading.current_thread() is not self._reader_thread:
+            self._reader_thread.join()
+        self.connection.close()
 
 
 class Cyclus2Completer(Completer):
@@ -502,17 +534,29 @@ class ChatSession:
 
 
 def parse_args():
-    # NOTE: The initial prototype script only supports TCP/IP; the connection target
-    #       is a network address. If serial support is added later, this could
-    #       be separated into a --transport option (e.g., tcp | serial) with options
-    #       --address and --device for each transport instead of reusing --address.
     parser = argparse.ArgumentParser(
-        description="Interactively send commands to a Cyclus2 ergometer over TCP/IP."
+        description="Interactively send commands to a Cyclus2 ergometer over TCP/IP or serial."
+    )
+    parser.add_argument(
+        "--transport",
+        choices=("tcp", "serial"),
+        help="Connection type (default: tcp if --address is given, serial if "
+        "--device is given, otherwise ask interactively).",
     )
     parser.add_argument(
         "--address",
         default=None,
-        help=f"IP address of your Cyclus2 ergometer (default: {DEFAULT_ADDRESS}).",
+        help=f"Cyclus2 IP address for TCP (default: {DEFAULT_ADDRESS}).",
+    )
+    parser.add_argument(
+        "--device",
+        help="Serial device path, e.g. /dev/ttyUSB0 or COM3.",
+    )
+    parser.add_argument(
+        "--baudrate",
+        type=int,
+        default=DEFAULT_SERIAL_BAUDRATE,
+        help=f"Serial baud rate (default: {DEFAULT_SERIAL_BAUDRATE}).",
     )
     parser.add_argument(
         "--help-command",
@@ -524,7 +568,71 @@ def parse_args():
         action="store_true",
         help="Show the project version and exit.",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.transport is None:
+        # Infer the connection type from the other options, if possible.
+        if args.device:
+            args.transport = "serial"
+        elif args.address:
+            args.transport = "tcp"
+    if args.transport == "tcp" and args.device:
+        parser.error("--device can only be used with --transport serial")
+    if args.transport == "serial" and args.address:
+        parser.error("--address can only be used with --transport tcp")
+    if args.baudrate <= 0:
+        parser.error("--baudrate must be a positive integer")
+    return args
+
+
+def prompt(question: str, default: str) -> str:
+    """
+    Ask a question and return the answer, or the default if the answer is empty.
+    Without an interactive terminal, nobody can answer, so use the default.
+    """
+    try:
+        if sys.stdin.isatty():
+            return input(f"{question} [default is {default}]: ").strip() or default
+    except KeyboardInterrupt:
+        print("\nReceived keyboard interrupt; aborting.")
+        sys.exit(0)
+    except EOFError:
+        pass
+    return default
+
+
+def connect(args) -> Cyclus2Session:
+    """
+    Open the connection selected on the command line (TCP or serial).
+    Anything not given there is asked for, e.g. after double-clicking the
+    Windows executable, which starts the program without any arguments.
+    """
+    timeout = 2  # seconds for connecting and sending
+
+    transport = args.transport or prompt(
+        "Connect via network (tcp) or serial cable (serial)?", "tcp"
+    )
+
+    if transport == "serial":
+        # USB-to-serial adapters are named differently per platform.
+        if sys.platform == "win32":
+            print("Hint: See Device Manager > Ports (COM & LPT) for your adapter.")
+            default_device = "COM3"
+        else:
+            print("Hint: After plugging in the adapter, see `ls /dev/ttyUSB*`.")
+            default_device = "/dev/ttyUSB0"
+        device = args.device or prompt("Enter the serial device", default_device)
+        print(
+            f"Trying to connect to {device} at {args.baudrate} baud ... ",
+            end="",
+            flush=True,
+        )
+        return Cyclus2Session.via_serial(device, args.baudrate, timeout)
+
+    if transport != "tcp":
+        raise ValueError(f"unknown connection type {transport!r}, use tcp or serial")
+    addr = args.address or prompt("Enter your Cyclus2 IP address", DEFAULT_ADDRESS)
+    print(f"Trying to connect to {addr}:{DEFAULT_PORT} ... ", end="", flush=True)
+    return Cyclus2Session.via_tcp(addr, DEFAULT_PORT, timeout)
 
 
 def main():
@@ -542,36 +650,13 @@ def main():
 
     print(ASCII_BANNER)
 
-    addr = args.address
-    if addr is None:
-        # If the address is not provided, prompt the user for it now.
-        # For example, double-clicking the Windows executable will leave address unset.
-        try:
-            if sys.stdin.isatty():
-                entered = input(
-                    f"Enter your Cyclus2 IP address [default is {DEFAULT_ADDRESS}]: "
-                ).strip()
-                addr = entered or DEFAULT_ADDRESS
-            else:
-                addr = DEFAULT_ADDRESS
-        except KeyboardInterrupt:
-            print("\nReceived keyboard interrupt; aborting.")
-            sys.exit(0)
-        except EOFError:
-            addr = DEFAULT_ADDRESS
-
-    PORT = 25000  # default port 25000 on the Cyclus2 Ethernet/TCP interface
-    TIMEOUT_SOCKET = 2  # socket timeout in seconds for send/receive operations
-
-    print(f"Trying to connect to {addr}:{PORT} ... ", end="", flush=True)
-
     try:
-        session = Cyclus2Session(addr, PORT, timeout=TIMEOUT_SOCKET)
-    except OSError as exc:
+        session = connect(args)
+    except (OSError, ValueError) as exc:  # e.g., unreachable host or no such device
         print("connection failed :(.")  # complete above message "Trying to connect..."
         print(
-            "Please check the address; is the Cyclus2 reachable on the network?\n"
-            + f"Connection error details: {exc}",
+            "Please check the connection settings; is the Cyclus2 reachable on the "
+            "selected interface?\n" + f"Connection error details: {exc}",
             file=sys.stderr,
         )
         sys.exit(1)

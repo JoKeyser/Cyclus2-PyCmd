@@ -12,3 +12,4 @@ dist/
 README.html
 README_files/
 /.quarto/
+/.vscode/

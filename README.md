@@ -12,13 +12,13 @@ Interactively send commands to [Cyclus2 ergometers](https://www.cyclus2.com/en/)
 ## Description
 
 This project provides _Cyclus2-PyCmd_, a Python app to interact with [Cyclus2 ergometers](https://www.cyclus2.com/en/) by RBM elektronik-automation GmbH.
-Cyclus2 ergometers offer a command interface, accessible over Ethernet cable, serial connection, or WiFi.
-This allows you to connect any computer to remotely obtain data and control the ergometry in real time.
+Cyclus2 ergometers offer a command interface that you can access over a network (Ethernet or Wi-Fi) or through a direct serial cable.
+This allows you to connect a computer to obtain data and control the ergometer in real time.
 
 _Cyclus2-PyCmd_ aims to create a convenient way to interact with a Cyclus2 ergometer:
 
 - It is pre-configured to show the typed commands and their corresponding replies, in a chat-like interface.
-  All you need is the IP address of your Cyclus2 ergometer.
+  Connect over the network using the ergometer's IP address, or directly with a serial cable.
 - You have the command reference at your fingertips via `HELP <command>`.
 
 > [!TIP]
@@ -28,13 +28,23 @@ _Cyclus2-PyCmd_ aims to create a convenient way to interact with a Cyclus2 ergom
 ## Usage
 
 Using _Cyclus2-PyCmd_ requires [installation](#installation) and a [connection setup](#connection-setup), see sections below.
-Assuming the Cyclus2 ergometer has the IP address `192.168.1.200`, you can start the program as follows:
+For a network connection to a Cyclus2 at `192.168.1.200`, start the program as follows:
 
 - Installation from source: `python Cyclus2-PyCmd.py --address 192.168.1.200`
 - Installation from a downloaded executable:
   - On Linux: `./Cyclus2-PyCmd --address 192.168.1.200`
   - On Windows: `Cyclus2-PyCmd.exe --address 192.168.1.200`
-    (On Windows, you can also double-click the executable to start it; if no IP address is supplied, the program will ask for it.)
+    (On Windows, you can also double-click the executable to start it; the program will then ask whether to connect via network or serial cable, and for the IP address or serial device, offering a default for each.)
+
+For a direct serial connection, specify the serial device. For example, on Linux a USB-to-serial adapter may appear as `/dev/ttyUSB0`:
+
+```sh
+python Cyclus2-PyCmd.py --transport serial --device /dev/ttyUSB0
+```
+
+On Windows, the device is a COM port, e.g. `Cyclus2-PyCmd.exe --transport serial --device COM3`.
+
+The serial baud rate defaults to `4800` (8 data bits, no parity, one stop bit, no flow control). If your ergometer is configured differently, set it explicitly, e.g. `--baudrate 9600`.
 
 After connecting, you can type any Cyclus2 command into the prompt and see the response.
 To copy text from the chat history, click and drag to select it, then press `Ctrl+C`.
@@ -64,7 +74,7 @@ Welcome to
   / ___/_ ______/ /_ _____ |_  |___/ _ \__ __/ ___/_ _  ___/ /
  / /__/ // / __/ / // (_-</ __/___/ ___/ // / /__/  ' \/ _  /
  \___/\_, /\__/_/\_,_/___/____/  /_/   \_, /\___/_/_/_/\_,_/
-     /___/                            /___/    version 1.3.0
+     /___/                            /___/    version 1.4.0
 
 Type any Cyclus2 command or use HELP [command] for reference.
 Press Tab to 'cycle through' or complete half-typed commands.
@@ -130,10 +140,14 @@ python Cyclus2-PyCmd.py --address IP-ADDRESS-OF-CYCLUS2
 
 ## Connection setup
 
-To use _Cyclus2-PyCmd_, you need a working network connection between your computer and your Cyclus2 ergometer.
+Choose either a network connection (Ethernet or Wi-Fi) or a direct serial cable connection to the Cyclus2 ergometer.
+
+### Network connection
+
+The network connection uses TCP/IP and is made using the ergometer's IP address; it does not require an internet connection.
 
 > [!TIP]
-> Perhaps as the simplest setup, you can connect your computer directly to the Cyclus2 with any Ethernet cable.
+> Perhaps as the simplest setup, you can connect your computer directly to the Cyclus2 with any Ethernet cable:
 > Modern computers don't need a cross-over cable for a direct connection.
 
 - Make sure your computer and the Cyclys2 share the same network.
@@ -142,9 +156,27 @@ To use _Cyclus2-PyCmd_, you need a working network connection between your compu
 - Make sure you can ping the ergometer from your computer, e.g., `ping 192.168.1.200`.
   You should see something like `Reply from 192.168.1.200`.
 
+### Serial connection
+
+To use the serial interface, you have to connect your computer to the male 9-pin D-sub (DB9) connector on the Cyclus2.
+Use the null-modem cable (female DB9 on both ends with crossed wires) that was delivered with your Cyclus2.
+At your computer, you either need a compatible male 9-pin D-sub (DB9) connector or an adapter to USB.
+Most modern laptops don't have a DB9 connector, so you will likely need a USB-to-serial adapter.
+
+- On Windows, open the Device Manager and look under "Ports (COM & LPT)" for the COM port number (e.g., `COM3`).
+  If you are using an adapter and no port appears, install its driver.
+- On Linux, check which device was assigned (e.g., `/dev/ttyUSB0` for an adapter or `/dev/ttyS0` for a built-in port).
+  If opening the device is denied on Linux, check which group owns it (e.g., `ls -l /dev/ttyUSB*`).
+  On Debian and Ubuntu this is `dialout`: Add your user to the group with `sudo usermod -aG dialout $USER`, then log out and in again.
+  Other distributions have their own convention, so use the group shown by `ls -l`.
+- To use the serial interface, pass the device with `--device`, e.g., `--device COM3` on Windows or `--device /dev/ttyUSB0` on Linux.
+- The serial interface defaults to `4800` baud, 8 data bits, no parity, one stop bit, and no flow control.
+  Use `--baudrate` if the ergometer has been configured to another baud rate.
+
 > [!NOTE]
-> All commands should work, regardless how you login to your Cyclus2.
-> You only need to login as Admin for [changing the baud rate](docs/README.md#login-as-admin-to-change-serial-baud-rate), but that applies only to serial connections that are not (yet?) supported by this project.
+> Most commands work regardless of the connection type.
+> Continuous data output uses `data=10` over serial and `data=6` over the network; see the [examples](./docs/Examples.md).
+> You only need to login as Admin for [changing the baud rate](docs/README.md#login-as-admin-to-change-serial-baud-rate).
 
 ## Project status and support
 
@@ -170,7 +202,7 @@ The Python code probably works on MacOS (if Python is installed), but this has n
 
 ## Roadmap
 
-- Support serial connection to the Cyclus2 in addition to the network access.
+- Test the current changes on Windows; so far, they have only been tested on Linux.
 - _Maybe_ add a way to "filter" the commands that are (un)available for a specific Cyclus2 software version?
   Several commands are only available for specific version numbers.
   Perhaps with a command-line argument like `--cyclus2-version=5`, the program could show available commands differently from those that are only available in version 3.
